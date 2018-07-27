@@ -47,7 +47,6 @@
 #   end
 # end
 
-activate :sprockets
 activate :minify_html
 
 set :build_dir, 'docs'
