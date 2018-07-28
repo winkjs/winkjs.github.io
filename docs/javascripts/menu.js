@@ -1,1 +1,1 @@
-document.addEventListener("DOMContentLoaded",function(e){$("#packages-menu").on("click",function(){$("#packages-list").toggle(),$(this).toggleClass("selected")}),$(".close-button").on("click",function(){$("#packages-list").hide()})});
+document.addEventListener("DOMContentLoaded",function(){$("#packages-menu").on("click",function(){$("#packages-list").toggle(),$(this).toggleClass("selected")}),$(".close-button").on("click",function(){$("#packages-list").hide()})});
