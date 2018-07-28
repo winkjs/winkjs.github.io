@@ -7,6 +7,7 @@ gem "middleman", "~>4.2.0"
 # Live-reloading plugin
 gem "middleman-livereload", "~> 3.4.3"
 
+gem 'middleman-deploy', '~> 2.0.0.pre.alpha'
 gem "middleman-minify-html"
 
 # For faster file watcher updates on Windows:

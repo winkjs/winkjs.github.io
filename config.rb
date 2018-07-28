@@ -56,6 +56,12 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
+activate :deploy do |deploy|
+  deploy.deploy_method = :git
+  deploy.remote   = 'origin'
+  deploy.branch   = 'master'
+end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
