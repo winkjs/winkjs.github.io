@@ -48,10 +48,6 @@
 # end
 
 activate :minify_html
-
-set :build_dir, 'docs'
-# This makes deployment on Github pages easy
-
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
