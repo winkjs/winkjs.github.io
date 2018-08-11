@@ -1,0 +1,42 @@
+---
+pageable: true
+per_page: 5
+---
+
+<div class="container blog">
+  <div class="row">
+    <% page_articles.each do |article| %>
+    <article class="col-md-8 col-md-offset-2">
+      <h1><a href="<%= article.url %>"><%= article.title %></a></h1>
+      <small>
+        <%= article.data.date.strftime('%b %e, %Y') %> by
+        <%= link_to article.data.author, article.data.author_url %>
+      </small>
+
+      <main>
+        <%= article.body %>
+        <hr>
+      </main>
+    </article>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <center>
+        <% if paginate && num_pages > 1 %>
+        <% if prev_page %>
+        <%= link_to '&larr; Previous page', prev_page %> &middot;
+        <% end %>
+
+        Page <%= page_number %> of <%= num_pages %>
+
+        <% if next_page %>
+        &middot; <%= link_to 'Next page &rarr;', next_page %>
+        <% end %>
+        <% end %>
+      </center>
+      <br><br><br><br>
+    </div>
+  </div>
+</div>
