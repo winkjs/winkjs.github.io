@@ -52,6 +52,13 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 
+activate :blog do |blog|
+  blog.prefix = "blog"
+  blog.permalink = "{title}.html"
+  blog.layout = "article_layout"
+  blog.paginate = true;
+end
+
 activate :deploy do |deploy|
   deploy.deploy_method = :git
   deploy.remote   = 'origin'

@@ -1,0 +1,39 @@
+<% wrap_layout :layout do %>
+
+<div class="container blog">
+  <article class="col-md-8 col-md-offset-2">
+    <h1><%= current_article.title %></h1>
+    <small>
+      <%= current_article.data.date.strftime('%b %e, %Y') %> by
+      <%= link_to current_article.data.author, current_article.data.author_url %>
+    </small>
+
+    <main>
+      <%= yield %>
+      <hr>
+    </main>
+  </article>
+
+  <div class="col-md-4 col-md-offset-2">
+    <% if current_article.data.packages %>
+      <h2>Packages</h2>
+      <% current_article.data.packages.split( ', ').each do |package| %>
+        <br>
+        <%= partial( :package, :locals => { :name => package } ) %>
+      <% end %>
+      <br><br><br>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Recent posts</h2>
+    <% blog.articles[0...4].each do |article| %>
+      <h4>
+        <a href="<%= article.url %>"><%= article.title %></a>
+      </h4>
+    <% end %>
+    <br><br><br>
+  </div>
+</div>
+
+<% end %>
