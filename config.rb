@@ -58,6 +58,14 @@ activate :deploy do |deploy|
   deploy.branch   = 'master'
 end
 
+helpers do
+  def nav_link ( text, path )
+    current_path = current_page.url.to_s
+    link_class = current_path.end_with?(path) ? "selected" : ""
+    return link_to(text, path, :class => link_class)
+  end
+end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
