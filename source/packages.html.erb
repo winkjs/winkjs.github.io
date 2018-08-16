@@ -3,149 +3,94 @@
       <h1 class="col-md-12">Wink Packages</h1>
       <div class="col-md-4">
         <dl>
-          <dt><a href="https://www.npmjs.com/package/wink-statistics">statistics</a></dt>
-          <dd>
-            Fast and Numerically Stable Statistical Analysis Utilities
-            <br><a href="https://github.com/winkjs/wink-statistics">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-statistics/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "statistics",
+            :desc => "Fast and Numerically Stable Statistical Analysis Utilities."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-nlp-utils">nlp utils</a></dt>
-          <dd>
-            NLP Functions for amplifying negations, managing elisions, creating
-            ngrams, stems, phonetic codes to tokens and more.
-            <br><a href="https://github.com/winkjs/wink-nlp-utils">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-nlp-utils/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "nlp-utils",
+            :desc => "NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-tokenizer">tokenizer</a></dt>
-          <dd>
-            Multilingual tokenizer that automatically tags each token with its
-            type such as word, email, time or hashtag.
-            <br><a href="https://github.com/winkjs/wink-tokenizer">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-tokenizer/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "tokenizer",
+            :desc => "Multilingual tokenizer that automatically tags each token with its type such as word, email, time or hashtag."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-naive-bayes-text-classifier">naive bayes text classifier</a></dt>
-          <dd>
-            Configurable Naive Bayes Classifier for text with cross-validation
-            support
-            <br><a href="https://github.com/winkjs/wink-naive-bayes-text-classifier">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-naive-bayes-text-classifier/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "naive-bayes-text-classifier",
+            :desc => "Configurable Naive Bayes Classifier for text with cross-validation support."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-sentiment">sentiment</a></dt>
-          <dd>
-            Accurate and fast sentiment scoring of phrases with emoticons
-            &amp; emojis
-            <br><a href="https://github.com/winkjs/wink-sentiment">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-sentiment/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "sentiment",
+            :desc => "Accurate and fast sentiment scoring of phrases with emoticons &amp; emojis."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-perceptron">perceptron</a></dt>
-          <dd>
-            Multi-class averaged perceptron
-            <br><a href="https://github.com/winkjs/wink-perceptron">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-perceptron/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "perceptron",
+            :desc => "Multi-class averaged perceptron."
+          } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
-          <dt><a href="https://www.npmjs.com/package/wink-pos-tagger">pos tagger</a></dt>
-          <dd>
-            English Part-of-speech (POS) tagger
-            <br><a href="https://github.com/winkjs/wink-pos-tagger">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-pos-tagger/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "pos-tagger",
+            :desc => "English Part-of-speech (POS) tagger."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-porter2-stemmer">porter2 stemmer</a></dt>
-          <dd>
-            Javascript Implementation of Porter Stemmer Algorithm V2 by
-            Dr Martin F Porter
-            <br><a href="https://github.com/winkjs/wink-porter2-stemmer">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-porter2-stemmer/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "porter2-stemmer",
+            :desc => "Javascript Implementation of Porter Stemmer Algorithm V2 by Dr Martin F Porter"
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-lemmatizer">lemmatizer</a></dt>
-          <dd>
-            English lemmatizer
-            <br><a href="https://github.com/winkjs/wink-lemmatizer">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-lemmatizer/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "lemmatizer",
+            :desc => "English lemmatizer."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-regression-tree">regression tree</a></dt>
-          <dd>
-            Decision Tree to predict the value of a continuous target variable
-            <br><a href="https://github.com/winkjs/wink-regression-tree">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-regression-tree/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "regression-tree",
+            :desc => "Decision Tree to predict the value of a continuous target variable."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-bm25-text-search">bm25 text search</a></dt>
-          <dd>
-            Fast Full Text Search based on BM25
-            <br><a href="https://github.com/winkjs/wink-bm25-text-search">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-bm25-text-search/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "bm25-text-search",
+            :desc => "Fast Full Text Search based on BM25."
+          } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
-          <dt><a href="https://www.npmjs.com/package/wink-distance">distance</a></dt>
-          <dd>
-            Distance/Similarity functions for Bag of Words, Strings, Vectors and
-            more
-            <br><a href="https://github.com/winkjs/wink-distance">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-distance/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "distance",
+            :desc => "Distance/Similarity functions for Bag of Words, Strings, Vectors and more."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-jaro-distance">jaro distance</a></dt>
-          <dd>
-            An Implementation of Jaro Distance Algorithm by Matthew A. Jaro
-            <br><a href="https://github.com/winkjs/wink-jaro-distance">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-jaro-distance/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "jaro-distance",
+            :desc => "An Implementation of Jaro Distance Algorithm by Matthew A. Jaro."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-lexicon">lexicon</a></dt>
-          <dd>
-            English lexicon useful in NLP/NLU
-            <br><a href="https://github.com/winkjs/wink-lexicon">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-lexicon/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "lexicon",
+            :desc => "English lexicon useful in NLP/NLU."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-helpers">helpers</a></dt>
-          <dd>
-            Helper functions for Javascript arrays and objects
-            <br><a href="https://github.com/winkjs/wink-helpers">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-helpers/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "helpers",
+            :desc => "Helper functions for Javascript arrays and objects."
+          } ) %>
 
-          <dt><a href="https://www.npmjs.com/package/wink-ner">ner</a>
-          <dd>
-            Language agnostic named entity recognizer
-            <br><a href="https://github.com/winkjs/wink-ner">Github</a>
-            <strong>&middot;</strong>
-            <a href="http://winkjs.org/wink-ner/">Documentation</a>
-          </dd>
+          <%= partial( :package, :locals => {
+            :name => "ner",
+            :desc => "Language agnostic named entity recognizer."
+          } ) %>
         </dl>
-
       </div>
     </nav>
     <br><br>
