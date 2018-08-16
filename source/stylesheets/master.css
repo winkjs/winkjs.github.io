@@ -85,17 +85,17 @@ header p {
 .navbar {
   border-radius: 0;
   border-top: 4px solid #6C307D;
-  padding: 10px 0 15px 0;
 }
 
 .navbar .navbar-nav > li > a {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #fff;
+  padding: 20px;
 }
 
 .navbar .navbar-nav > li > a.selected {
-  color: #aaa;
+  background: #444;
 }
 
 .navbar .navbar-brand {
