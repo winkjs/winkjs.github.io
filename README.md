@@ -21,6 +21,12 @@ See
 [Middleman documentation](https://middlemanapp.com/basics/development-cycle/)
 for more details.
 
+### Adding a new package
+
+To add a new package, add its name and description to `data/packageinfo.json`.
+The name should be without the `wink-` prefix. Then add the package to the list
+of packages in `source/packages.html.erb`.
+
 ## Deploy
 
 We are hosting this website using [Github pages](https://pages.github.com/).
