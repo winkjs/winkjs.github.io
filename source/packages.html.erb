@@ -3,93 +3,32 @@
       <h1 class="col-md-12">Wink Packages</h1>
       <div class="col-md-4">
         <dl>
-          <%= partial( :package, :locals => {
-            :name => "statistics",
-            :desc => "Fast and Numerically Stable Statistical Analysis Utilities."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "nlp-utils",
-            :desc => "NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "tokenizer",
-            :desc => "Multilingual tokenizer that automatically tags each token with its type such as word, email, time or hashtag."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "naive-bayes-text-classifier",
-            :desc => "Configurable Naive Bayes Classifier for text with cross-validation support."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "sentiment",
-            :desc => "Accurate and fast sentiment scoring of phrases with emoticons &amp; emojis."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "perceptron",
-            :desc => "Multi-class averaged perceptron."
-          } ) %>
+          <%= partial( :package, :locals => { :name => "statistics" } ) %>
+          <%= partial( :package, :locals => { :name => "nlp-utils" } ) %>
+          <%= partial( :package, :locals => { :name => "tokenizer" } ) %>
+          <%= partial( :package, :locals => { :name => "naive-bayes-text-classifier" } ) %>
+          <%= partial( :package, :locals => { :name => "sentiment" } ) %>
+          <%= partial( :package, :locals => { :name => "perceptron" } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
-          <%= partial( :package, :locals => {
-            :name => "pos-tagger",
-            :desc => "English Part-of-speech (POS) tagger."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "porter2-stemmer",
-            :desc => "Javascript Implementation of Porter Stemmer Algorithm V2 by Dr Martin F Porter"
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "lemmatizer",
-            :desc => "English lemmatizer."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "regression-tree",
-            :desc => "Decision Tree to predict the value of a continuous target variable."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "bm25-text-search",
-            :desc => "Fast Full Text Search based on BM25."
-          } ) %>
+          <%= partial( :package, :locals => { :name => "pos-tagger" } ) %>
+          <%= partial( :package, :locals => { :name => "porter2-stemmer" } ) %>
+          <%= partial( :package, :locals => { :name => "lemmatizer" } ) %>
+          <%= partial( :package, :locals => { :name => "regression-tree"  } ) %>
+          <%= partial( :package, :locals => { :name => "bm25-text-search" } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
-          <%= partial( :package, :locals => {
-            :name => "distance",
-            :desc => "Distance/Similarity functions for Bag of Words, Strings, Vectors and more."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "jaro-distance",
-            :desc => "An Implementation of Jaro Distance Algorithm by Matthew A. Jaro."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "lexicon",
-            :desc => "English lexicon useful in NLP/NLU."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "helpers",
-            :desc => "Helper functions for Javascript arrays and objects."
-          } ) %>
-
-          <%= partial( :package, :locals => {
-            :name => "ner",
-            :desc => "Language agnostic named entity recognizer."
-          } ) %>
+          <%= partial( :package, :locals => { :name => "distance" } ) %>
+          <%= partial( :package, :locals => { :name => "jaro-distance" } ) %>
+          <%= partial( :package, :locals => { :name => "lexicon" } ) %>
+          <%= partial( :package, :locals => { :name => "helpers" } ) %>
+          <%= partial( :package, :locals => { :name => "ner" } ) %>
         </dl>
       </div>
     </nav>

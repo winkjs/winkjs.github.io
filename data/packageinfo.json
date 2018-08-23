@@ -1,0 +1,18 @@
+{
+  "statistics": "Fast and Numerically Stable Statistical Analysis Utilities.",
+  "nlp-utils": "NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.",
+  "tokenizer": "Multilingual tokenizer that automatically tags each token with its type such as word, email, time or hashtag.",
+  "naive-bayes-text-classifier": "Configurable Naive Bayes Classifier for text with cross-validation support.",
+  "sentiment": "Accurate and fast sentiment scoring of phrases with emoticons & emojis.",
+  "perceptron": "Multi-class averaged perceptron.",
+  "pos-tagger": "English Part-of-speech (POS) tagger.",
+  "porter2-stemmer": "Javascript Implementation of Porter Stemmer Algorithm V2 by Dr Martin F Porter.",
+  "lemmatizer": "English lemmatizer.",
+  "regression-tree": "Decision Tree to predict the value of a continuous target variable.",
+  "bm25-text-search": "Fast Full Text Search based on BM25.",
+  "distance": "Distance/Similarity functions for Bag of Words, Strings, Vectors and more.",
+  "jaro-distance": "An Implementation of Jaro Distance Algorithm by Matthew A. Jaro.",
+  "lexicon": "English lexicon useful in NLP/NLU.",
+  "helpers": "Helper functions for Javascript arrays and objects.",
+  "ner": "Language agnostic named entity recognizer."
+}
