@@ -326,12 +326,16 @@ a.btn-default[role="button"]:hover {
 .blog h2 {
   margin: 0;
 }
+.blog h3 {
+  margin-top: 3rem;
+  margin-bottom: 0;
+}
 .blog main {
   margin-top: 0rem;
 }
 .blog main p {
   line-height: 1.5;
-  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 .blog main a {
   text-decoration: underline;
