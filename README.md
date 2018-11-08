@@ -44,6 +44,7 @@ for deployment.
 After you're happy with the changes in the `dev` branch you can run:
 
 ```
+bundle exec middleman build
 bundle exec middleman deploy
 ```
 
