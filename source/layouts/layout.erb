@@ -13,6 +13,15 @@
     <%= javascript_include_tag  "all" %>
     <link rel="icon" type="image/png" href="favicon.png">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-47082559-2');
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
     <script src="https://use.typekit.net/cwc1qce.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
