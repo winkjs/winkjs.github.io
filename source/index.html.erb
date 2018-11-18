@@ -1,121 +1,98 @@
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
 <header>
-  <div class="container masthead"><div class="row">
-    <div class="col-md-10 col-md-offset-1 hidden-sm hidden-md hidden-xs">
-      <!-- <a href="index.html">
-				<img src="images/face.png" alt="wink.js" id="logo"/>
-			</a> -->
-      <div id="viz"></div>
+  <div class="container masthead" id="masthead">
+    <div class="row">
+      <h2>
+        Artificial Intelligence<br>
+        shouldn't be a Black Box
+      </h2>
+      <h3>wink breaks AI down into simple building blocks</h3>
+      <br><br>
+      <a href="/packages.html">See packages</a>
+      <a href="#signup">Get updates</a>
     </div>
-		<div class="col-md-10 col-md-offset-1">
-			<h2><em>wink</em> breaks AI down into simple building blocks</h2>
-		</div>
-	</div></div>
+  </div>
+  <div id="particles-js"></div>
 </header>
 
 <div class="feat">
 <div class="container">
-  <div class="col-md-4">
-    <img src="images/nlp.png" class="featimg">
-    <h3>NLP</h3>
-    <p>Wish to make sense out of large corpus? We help you <a href="http://winkjs.org/wink-nlp-utils/#stringsentences">break paragraphs into sentences</a>, <a href="http://winkjs.org/wink-nlp-utils/#stringtokenize">tokenize sentences</a>, and <a href="http://winkjs.org/wink-pos-tagger/">pos tag</a> them.</p>
-  </div>
-  <div class="col-md-4">
-    <img src="images/ml.png" class="featimg">
-    <h3>Machine Learning</h3>
-    <p>Have a data set? Give it to the machine to make predictions using our <a href="https://github.com/winkjs/wink-naive-bayes-text-classifier">classifier</a> or <a href="https://github.com/winkjs/wink-regression-tree">regression tree</a>.</p>
-  </div>
-  <div class="col-md-4">
-    <img src="images/stats.png" class="featimg">
-    <h3>Statistics</h3>
-    <p>In the end, it's all numbers and maths. Use <a href="http://winkjs.org/wink-statistics/">statistics</a> package for fast and numerically stable analysis.</p>
+  <div class="col-md-12">
+    <h3>Open Source packages for NLP, ML and Satistics in Node JS to build production grade solutions</h3>
   </div>
 </div>
 </div>
 
 <main class="container">
-  <div class="col-md-6">
-    <pre><code class="javascript">
-// Load wink-pos-tagger.
-var posTagger = require( 'wink-pos-tagger' );
-
-// Create an instance of the pos tagger.
-var tagger = posTagger();
-
-// Tag the sentence using the tag sentence api.
-tagger.tagSentence( '@FeminismInIndia👧 conducted a workshop at #AmbedkarUniversity on "online safety" recently:-)! reach us at info@feminisminindia.com. #DigitalSaftey http://bit.ly/2F2m9rL' );
-    </code></pre>
+  <div class="col-md-6 highlight">
+    <pre><code class="javascript">var t = require( 'wink-tokenizer' )();
+var hinglish = 'द्रविड़ ने टेस्ट में ३६ शतक जमाए, उनमें 21 विदेशी playground पर हैं।';
+var french = 'Mieux vaut prévenir que
+guérir:-)';
+t.tokenize( hinglish );
+t.tokenize( french );
+</code></pre>
   </div>
-  <div class="col-md-6">
-    <h1>Get Started</h1>
-    <p>All packages expose consistent and uniform APIs, thus minimizing the need to learn a new interface for each task. With a comprehensive API documentation, you can be immediately productive.</p>
-    <a class="btn btn-default" role="button" href="https://www.npmjs.com/search?q=wink%20maintainer%3Asanjaya">Browse on NPM</a>
-  </div>
-
-  <div class="clearfix"></div>
-  <br><br><br><br><br><br>
-
-  <div class="col-md-6">
-    <h1>Simple & Mature</h1>
-    <p>wink is designed to help you focus on the task at hand. No complexities! Just simple functions, some JSON and zero-configuration is enough to get you started.</p>
-    <p>Designed to work with Node.js streams, it delivers high performance scale.</p>
-    <p><a role="button" class="btn btn-default" href="/packages.html">Read Documentation</a></p>
-  </div>
-  <div class="col-md-6">
-    <pre><code class="javascript">var lemmatize = require( 'wink-lemmatizer' );
-lemmatize.adjective( 'farthest' );
-// -> 'far'
-    </code></pre>
-    <pre><code class="javascript">var sentiment = require( 'wink-sentiment' );
-sentiment( 'Excited to be part of the @imascientist team:-)!' );
-// -> { score: 5,
-//      normalizedScore: 2.5,
-//      tokenizedPhrase: [
-//        { value: 'Excited', tag: 'word', score: 3 },
-//        { value: 'to', tag: 'word' },
-//        { value: 'be', tag: 'word' },
-//        { value: 'part', tag: 'word' },
-//        { value: 'of', tag: 'word' },
-//        { value: 'the', tag: 'word' },
-//        { value: '@imascientist', tag: 'mention' },
-//        { value: 'team', tag: 'word' },
-//        { value: ':-)', tag: 'emoticon', score: 2 },
-//        { value: '!', tag: 'punctuation' }
-//      ]
-//    }
-    </code></pre>
+  <div class="col-md-6 highlight" data-aos="fade-up">
+    <img src="/images/nlp-bg.png" alt="" class="bg-img bg-img--right">
+    <h1>Natural Language Processing</h1>
+    <p>Easily
+      <a href="https://npm.runkit.com/wink-nlp-utils">break paragraphs into sentences</a>,
+      <a href="https://npm.runkit.com/wink-tokenizer">tokenize</a> them,
+      <a href="https://npm.runkit.com/wink-pos-tagger">POS tag</a>
+      each token and even
+      <a href="https://npm.runkit.com/wink-ner">detect named entities</a> or
+      <a href="https://npm.runkit.com/wink-sentiment">nalyze sentiments</a>.
+      Some even support multiple languages.</p>
   </div>
 
   <div class="clearfix"></div>
   <br><br><br><br><br><br>
 
+  <div class="col-md-6 highlight" data-aos="fade-up">
+    <img src="/images/ml-bg.png" alt="" class="bg-img bg-img--left">
+    <h1>Machine Learning</h1>
+    <p>
+      Simplify intent detection for chatbots, classification of text or image, or prediction of continuous values such as price, turn-around-time using our
+      <a href="https://npm.runkit.com/wink-naive-bayes-text-classifier">Naive Bayes Classifier</a>,
+      <a href="https://npm.runkit.com/wink-regression-tree">Regression Tree</a>, or
+      <a href="https://npm.runkit.com/wink-perceptron">Multi-class Averaged Perceptron</a>.
+    </p>
+  </div>
   <div class="col-md-6">
-    <pre><code class="javascript">
-// Obtain wink's streaming api for standard deviation.
-var stdev = require( 'wink-statistics' ).streaming.stdev();
-// Use split2 package to break stream at every new line.
-var split = require( 'split2' );
-// Configuration to compute outliers.
-const minDataSize = 3; // Min # data points to process before outliers detection begins
-const useOutlier = false; // Use outlier data to update mean & standard deviation
-const multiplier = 2.5; // Used to flag a value as outlier if it is > multiplier x std dev.
-// Setup a pipe for standard input
-process.stdin.pipe( split() ).on( 'data', function ( data ) {
-  const value = +data;
-  const r = stdev.result();
-  const isOutlier = (r.size && (r.size >= minDataSize) &&
-    ((value > (r.mean + multiplier*r.stdev)) || (value < (r.mean - multiplier*r.stdev))));
-  if  ( isOutlier ) {
-    console.log( 'Outlier: %d', value );
-    if ( useOutlier ) stdev.compute( value );
-  } else stdev.compute( value );
+    <pre><code class="javascript">const data = require( 'iris-data.json' );
+var p = require( 'wink-perceptron' )();
+p.defineConfig( {
+  shuffleData: true,
+  maxIterations: 6
 } );
-    </code></pre>
+p.learn( data );</code></pre>
   </div>
+
+  <div class="clearfix"></div>
+  <br><br><br><br><br><br>
+
   <div class="col-md-6">
-    <h1>Possibilities are endless</h1>
-    <p>Detect outliers in a stream of real numbers in near real time, or process large text corpus, or let machine do some learning for you. There are no limits!
-    </p><p>You can even run your code on a Raspberry Pi.</p>
-    <a role="button" class="btn btn-default" href="https://runkit.com/winkjs-org/">Try in sandbox</a>
+    <pre><code class="javascript">var stats = require( 'wink-statistics' );
+var regression = stats.streaming.simpleLinearRegression();
+regression.compute( 10, 80 );
+regression.compute( 15, 75 );
+regression.compute( 16, 65 ); // more data…
+regression.result();</code></pre>
+  </div>
+  <div class="col-md-6 highlight" data-aos="fade-up">
+    <img src="/images/stats-bg.png" alt="" class="bg-img bg-img--right">
+    <h1>Satistics</h1>
+    <p>
+      Perform fast and numerically stable statistical analysis using
+      <a href="https://npm.runkit.com/wink-statistics">wink-statistics</a>.
+      It even handles real-time stream of data and incrementally compute the required statistic.
+    </p>
   </div>
 
 </main>

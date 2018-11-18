@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+
+  particlesJS.load('particles-js', '/javascripts/particles.json', function() {
+  console.log('callback - particles.js config loaded');
+  });
+
   var nOfCols = 42, nOfRows = 15;
 
   var $table = $( '<table>' );
