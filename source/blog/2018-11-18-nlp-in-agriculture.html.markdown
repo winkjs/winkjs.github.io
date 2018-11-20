@@ -61,7 +61,7 @@ an eye out while we release the next generation tools, and be ready for more fun
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@winkjs_org" />
 <meta name="twitter:creator" content="@sanjayaksaxena" />
-<meta property="og:url" content="http://winkjs.org/blog/a-more-permissive-license.html" />
-<meta property="og:title" content="A more permissive license" />
-<meta property="og:description" content="We decided to switch from AGPLv3 license to MIT recently." />
-<meta property="og:image" content="http://winkjs.org/images/mit.png" />
+<meta property="og:url" content="https://winkjs.org/blog/nlp-in-agriculture.html" />
+<meta property="og:title" content="NLP in Agriculture" />
+<meta property="og:description" content="Discovering crop disease trends using farmer queries." />
+<meta property="og:image" content="https://winkjs.org/images/agri-nlp-process.gif" />
