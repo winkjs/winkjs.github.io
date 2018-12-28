@@ -50,7 +50,7 @@ Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) writt
      a <a href="/images/blues.mp4">link to the video</a> instead.</p>
 </video>
 
-Seeing AI fumble, and sometimes even fadl, we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to NLP.
+Seeing AI fumble, and sometimes even fail, we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to NLP.
 
 <small>The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/sentimental), do give it a try.</small>
 
