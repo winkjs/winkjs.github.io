@@ -11,7 +11,7 @@ author_url: https://twitter.com/prtksxna
 
 It is fun to watch Artificial Intelligence fail. Their logical innocence (stupidity?) can be hilarious. One of my first encounters with AI was with [ELIZA](https://en.wikipedia.org/wiki/ELIZA) — the 1966 NLP program — using the [doctor package](https://www.emacswiki.org/emacs/EmacsDoctor) on emacs. I would spend hours making it say stupid things, and while we’ve come a long way with NLP since Eliza, computers still haven’t lost their innocence — [just ask Siri if they know Eliza](https://twitter.com/winkjs_org/status/1078175972678094848).
 
-Our [wink-sentiment](https://github.com/winkjs/wink-sentiment) package is no exception to this. Built on top of our [tokenizer](https://github.com/winkjs/wink-tokenizer) and [AFINN](https://arxiv.org/abs/1103.2903) it is not only able to detect sentiment but is also able to handle negation:
+The [wink-sentiment](https://github.com/winkjs/wink-sentiment) package is no exception to this. Built on top of our [tokenizer](https://github.com/winkjs/wink-tokenizer) and [AFINN](https://arxiv.org/abs/1103.2903) it is not only able to detect sentiment but is also able to handle negation:
 
 <a href="http://winkjs.org/sentimental/index.html?text=Today was fun!"><img src="/images/today-was-fun.gif"/></a>
 
@@ -41,7 +41,7 @@ Here are a few lines from the poem *Figures in a Landscape by Doppler* by [Ranji
      a <a href="/images/earthquakes.mp4">link to the video</a> instead.</p>
 </video>
 
-Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) written by [Oscar Brown](https://en.wikipedia.org/wiki/Oscar_Brown). It initially captures the two blues, but finally ends at an appropriate deep blue:
+Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) written by [Oscar Brown](https://en.wikipedia.org/wiki/Oscar_Brown). It initially captures the two meanings of "blue", and finally ends at an appropriate deep blue:
 
 <video muted autoplay loop width="750">
   <source src="/images/blues.mp4" type="video/mp4">
@@ -50,9 +50,9 @@ Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) writt
      a <a href="/images/blues.mp4">link to the video</a> instead.</p>
 </video>
 
-Seeing AI fumble, and sometimes even fail, we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to NLP.
+Seeing AI fumble, and sometimes even fail, is the how we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to sentiment analysis.
 
-<small>The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/sentimental), do give it a try.</small>
+The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/sentimental), do give it a try.
 
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@winkjs_org" />
@@ -60,4 +60,4 @@ Seeing AI fumble, and sometimes even fail, we learn more about it. It helps us d
 <meta property="og:url" content="https://winkjs.org/blog/sentimental-ai.html" />
 <meta property="og:title" content="Sentimental AI" />
 <meta property="og:description" content="Human sentiments aren’t limited to tokenized words or emojis, they have layers of meaning." />
-<meta property="og:image" content="https://winkjs.org/images/traffic-emoji.gif" />
+<meta property="og:image" content="https://winkjs.org/images/traffic-static.png" />
