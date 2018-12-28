@@ -9,7 +9,7 @@ author_url: https://twitter.com/prtksxna
 
 ---
 
-It is fun to watch Artificial Intelligence fail. Their logical innocence (stupidity?) can be hilarious. One of my first encounters with AI was with [ELIZA](https://en.wikipedia.org/wiki/ELIZA) — the 1966 NLP program — using the [doctor package](https://www.emacswiki.org/emacs/EmacsDoctor) on emacs. I would spend hours making it say stupid things, and while we’ve come a long way with NLP since Eliza, computers still haven’t lost their innocence — [just ask Siri if they know Eliza](https://twitter.com/winkjs_org).
+It is fun to watch Artificial Intelligence fail. Their logical innocence (stupidity?) can be hilarious. One of my first encounters with AI was with [ELIZA](https://en.wikipedia.org/wiki/ELIZA) — the 1966 NLP program — using the [doctor package](https://www.emacswiki.org/emacs/EmacsDoctor) on emacs. I would spend hours making it say stupid things, and while we’ve come a long way with NLP since Eliza, computers still haven’t lost their innocence — [just ask Siri if they know Eliza](https://twitter.com/winkjs_org/status/1078175972678094848).
 
 Our [wink-sentiment](https://github.com/winkjs/wink-sentiment) package is no exception to this. Built on top of our [tokenizer](https://github.com/winkjs/wink-tokenizer) and [AFINN](https://arxiv.org/abs/1103.2903) it is not only able to detect sentiment but is also able to handle negation:
 
@@ -34,7 +34,7 @@ But human sentiments aren’t limited to tokenized words or emojis, they have la
 
 Here are a few lines from the poem *Figures in a Landscape by Doppler* by [Ranjit Hoskote](https://en.wikipedia.org/wiki/Ranjit_Hoskote). Notice how it only catches the positive sentiment at the end:
 
-<video muted autoplay loop>
+<video muted autoplay loop width="750">
   <source src="/images/earthquakes.mp4" type="video/mp4">
   <source src="/images/earthquakes.webm" type="video/webm">
   <p>Your browser doesn't support HTML5 video. Here is
@@ -43,7 +43,7 @@ Here are a few lines from the poem *Figures in a Landscape by Doppler* by [Ranji
 
 Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) written by [Oscar Brown](https://en.wikipedia.org/wiki/Oscar_Brown). It initially captures the two blues, but finally ends at an appropriate deep blue:
 
-<video muted autoplay loop>
+<video muted autoplay loop width="750">
   <source src="/images/blues.mp4" type="video/mp4">
   <source src="/images/blues.webm" type="video/webm">
   <p>Your browser doesn't support HTML5 video. Here is
