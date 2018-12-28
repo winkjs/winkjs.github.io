@@ -53,3 +53,11 @@ Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) writt
 Seeing AI fumble, and sometimes even fadl, we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to NLP.
 
 <small>The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/sentimental), do give it a try.</small>
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@winkjs_org" />
+<meta name="twitter:creator" content="@prtksxna" />
+<meta property="og:url" content="https://winkjs.org/blog/sentimental-ai.html" />
+<meta property="og:title" content="Sentimental AI" />
+<meta property="og:description" content="Human sentiments aren’t limited to tokenized words or emojis, they have layers of meaning." />
+<meta property="og:image" content="https://winkjs.org/images/traffic-emoji.gif" />
