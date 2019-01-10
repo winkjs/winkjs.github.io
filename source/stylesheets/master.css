@@ -374,14 +374,14 @@ a.btn-default[role="button"]:hover {
 .blog {
   margin-top: 14rem;
 }
-.blog h1 {
+.blog h1.blog-h1 {
   font-weight: 600;
   font-size: 5rem;
 }
-.blog h1 a {
+.blog h1.blog-h1 a {
   color: #000;
 }
-.blog h1 a:hover {
+.blog h1.blog-h1 a:hover {
   text-decoration: none;
   color: #6C307D;
 }
