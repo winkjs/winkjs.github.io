@@ -37,26 +37,24 @@ a:hover {
 }
 
 header {
-  background-color: #fff;
+  background-color: #222;
+  background: rgb(34,34,34);
+  background: linear-gradient(180deg, rgba(22,22,22,1) 0%, rgba(51,51,51,1) 100%);
 }
 
 .masthead {
   padding-top: 150px;
   padding-bottom: 100px;
+  color: #fff;
+  z-index: 10;
 }
 
-.masthead h2 {
-  text-align: center;
-  margin-top: 10rem;
-}
-
-header h1 {
+header h2 {
   font-size: 65px;
-  font-family: 'Source Code Pro', monospace;
   font-weight: bold;
 }
 
-header h1 span {
+header h2 span {
   font-size: 80px;
   text-transform: uppercase;
   border: 7px solid #333;
@@ -65,10 +63,6 @@ header h1 span {
   margin-top: 0;
   padding: 23px;
   color: #333;
-}
-
-header h2 {
-  font-size: 40px;
 }
 
 header h2 em {
@@ -82,9 +76,34 @@ header p {
 	margin-top: 30px;
 }
 
+.masthead a {
+  background: #6C307D;
+  background: rgb(108,48,125);
+  background: linear-gradient(90deg, rgba(108,48,125,1) 0%, rgba(96,42,111,1) 100%);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.masthead a:hover {
+  box-shadow: 0 0 10px #6C307D;
+  text-decoration: none;
+}
+
 .navbar {
   border-radius: 0;
+  border: 0;
   border-top: 4px solid #6C307D;
+}
+
+#particles-js {
+  pointer-events: none;
+  height: 530px;
+  margin-top: -530px;
+  z-index: 0;
 }
 
 .navbar .navbar-nav > li > a {
@@ -117,17 +136,19 @@ header p {
 }
 
 .feat {
-  background: #eee;
   text-align: center;
-  padding-bottom: 60px;
-  margin-bottom: 80px;
-  font-size: 1.6rem;
 }
 
 .feat h3 {
-  text-transform: lowercase;
-  font-variant: small-caps;
-  font-weight: 700;
+  padding: 120px;
+  line-height: 1.5;
+  background: linear-gradient(180deg, rgba(100,54,121,1) 0%, rgba(120,62,147,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: none;
+  font-size: 3.7rem;
+  font-weight: lighter;
+  margin: 0 auto;
 }
 
 .featimg {
@@ -150,6 +171,7 @@ main .row {
 main h1 {
 	margin: 0;
 	margin-bottom: 15px;
+  margin-top: -100px;
 	padding: 0;
 	color: #222;
 }
@@ -162,8 +184,16 @@ main p {
 
 	color: #222;
 	padding-top: 10px;
-	font-size: 18px;
+	font-size: 22px;
 	line-height: 28px;
+}
+
+.highlight {
+  margin-bottom: 150px;
+}
+
+.highlight a {
+  text-decoration: underline;
 }
 
 pre {
@@ -171,6 +201,28 @@ pre {
   border: none;
   border-radius: 0;
   padding: 1px;
+}
+
+code.javascript {
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1.8rem;
+}
+
+.bg-img {
+  padding: 0;
+  margin: 0;
+  opacity: 0.1;
+  margin-top: -100px;
+  pointer-events: none;
+}
+
+.bg-img--left {
+  margin-left: -200px;
+}
+
+.bg-img--right {
+  margin-left: 200px;
 }
 
 footer {
@@ -226,6 +278,7 @@ a.btn-default[role="button"]:hover {
 .signup {
   margin-top: 120px;
   background: #6c307d;
+  background: linear-gradient(180deg, rgba(100,54,121,1) 0%, rgba(81,39,99,1) 100%);
   color: #fff;
   padding: 120px 0;
 }
