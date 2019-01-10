@@ -228,8 +228,16 @@ code.javascript {
 footer {
 	min-height: 60px;
 	font-size: 14px;
-	color: #666;
-  background: #fafafa;
+	color: #eee;
+  background: #222;
+}
+
+footer a {
+  color: #ddd;
+}
+
+footer a:hover {
+  color: #fff;
 }
 
 footer p {
