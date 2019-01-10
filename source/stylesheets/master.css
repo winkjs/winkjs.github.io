@@ -268,6 +268,11 @@ footer .social-icons ul li a img {
   margin: 10px;
 }
 
+footer .social-icons ul li a img.github {
+  width: 35px;
+  margin-top: 13px;
+}
+
 a.btn-default[role="button"] {
   border-radius: 3px;
   background: #6C307D;
