@@ -191,6 +191,7 @@ main p {
 .highlight-section {
   overflow: visible;
   margin-top: 100px;
+  display: flex;
 }
 
 .highlight {
@@ -449,6 +450,11 @@ a.btn-default[role="button"]:hover {
 
   .highlight-section {
     margin-top: 0px;
+    flex-direction: column;
+  }
+
+  .flip-order {
+    order: -1;
   }
 
   code.javascript {
