@@ -418,3 +418,36 @@ a.btn-default[role="button"]:hover {
   border: 1px solid #6C307D;
   margin-top: 7rem;
 }
+
+/* Responsive overrides */
+@media only screen and (max-width: 800px) {
+  .bg-img,
+  #particles-js {
+    display: none;
+  }
+
+  .feat h3 {
+    padding: 0px;
+    padding-top: 30px;
+    font-size: 3rem;
+  }
+
+  #masthead {
+    padding-top: 100px;
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+
+  #masthead h2 {
+    font-size: 5rem;
+  }
+
+  code.javascript {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  main h1 {
+    margin: 0;
+  }
+}
