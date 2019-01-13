@@ -29,70 +29,74 @@
 </div>
 
 <main class="container">
-  <div class="col-md-6 highlight">
-    <pre><code class="javascript">var t = require( 'wink-tokenizer' )();
-var hinglish = 'द्रविड़ ने टेस्ट में ३६ शतक जमाए, उनमें 21 विदेशी playground पर हैं।';
-var french = 'Mieux vaut prévenir que
-guérir:-)';
-t.tokenize( hinglish );
-t.tokenize( french );
-</code></pre>
+
+  <div class="highlight-section">
+    <div class="col-md-6">
+      <pre><code class="javascript">var t = require( 'wink-tokenizer' )();
+  var hinglish = 'द्रविड़ ने टेस्ट में ३६ शतक जमाए, उनमें 21 विदेशी playground पर हैं।';
+  var french = 'Mieux vaut prévenir que
+  guérir:-)';
+  t.tokenize( hinglish );
+  t.tokenize( french );
+  </code></pre>
+    </div>
+    <div class="col-md-6 highlight" data-aos="fade-up">
+      <img src="/images/nlp-bg.png" alt="" class="bg-img bg-img--right">
+      <h1>Natural Language Processing</h1>
+      <p>Easily
+        <a href="https://npm.runkit.com/wink-nlp-utils">break paragraphs into sentences</a>,
+        <a href="https://npm.runkit.com/wink-tokenizer">tokenize</a> them,
+        <a href="https://npm.runkit.com/wink-pos-tagger">POS tag</a>
+        each token and even
+        <a href="https://npm.runkit.com/wink-ner">detect named entities</a> or
+        <a href="https://npm.runkit.com/wink-sentiment">analyze sentiments</a>.
+        Some even support multiple languages.</p>
+    </div>
   </div>
-  <div class="col-md-6 highlight" data-aos="fade-up">
-    <img src="/images/nlp-bg.png" alt="" class="bg-img bg-img--right">
-    <h1>Natural Language Processing</h1>
-    <p>Easily
-      <a href="https://npm.runkit.com/wink-nlp-utils">break paragraphs into sentences</a>,
-      <a href="https://npm.runkit.com/wink-tokenizer">tokenize</a> them,
-      <a href="https://npm.runkit.com/wink-pos-tagger">POS tag</a>
-      each token and even
-      <a href="https://npm.runkit.com/wink-ner">detect named entities</a> or
-      <a href="https://npm.runkit.com/wink-sentiment">analyze sentiments</a>.
-      Some even support multiple languages.</p>
+  <div class="clearfix"></div>
+
+  <div class="highlight-section">
+    <div class="col-md-6 highlight" data-aos="fade-up">
+      <img src="/images/ml-bg.png" alt="" class="bg-img bg-img--left">
+      <h1>Machine Learning</h1>
+      <p>
+        Simplify intent detection for chatbots, classification of text or image, or prediction of continuous values such as price, turn-around-time using our
+        <a href="https://npm.runkit.com/wink-naive-bayes-text-classifier">Naive Bayes Classifier</a>,
+        <a href="https://npm.runkit.com/wink-regression-tree">Regression Tree</a>, or
+        <a href="https://npm.runkit.com/wink-perceptron">Multi-class Averaged Perceptron</a>.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <pre><code class="javascript">const data = require( 'iris-data.json' );
+  var p = require( 'wink-perceptron' )();
+  p.defineConfig( {
+    shuffleData: true,
+    maxIterations: 6
+  } );
+  p.learn( data );</code></pre>
+    </div>
   </div>
 
   <div class="clearfix"></div>
-  <br><br><br><br><br><br>
 
-  <div class="col-md-6 highlight" data-aos="fade-up">
-    <img src="/images/ml-bg.png" alt="" class="bg-img bg-img--left">
-    <h1>Machine Learning</h1>
-    <p>
-      Simplify intent detection for chatbots, classification of text or image, or prediction of continuous values such as price, turn-around-time using our
-      <a href="https://npm.runkit.com/wink-naive-bayes-text-classifier">Naive Bayes Classifier</a>,
-      <a href="https://npm.runkit.com/wink-regression-tree">Regression Tree</a>, or
-      <a href="https://npm.runkit.com/wink-perceptron">Multi-class Averaged Perceptron</a>.
-    </p>
-  </div>
-  <div class="col-md-6">
-    <pre><code class="javascript">const data = require( 'iris-data.json' );
-var p = require( 'wink-perceptron' )();
-p.defineConfig( {
-  shuffleData: true,
-  maxIterations: 6
-} );
-p.learn( data );</code></pre>
-  </div>
-
-  <div class="clearfix"></div>
-  <br><br><br><br><br><br>
-
-  <div class="col-md-6">
-    <pre><code class="javascript">var stats = require( 'wink-statistics' );
-var regression = stats.streaming.simpleLinearRegression();
-regression.compute( 10, 80 );
-regression.compute( 15, 75 );
-regression.compute( 16, 65 ); // more data…
-regression.result();</code></pre>
-  </div>
-  <div class="col-md-6 highlight" data-aos="fade-up">
-    <img src="/images/stats-bg.png" alt="" class="bg-img bg-img--right">
-    <h1>Statistics</h1>
-    <p>
-      Perform fast and numerically stable statistical analysis using
-      <a href="https://npm.runkit.com/wink-statistics">wink-statistics</a>.
-      It even handles real-time stream of data and incrementally compute the required statistic.
-    </p>
+  <div class="highlight-section">
+    <div class="col-md-6">
+      <pre><code class="javascript">var stats = require( 'wink-statistics' );
+    var regression = stats.streaming.simpleLinearRegression();
+    regression.compute( 10, 80 );
+    regression.compute( 15, 75 );
+    regression.compute( 16, 65 ); // more data…
+    regression.result();</code></pre>
+    </div>
+    <div class="col-md-6 highlight" data-aos="fade-up">
+      <img src="/images/stats-bg.png" alt="" class="bg-img bg-img--right">
+      <h1>Statistics</h1>
+      <p>
+        Perform fast and numerically stable statistical analysis using
+        <a href="https://npm.runkit.com/wink-statistics">wink-statistics</a>.
+        It even handles real-time stream of data and incrementally compute the required statistic.
+      </p>
+    </div>
   </div>
 
 </main>
