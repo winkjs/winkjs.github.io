@@ -416,9 +416,16 @@ a.btn-default[role="button"]:hover {
 .blog main small {
   font-size: 1.3rem;
 }
-.blog code {
-  padding: 2rem;
+.blog table {
   margin: 2rem 0;
+  width: 100%;
+}
+.blog table th {
+  border-bottom: 2px solid #000;
+}
+.blog table td {
+  padding: 1rem 0;
+  border-bottom: 1px solid #aaa;
 }
 .blog hr {
   border: 1px solid #6C307D;
