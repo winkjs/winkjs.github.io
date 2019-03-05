@@ -439,6 +439,14 @@ a.btn-default[role="button"]:hover {
     display: none;
   }
 
+  .navbar {
+    min-height: 65px;
+  }
+
+  .navbar-toggle {
+    margin-top: 13px;
+  }
+
   .feat h3 {
     padding: 0px;
     padding-top: 30px;
