@@ -8,11 +8,11 @@ author: Rachna
 author_url: https://twitter.com/R4CHN4
 ---
 
-It was fun to watch `wink-sentiment`’s stupidity in our [previous post](https://winkjs.org/blog/sentimental-ai.html).  Humans express sentiments in complex ways. Therefore, mere dependence on lexical content can be misleading. Understanding rhetorical notes such as sarcasm, irony, or implications are largely driven by interplay of words. Forget machines, sometimes these expressions can even confuse human beings!
+It was fun to watch [`wink-sentiment`](https://www.npmjs.com/package/wink-sentiment)’s stupidity in our [previous post](https://winkjs.org/blog/sentimental-ai.html).  Humans express sentiments in complex ways. Therefore, mere dependence on lexical content can be misleading. Understanding rhetorical notes such as sarcasm, irony, or implications are largely driven by interplay of words. Forget machines, sometimes these expressions can even confuse human beings!
 
-`wink-sentiment` barely overcomes some of these challenges by handling negation, emoticons, contractions and common phrases. As a result,  it delivers an accuracy of **77%** when tested on the Amazon Product Review [Sentiment Labelled Sentences Data Set](https://archive.ics.uci.edu/ml/machine-learning-databases/00331/) from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). While this is surely a quick way to get started, the only better way is to train machine on the task! The catch here is that we must have labeled data, which  usually becomes a challenge. It is in these situations, `wink-sentiment` comes to our rescue!
+[`wink-sentiment`](https://www.npmjs.com/package/wink-sentiment) barely overcomes some of these challenges by handling negation, emoticons, contractions and common phrases. As a result,  it delivers an accuracy of **77%** when tested on the Amazon Product Review [Sentiment Labelled Sentences Data Set](https://archive.ics.uci.edu/ml/machine-learning-databases/00331/) from [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php). While this is surely a quick way to get started, the only better way is to train machine on the task! The catch here is that we must have labeled data, which  usually becomes a challenge. It is in these situations, [`wink-sentiment`](https://www.npmjs.com/package/wink-sentiment) comes to our rescue!
 
-I decided to setup a quick experiment with the `wink-naive-bayes-text-classifier` for negative/positive sentiment classification. The Amazon Product Review data comes  pre-labelled as 0 and 1 for Negative and Positive sentiment respectively; here is a sample:
+I decided to setup a quick experiment with the [`wink-naive-bayes-text-classifier`](https://www.npmjs.com/package/wink-naive-bayes-text-classifier) for negative/positive sentiment classification. The Amazon Product Review data comes  pre-labelled as 0 and 1 for Negative and Positive sentiment respectively; here is a sample:
 
 |Review|Sentiment|
 |---|---|
@@ -40,11 +40,11 @@ My immediate instinct was to remove stop words as they don’t have much value f
 // Configure behavior
 nbc.defineConfig( { considerOnlyPresence: true, smoothingFactor: 0.5 } );</code></pre>
 
-For validation, I first shuffled the data using `array.shuffle` utility from `wink-helpers` and subsequently partitioned it into training (80% i.e. 800 rows) and evaluation (20% i.e. 200 rows) sets. Note `wink-naive-bayes-text-classifier` has a comprehensive API for evaluation but simplicity was our focus.
+For validation, I first shuffled the data using `array.shuffle` utility from [`wink-helpers`](https://www.npmjs.com/package/wink-helpers) and subsequently partitioned it into training (80% i.e. 800 rows) and evaluation (20% i.e. 200 rows) sets. Note [`wink-naive-bayes-text-classifier`](https://www.npmjs.com/package/wink-naive-bayes-text-classifier) has a comprehensive API for evaluation but simplicity was our focus.
 
 > It achieved an accuracy of **85%** – a solid **8%** jump from earlier 77% – as we were expecting! The question remained, is this the limit?
 
-Exploring wink averaged perceptron for sentiment analysis at this stage seemed a worthwhile idea. In order to prepare the input data, similar set-up as above was used. The tokens were converted to bag-of-words using the `tokens.bagOfWords` API from `wink-nlp-utils`. I used `{ shuffleData: true, maxIterations: 6 }` as the hyperparameters for perceptron and  got a marginal hike of **0.5%** over the naive bayes. But this was achieved with a small trick – the pocket perceptron approach – selected the best model from multiple runs!
+Exploring wink averaged perceptron for sentiment analysis at this stage seemed a worthwhile idea. In order to prepare the input data, similar set-up as above was used. The tokens were converted to bag-of-words using the [`tokens.bagOfWords`](http://winkjs.org/wink-nlp-utils/tokens.html#bagOfWords) API from [`wink-nlp-utils`](https://www.npmjs.com/package/wink-nlp-utils). I used `{ shuffleData: true, maxIterations: 6 }` as the hyperparameters for perceptron and  got a marginal hike of **0.5%** over the naive bayes. But this was achieved with a small trick – the pocket perceptron approach – selected the best model from multiple runs!
 
 My curiosity didn’t end here and I couldn’t wait to experiment with  our upcoming ***wink-nlp***. It provides an API to compute document vector using the pre-trained [word vectors](https://en.wikipedia.org/wiki/Word_embedding) that come out-of-the-box. As a result the bag-of-words model could now be easily replaced by document or sentence vectors. Word vectors provide a distinct advantage when it comes to handling out-of-vocabulary words.
 
