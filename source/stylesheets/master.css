@@ -494,4 +494,27 @@ a.btn-default[role="button"]:hover {
   .signup .msg {
     text-align: left;
   }
+
+  .blog {
+    margin-top: 10rem;
+  }
+
+  .blog h1.blog-h1 {
+    font-weight: 600;
+    font-size: 3rem;
+    margin-top: 0;
+  }
+
+  .blog main p {
+    font-size: 1.8rem;
+  }
+
+  .blog main video,
+  .blog main img {
+    max-width: 100%;
+  }
+
+  .col-md-8 {
+    padding: 0;
+  }
 }
