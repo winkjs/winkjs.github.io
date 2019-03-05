@@ -4,3 +4,12 @@
 <script>hljs.initHighlightingOnLoad();</script>
 <script type="text/javascript" src="/javascripts/viz.js"></script>
 <script type="text/javascript" src="/javascripts/particles.min.js"></script>
+<script type="text/javascript" src="/javascripts/headroom.js"></script>
+<script type="text/javascript">
+  var myElement = document.querySelector(".navbar");
+  var headroom  = new Headroom(myElement, {
+    "offset": 205,
+    "tolerance": 5,
+  });
+  headroom.init();
+</script>

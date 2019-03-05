@@ -106,6 +106,16 @@ header p {
   z-index: 0;
 }
 
+.navbar.headroom--pinned {
+  top: 0;
+  transition: top 0.3s ease;
+}
+
+.navbar.headroom--unpinned {
+  top: -100px;
+  transition: top 0.3s ease;
+}
+
 .navbar .navbar-nav > li > a {
   text-transform: uppercase;
   letter-spacing: 0.1em;
