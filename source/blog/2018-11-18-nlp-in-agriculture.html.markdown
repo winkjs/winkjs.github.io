@@ -5,8 +5,9 @@ date: 2018-11-18
 tags: agriculture, nlp
 packages: nlp-utils, perceptron
 author: Sanjaya
-author_url: https://twitter.com/sanjayaksaxena
-
+author_twitter: sanjayaksaxena
+excerpt: Discovering crop disease trends using farmer queries.
+image: agri-all-data.png
 ---
 ### Discovering crop disease trends using farmer queries
 
@@ -56,12 +57,3 @@ soon. Keep
 an eye out while we release the next generation tools, and be ready for more fun. 😀
 
 <small>For speaking engagements or any other enquiries feel free to get in touch at [wink@graype.in](mailto:wink@graype.in).</small>
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@winkjs_org" />
-<meta name="twitter:creator" content="@sanjayaksaxena" />
-<meta property="og:url" content="https://winkjs.org/blog/nlp-in-agriculture.html" />
-<meta property="og:title" content="NLP in Agriculture" />
-<meta property="og:description" content="Discovering crop disease trends using farmer queries." />
-<meta property="og:image" content="https://winkjs.org/images/agri-nlp-process.gif" />

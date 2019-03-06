@@ -5,7 +5,9 @@ date: 2018-11-08
 tags: community
 packages: pos-tagger, sentiment
 author: Rachna
-author_url: https://twitter.com/R4CHN4
+author_twitter: R4CHN4
+excerpt: We decided to switch from AGPLv3 license to MIT recently.
+image: mit.png
 ---
 
 ### We decided to switch from AGPLv3 license to MIT recently.
@@ -23,11 +25,3 @@ We decided to switch the licensing of our [packages](/packages.html) to [MIT](ht
 Starting today, all our packages are available under the MIT license. Long live open source!
 
 <small>ASCII Art Credit: [AsciiWorld](https://www.asciiworld.com/-Computers-.html) & [Patorjk](http://patorjk.com/software/taag/#p=display&f=JS%20Block%20Letters&t=MIT). Image made using [Carbon](https://carbon.now.sh/).</small>
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@winkjs_org" />
-<meta name="twitter:creator" content="@r4chn4" />
-<meta property="og:url" content="http://winkjs.org/blog/a-more-permissive-license.html" />
-<meta property="og:title" content="A more permissive license" />
-<meta property="og:description" content="We decided to switch from AGPLv3 license to MIT recently." />
-<meta property="og:image" content="http://winkjs.org/images/mit.png" />

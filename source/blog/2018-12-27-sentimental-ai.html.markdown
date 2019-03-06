@@ -5,8 +5,9 @@ date: 2018-12-27
 tags: sentiment, poetry
 packages: sentiment, tokenizer
 author: Prateek
-author_url: https://twitter.com/prtksxna
-
+author_twitter: prtksxna
+excerpt: Human sentiments aren’t limited to tokenized words or emojis, they have layers of meaning.
+image: traffic-static.png
 ---
 
 It is fun to watch Artificial Intelligence fail. Their logical innocence (stupidity?) can be hilarious. One of my first encounters with AI was with [ELIZA](https://en.wikipedia.org/wiki/ELIZA) — the 1966 NLP program — using the [doctor package](https://www.emacswiki.org/emacs/EmacsDoctor) on emacs. I would spend hours making it say stupid things, and while we’ve come a long way with NLP since Eliza, computers still haven’t lost their innocence — [just ask Siri if they know Eliza](https://twitter.com/winkjs_org/status/1078175972678094848).
@@ -53,11 +54,3 @@ Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) writt
 Seeing AI fumble, and sometimes even fail, is the how we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to sentiment analysis.
 
 The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/sentimental), do give it a try.
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@winkjs_org" />
-<meta name="twitter:creator" content="@prtksxna" />
-<meta property="og:url" content="https://winkjs.org/blog/sentimental-ai.html" />
-<meta property="og:title" content="Sentimental AI" />
-<meta property="og:description" content="Human sentiments aren’t limited to tokenized words or emojis, they have layers of meaning." />
-<meta property="og:image" content="https://winkjs.org/images/traffic-static.png" />

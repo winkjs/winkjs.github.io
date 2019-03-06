@@ -5,7 +5,9 @@ date: 2019-03-01
 tags: nlp, sentiment, experiment
 packages: naive-bayes-text-classifier, sentiment, nlp-utils, perceptron
 author: Rachna
-author_url: https://twitter.com/R4CHN4
+author_twitter: R4CHN4
+excerpt: A quick experiment with the wink-naive-bayes-text-classifier for negative/positive sentiment classification.
+image: nbc-sentimental.png
 ---
 
 It was fun to watch [`wink-sentiment`](https://www.npmjs.com/package/wink-sentiment)’s stupidity in our [previous post](https://winkjs.org/blog/sentimental-ai.html).  Humans express sentiments in complex ways. Therefore, mere dependence on lexical content can be misleading. Understanding rhetorical notes such as sarcasm, irony, or implications are largely driven by interplay of words. Forget machines, sometimes these expressions can even confuse human beings!
@@ -54,11 +56,3 @@ A leap from 77% to 89% accuracy – exploration definitely goes a long way!
 
 
 <small>We are striving to release wink-nlp’s first version in next few weeks, <a href="/blog/naive-bayes-gets-sentimental.html#signup">sign-up</a> here for an early preview of the same.</small>
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@winkjs_org" />
-<meta name="twitter:creator" content="@r4chn4" />
-<meta property="og:url" content="http://winkjs.org/blog/naive-bayes-gets-sentimental.htmll" />
-<meta property="og:title" content="Naive Bayes gets Sentimental" />
-<meta property="og:description" content="A quick experiment with the wink-naive-bayes-text-classifier for negative/positive sentiment classification" />
-<meta property="og:image" content="https://winkjs.org/images/nbc-sentimental.png" />
