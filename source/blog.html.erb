@@ -8,13 +8,14 @@ per_page: 5
     <% page_articles.each do |article| %>
     <article class="col-md-8 col-md-offset-2">
       <h1 class="blog-h1"><a href="<%= article.url %>"><%= article.title %></a></h1>
-      <small>
-        <%= article.data.date.strftime('%b %e, %Y') %> by
-        <%= link_to article.data.author, article.data.author_url %>
-      </small>
-
       <main>
-        <%= article.body %>
+        <a href="<%= article.url %>">
+          <img class="blog-feat-img" src="/images/<%= article.data.image %>" alt="<%= article.title %>">
+        </a>
+        <h3>
+          <%= article.data.excerpt %>
+          <a href="<%= article.url %>">read more&rarr;</a>
+        </h3>
         <hr>
       </main>
     </article>

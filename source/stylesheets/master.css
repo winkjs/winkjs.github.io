@@ -392,6 +392,15 @@ a.btn-default[role="button"]:hover {
 
 
 /* -- Blog -- */
+.blog-feat-img {
+  max-width: 750px;
+  margin-top: -30px;
+  margin-bottom: -20px;
+}
+.blog main video,
+.blog main img {
+  max-width: 750px;
+}
 .blog {
   margin-top: 14rem;
 }

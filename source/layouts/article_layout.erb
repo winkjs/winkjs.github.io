@@ -5,13 +5,14 @@
     <h1 class="blog-h1"><%= current_article.title %></h1>
     <small>
       <%= current_article.data.date.strftime('%b %e, %Y') %> by
-      <%= link_to current_article.data.author, current_article.data.author_url %>
+      <%= link_to current_article.data.author, 'https://twitter.com/'+current_article.data.author_twitter %>
     </small>
 
     <main>
       <%= yield %>
       <hr>
     </main>
+    <%= partial( :twitter ) %>
   </article>
 
   <div class="col-md-4 col-md-offset-2">
