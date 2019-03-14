@@ -15,19 +15,19 @@
       <div class="col-md-4">
         <dl>
           <%= partial( :package, :locals => { :name => "pos-tagger" } ) %>
-          <%= partial( :package, :locals => { :name => "porter2-stemmer" } ) %>
+          <%= partial( :packagenodoc, :locals => { :name => "porter2-stemmer" } ) %>
           <%= partial( :package, :locals => { :name => "lemmatizer" } ) %>
           <%= partial( :package, :locals => { :name => "regression-tree"  } ) %>
-          <%= partial( :package, :locals => { :name => "bm25-text-search" } ) %>
+          <%= partial( :packagenodoc, :locals => { :name => "bm25-text-search" } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
           <%= partial( :package, :locals => { :name => "distance" } ) %>
-          <%= partial( :package, :locals => { :name => "jaro-distance" } ) %>
-          <%= partial( :package, :locals => { :name => "lexicon" } ) %>
-          <%= partial( :package, :locals => { :name => "helpers" } ) %>
+          <%= partial( :packagenodoc, :locals => { :name => "jaro-distance" } ) %>
+          <%= partial( :packagenodoc, :locals => { :name => "lexicon" } ) %>
+          <%= partial( :packagenodoc, :locals => { :name => "helpers" } ) %>
           <%= partial( :package, :locals => { :name => "ner" } ) %>
         </dl>
       </div>
