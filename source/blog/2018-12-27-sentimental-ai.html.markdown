@@ -14,22 +14,22 @@ It is fun to watch Artificial Intelligence fail. Their logical innocence (stupid
 
 The [wink-sentiment](https://github.com/winkjs/wink-sentiment) package is no exception to this. Built on top of our [tokenizer](https://github.com/winkjs/wink-tokenizer) and [AFINN](https://arxiv.org/abs/1103.2903) it is not only able to detect sentiment but is also able to handle negation:
 
-<a href="http://winkjs.org/sentimental/index.html?text=Today was fun!"><img src="/images/today-was-fun.gif"/></a>
+<a href="http://winkjs.org/showcase-sentiment/index.html?text=Today was fun!"><img src="/images/today-was-fun.gif"/></a>
 
-<a href="http://winkjs.org/sentimental/index.html?text=Today was not fun."><img src="/images/today-was-not-fun.gif"/></a>
+<a href="http://winkjs.org/showcase-sentiment/index.html?text=Today was not fun."><img src="/images/today-was-not-fun.gif"/></a>
 
 
 In the examples above gray is a neutral sentiment, blue and its deeper shades are for negative sentiment, and pink and it's brighter shades are used to show positive sentiment.
 
-<a href="http://winkjs.org/sentimental/index.html?text=Sometimes I can be so short sighted."><img src="/images/short-sighted.gif"/></a>
+<a href="http://winkjs.org/showcase-sentiment/index.html?text=Sometimes I can be so short sighted."><img src="/images/short-sighted.gif"/></a>
 
-<a href="http://winkjs.org/sentimental/index.html?text=Not so well done my son! I am unhappy."><img src="/images/well-done.gif"/></a>
+<a href="http://winkjs.org/showcase-sentiment/index.html?text=Not so well done my son! I am unhappy."><img src="/images/well-done.gif"/></a>
 
 While it can handle negation and two word phrases it is no match for sarcasm, unless of course you use the right emoji: 😝
 
-<a href="http://winkjs.org/sentimental/index.html?text=Traffic%20%20on%20my%20way%20back%20is%0Djust%20what%20I%20needed%20%0DThis%20is%20great!%20%20Terrific!"><img src="/images/traffic.gif"/></a>
+<a href="http://winkjs.org/showcase-sentiment/index.html?text=Traffic%20%20on%20my%20way%20back%20is%0Djust%20what%20I%20needed%20%0DThis%20is%20great!%20%20Terrific!"><img src="/images/traffic.gif"/></a>
 
-<a href="http://winkjs.org/sentimental/index.html?text=Traffic%20%F0%9F%9A%AB%20on%20my%20way%20back%20is%0Djust%20what%20I%20needed%20%F0%9F%98%A9%F0%9F%98%A0%0DThis%20is%20great!%20%F0%9F%98%92%20Terrific!%20%F0%9F%98%90"><img src="/images/traffic-emoji.gif"/></a>
+<a href="http://winkjs.org/showcase-sentiment/index.html?text=Traffic%20%F0%9F%9A%AB%20on%20my%20way%20back%20is%0Djust%20what%20I%20needed%20%F0%9F%98%A9%F0%9F%98%A0%0DThis%20is%20great!%20%F0%9F%98%92%20Terrific!%20%F0%9F%98%90"><img src="/images/traffic-emoji.gif"/></a>
 
 But human sentiments aren’t limited to tokenized words or emojis, they have layers of meaning. Testing the package with songs and poetry really reveals the depth of the problem we’re trying to solve for. It is a tall order for any sentiment analysis technique.
 
