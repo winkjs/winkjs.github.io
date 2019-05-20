@@ -53,4 +53,4 @@ Next we have the song [All Blues](https://en.wikipedia.org/wiki/All_Blues) writt
 
 Seeing AI fumble, and sometimes even fail, is the how we learn more about it. It helps us decide the direction of our work and look at new ways of solving these problems. Stay tuned for our next experiment where we compare different approaches to sentiment analysis.
 
-The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/sentimental), do give it a try.
+The GIFs above were made using our testing tool [Sentimental](http://winkjs.org/showcase-sentiment), do give it a try.
