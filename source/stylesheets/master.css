@@ -17,9 +17,17 @@ a:hover {
 	color: #860278;
 }
 
+#showcase-list,
 #packages-list {
   background: #eee;
   padding-top: 140px;
+  min-height: 100vh;
+  background: white;
+}
+
+#showcase-list h1,
+#packages-list h1 {
+  font-weight: bold;
 }
 
 #packages-list dt {
@@ -34,6 +42,18 @@ a:hover {
 
 #packages-list dd a {
   font-size: 1.5rem;
+}
+
+.showcase-block {
+  margin-top: 3rem;
+}
+
+.showcase-block img {
+  width: 99%;
+}
+
+.showcase-block p {
+  margin-top: 1rem;
 }
 
 header {

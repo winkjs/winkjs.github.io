@@ -1,0 +1,24 @@
+<div id="showcase-list">
+    <div class="container">
+      <h1 class="col-md-12">Showcase</h1>
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Sentimental",
+          :url => "/showcase-sentemint/",
+          :description => "Human sentiments aren’t limited to tokenized words or emojis, they have layers of meaning.",
+          :image => "showcase-sentiment.gif"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Browser Search",
+          :url => "/showcase-bm25-text-search/",
+          :description => "Blazing farst search with higlighting, now directly running in the browser.",
+          :image => "showcase-browser-search.gif"
+        }) %>
+      </div>
+    </div>
+    <br><br>
+  </div>
+</div>
