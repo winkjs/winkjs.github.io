@@ -23,6 +23,7 @@ a:hover {
   padding-top: 140px;
   min-height: 100vh;
   background: white;
+  padding-bottom: 140px;
 }
 
 #showcase-list h1,
@@ -31,7 +32,7 @@ a:hover {
 }
 
 #packages-list dt {
-  margin-top: 100px;
+  margin-top: 150px;
   font-size: 2.5rem;
 }
 
