@@ -2,6 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <%
+      if current_article && current_article.data then
+        description = current_article.data.excerpt
+      else
+        description = "Breaking down Artificial Intelligence into its building blocks. Open Source packages for NLP, ML and Statistics in Node JS to build production grade solutions."
+      end
+    %>
+    <meta name="description" content="<%= description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#6C307D">
 
