@@ -2,7 +2,7 @@
 
 <div class="container blog">
   <article class="col-md-8 col-md-offset-2">
-    <h1 class="blog-h1"><%= current_article.title %></h1>
+    <h2 class="blog-h1"><%= current_article.title %></h2>
     <small>
       <%= current_article.data.date.strftime('%b %e, %Y') %> by
       <%= link_to current_article.data.author, 'https://twitter.com/'+current_article.data.author_twitter %>

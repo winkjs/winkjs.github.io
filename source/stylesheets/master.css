@@ -26,9 +26,13 @@ a:hover {
   padding-bottom: 140px;
 }
 
-#showcase-list h1,
-#packages-list h1 {
+#showcase-list h2,
+#packages-list h2 {
   font-weight: bold;
+}
+
+#packages-list h2 {
+  margin-bottom: -120px;
 }
 
 #packages-list dt {
@@ -70,12 +74,17 @@ header {
   z-index: 10;
 }
 
-header h2 {
+header p {
+	font-size: 1.5em;
+	margin-top: 30px;
+}
+
+header p.hero {
   font-size: 65px;
   font-weight: bold;
 }
 
-header h2 span {
+header p.hero span {
   font-size: 80px;
   text-transform: uppercase;
   border: 7px solid #333;
@@ -86,15 +95,10 @@ header h2 span {
   color: #333;
 }
 
-header h2 em {
+header p.hero em {
   color: #6C307D;
   font-style: normal;
   font-family: 'winkjs';
-}
-
-header p {
-	font-size: 1.5em;
-	margin-top: 30px;
 }
 
 .masthead a {
@@ -170,7 +174,7 @@ header p {
   text-align: center;
 }
 
-.feat h3 {
+.feat .subhero {
   padding: 120px;
   line-height: 1.5;
   background: linear-gradient(180deg, rgba(100,54,121,1) 0%, rgba(120,62,147,1) 100%);
@@ -199,7 +203,7 @@ main .row {
 	margin-top: 30px;
 }
 
-main h1 {
+main h2 {
 	margin: 0;
 	margin-bottom: 15px;
   margin-top: -100px;
@@ -411,6 +415,19 @@ a.btn-default[role="button"]:hover {
   opacity: 0.3;
 }
 
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important; /* Many screen reader and browser combinations announce broken words as they would appear visually. */
+}
+
 
 /* -- Blog -- */
 .blog-feat-img {
@@ -425,14 +442,14 @@ a.btn-default[role="button"]:hover {
 .blog {
   margin-top: 14rem;
 }
-.blog h1.blog-h1 {
+.blog .blog-h1 {
   font-weight: 600;
   font-size: 5rem;
 }
-.blog h1.blog-h1 a {
+.blog .blog-h1 a {
   color: #000;
 }
-.blog h1.blog-h1 a:hover {
+.blog .blog-h1 a:hover {
   text-decoration: none;
   color: #6C307D;
 }
@@ -487,7 +504,7 @@ a.btn-default[role="button"]:hover {
     margin-top: 13px;
   }
 
-  .feat h3 {
+  .feat .subhero {
     padding: 0px;
     padding-top: 30px;
     font-size: 3rem;
@@ -499,7 +516,7 @@ a.btn-default[role="button"]:hover {
     padding-right: 20px;
   }
 
-  #masthead h2 {
+  #masthead p.hero {
     font-size: 5rem;
   }
 
@@ -521,7 +538,7 @@ a.btn-default[role="button"]:hover {
     padding: 10px;
   }
 
-  main h1 {
+  main h2 {
     margin: 0;
   }
 
