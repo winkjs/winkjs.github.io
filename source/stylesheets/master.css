@@ -335,18 +335,19 @@ a.btn-default[role="button"]:hover {
   background: linear-gradient(180deg, rgba(100,54,121,1) 0%, rgba(81,39,99,1) 100%);
   color: #fff;
   padding: 120px 0;
+  font-size: 15px;
 }
 
-.signup .msg {
-  text-align: right;
+.signup a {
+  color: white;
+  text-decoration: underline;
 }
 
 
 .signup input[type="email"] {
   border: none;
   color: white;
-  width: 100%;
-  max-width: 410px;
+  width: 90%;
   margin-bottom: 10px;
   border-bottom: 2px solid white;
   font-size: 2rem;
