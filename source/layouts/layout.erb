@@ -18,7 +18,13 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "Wink - Stats, NLP & Machine Learning" %></title>
+    <%
+      title = "Wink JS - Stats, NLP & Machine Learning"
+      if current_page.data.title then
+        title = current_page.data.title + " : " + title
+      end
+    %>
+    <title><%= title  %></title>
 
     <%= stylesheet_link_tag "bootstrap.min", "master", "atom-one-dark" %>
     <%= javascript_include_tag  "all" %>
