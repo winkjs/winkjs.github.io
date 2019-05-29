@@ -49,7 +49,9 @@ Browserify can be run independently without Grunt, but we’ll use Grunt to watc
 };</code></pre>
 
 
-Now, before starting development run `grunt` — this will create `bundle.js` for us which we’ll include in our HTML. For `search.js` let's start by `require`-ing the modules we need:
+Before starting development we'll always run `grunt`. This will take `search.js`, look at all its dependencies, and put them all together to give us `bundle.js`. This is the only file we'll need to include in our HTML.
+
+For `search.js` let's start by `require`-ing the modules we need:
 
 <pre><code class="javascript">var bm25 = require( 'wink-bm25-text-search' );
 var nlp = require( 'wink-nlp-utils' );
