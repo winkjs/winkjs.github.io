@@ -1,35 +1,50 @@
 <div id="packages-list">
     <nav class="container">
-      <h2 class="col-md-12">Wink Packages</h2>
+      <h2 class="col-md-12">Natural Language Processing</h2>
+      <div class="col-md-4">
+        <%= partial( :package, :locals => { :name => "nlp-utils" } ) %>
+        <%= partial( :package, :locals => { :name => "tokenizer" } ) %>
+        <%= partial( :package, :locals => { :name => "sentiment" } ) %>
+        <%= partial( :package, :locals => { :name => "pos-tagger" } ) %>
+      </div>
+      <div class="col-md-4">
+        <%= partial( :packagenodoc, :locals => { :name => "porter2-stemmer" } ) %>
+        <%= partial( :package, :locals => { :name => "lemmatizer" } ) %>
+        <%= partial( :packagenodoc, :locals => { :name => "jaro-distance" } ) %>
+      </div>
+      <div class="col-md-4">
+        <%= partial( :packagenodoc, :locals => { :name => "lexicon" } ) %>
+        <%= partial( :package, :locals => { :name => "ner" } ) %>
+        <%= partial( :packagenodoc, :locals => { :name => "bm25-text-search" } ) %>
+      </div>
+
+      <h2 class="col-md-12">Machine Learning</h2>
+
       <div class="col-md-4">
         <dl>
-          <%= partial( :package, :locals => { :name => "statistics" } ) %>
-          <%= partial( :package, :locals => { :name => "nlp-utils" } ) %>
-          <%= partial( :package, :locals => { :name => "tokenizer" } ) %>
           <%= partial( :package, :locals => { :name => "naive-bayes-text-classifier" } ) %>
-          <%= partial( :package, :locals => { :name => "sentiment" } ) %>
           <%= partial( :package, :locals => { :name => "perceptron" } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
-          <%= partial( :package, :locals => { :name => "pos-tagger" } ) %>
-          <%= partial( :packagenodoc, :locals => { :name => "porter2-stemmer" } ) %>
-          <%= partial( :package, :locals => { :name => "lemmatizer" } ) %>
           <%= partial( :package, :locals => { :name => "regression-tree"  } ) %>
-          <%= partial( :packagenodoc, :locals => { :name => "bm25-text-search" } ) %>
         </dl>
       </div>
 
       <div class="col-md-4">
         <dl>
           <%= partial( :package, :locals => { :name => "distance" } ) %>
-          <%= partial( :packagenodoc, :locals => { :name => "jaro-distance" } ) %>
-          <%= partial( :packagenodoc, :locals => { :name => "lexicon" } ) %>
-          <%= partial( :packagenodoc, :locals => { :name => "helpers" } ) %>
-          <%= partial( :package, :locals => { :name => "ner" } ) %>
         </dl>
+      </div>
+
+      <h2 class="col-md-12">Statistics</h2>
+      <div class="col-md-4">
+        <%= partial( :package, :locals => { :name => "statistics" } ) %>
+      </div>
+      <div class="col-md-4">
+        <%= partial( :packagenodoc, :locals => { :name => "helpers" } ) %>
       </div>
     </nav>
     <br><br>

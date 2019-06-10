@@ -32,17 +32,18 @@ a:hover {
 }
 
 #packages-list h2 {
-  margin-bottom: -120px;
+  margin-bottom: 0;
 }
 
 #packages-list dt {
-  margin-top: 150px;
+  margin-top: 30px;
   font-size: 2.5rem;
 }
 
 #packages-list dd {
   display: block;
   height: 3rem;
+  margin-bottom: 80px;
 }
 
 #packages-list dd a {
