@@ -1,8 +1,17 @@
+<%
+  p = data.packageinfo[name]
+  if p.docs then
+    uri = "https://winkjs.org/wink-#{name}/"
+  else
+    uri = "https://github.com/winkjs/wink-#{name}#wink-#{name}"
+  end
+%>
+
 <dt>
-  <a href="https://winkjs.org/wink-<%= name %>/">
+  <a href="<%= uri %>">
     <%= name.gsub( "-", " " ) %>
   </a>
 </dt>
 <dd>
-  <%= data.packageinfo[name] %>
+  <%= p.info %>
 </dd>
