@@ -17,11 +17,15 @@ then navigate to
 You can also run `bundle exec middleman build` to generate a build in the
 `build/` directory. *Note: this directory is ignored in `.gitignore`*.
 
+**NOTE:** All development for this repository happens in the `dev`
+branch. The `master` branch is only used for deployment. Do not push
+directly to `master`. Only push to `dev`.
+
 See
 [Middleman documentation](https://middlemanapp.com/basics/development-cycle/)
 for more details.
 
-### Adding a new package
+### Adding a new wink package
 
 To add a new package, add its name and description to `data/packageinfo.json`.
 The name should be without the `wink-` prefix. Then add the package to the list
