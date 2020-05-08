@@ -1,0 +1,86 @@
+# Item and its properties
+
+There are three item types — **token**, **entity**, and **sentence**. Items are always accessed via the collection that contains them. An item has a number of properties depending on its type. Like collections, items also have a number of API methods.
+
+<div class="docs-tip">
+Note all properties are read-only.
+</div>
+
+## API Methods
+Let’s explore the API methods with the same example text:
+
+<pre class="prettyprint source lang-javascript"><code>var text = `The Godfather premiered on March 15, 1972.
+It was released on March 24, 1972.
+It is the first installment in The Godfather trilogy.
+The story of the movie spans from 1945 to 1955.
+About 90 percent of the film was shot in New York City.
+The movie was made on a budget of $7.2 million.
+And it has a running time of 177 minutes.`;
+
+var document = nlp.readDoc( text );</code></pre>
+
+An item exposes  API methods to:
+
+* access its parent document, sentence and named entity (if any),
+* find its index,
+* output its value or available properties, and
+* markup the item for text visualization.
+
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td><code>.index()</code></td>
+    <td>Find the index of an item in the collection; for example <code>entity2.index()</code> will return numeric value — <code>2</code>.</td>
+  </tr>
+  <tr>
+    <td><code>.markup()</code></td>
+    <td>Easily create beautiful visualizations using information extracted from the document. More about it in the section on “Using markup”.</td>
+  </tr>
+  <tr>
+    <td><code>.out()</code></td>
+    <td>Obtain the value or properties of the item. By default, it returns the value property of an item; for example <code>token1.out()</code> will return string value — <code>'Godfather'</code>.</td>
+  </tr>
+  <tr>
+    <td><code>.parentDocument()</code></td>
+    <td>Access the parent document of an item.</td>
+  </tr>
+  <tr>
+    <td><code>.parentEntity()</code></td>
+    <td>
+      Access the parent entity (if any) of a <strong>token</strong> item; as only a token may have a parent entity.
+      <br>
+      If there is no parent entity, it returns undefined.
+    </td>
+  </tr>
+  <tr>
+    <td><code>.parentSentence()</code></td>
+    <td>Access the parent sentence of a <strong>token</strong> item or <strong>entity</strong> item.</td>
+  </tr>
+</table>
+
+A variety of NLP tasks can be performed by using these API methods and item properties. For example, we can easily extract all the sentence that have reference to an event i.e. it contains a date:
+
+<pre class="prettyprint source lang-javascript"><code>document.entities()
+        .each((e) => {
+          // Extract type of entity using .out() with “its.value”
+          // as input parameter.
+          if (e.out(its.type) === '#DATE')
+            console.log(e.parentSentence().out());
+        } );
+// -> 'The Godfather premiered on March 15, 1972.'
+// -> 'It was released on March 24, 1972.' </code></pre>
+
+## Item’s Properties
+
+Properties are always specific to the item type except the two properties namely value and normal, which are uniformly available across each item type. Here is a glimpse of a few properties under each item type:
+
+* Token — type, stopWordFlag and normal.
+* Entity — type and span.
+* Sentence — span and sentiment.
+
+<div class="docs-tip docs-tip--green">
+The document, which is not an item exactly, also has properties like sentiment and markedUpText of the text that was used to create it using .readDoc(text) method.
+</div>

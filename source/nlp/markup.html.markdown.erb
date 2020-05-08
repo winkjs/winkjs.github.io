@@ -1,0 +1,9 @@
+# Visualizing using markup
+
+## A short detour to markup() & out()
+By default, markup encloses the marked-up item inside `<mark>` tag. While `document.out()` outputs a string value by default but when supplied with the `its.markedUpText` parameter, it returns the marked-up text string instead:
+
+<pre class="prettyprint source lang-javascript"><code>document.out(its.markedUpText);
+// Returns marked-up text; showing only partial string value:
+'The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;.
+It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.'</code></pre>
