@@ -1,0 +1,33 @@
+# Getting started
+
+Let's start with "Hello, World!" in wink-nlp:
+
+<pre class="prettyprint source lang-javascript"><code>var text = 'Hello   World!';
+var document = nlp.readDoc(text);
+console.log(document.out());
+// -> Hello   World!</code></pre>
+
+The `.readDoc()` method of nlp transforms the input text string into a wink-nlp document. It is the centerpiece of your code. The document provides a rich set of chainable API methods for easy navigation through it's sentences, entities and/or tokens. This simplifies information processing and extraction from a document.
+
+The `.out()` method always returns javascript’s built-in datatype, which  is context dependent. `document.out()` produces a string in the example above but when applied on tokens, it outputs an array of strings:
+
+<pre class="prettyprint source lang-javascript"><code>console.log( document.tokens().out() );
+// -> [ 'Hello', 'World', '!' ]</code></pre>
+
+<div class="docs-tip docs-tip--green">
+The wink-nlp has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between "Hello" and "World" in the first example.
+</div>
+
+## Boilerplate Code
+We start by requiring the wink-nlp package and the language model. Then we instantiate wink-nlp using the language model:
+
+<pre class="prettyprint source lang-javascript"><code>// Load wink-nlp package.
+var winkNLP = require('wink-nlp');
+// Load english language model — light version.
+var model = require('wink-eng-lite-model');
+// Instantiate wink-nlp.
+var nlp = winkNLP(model);</code></pre>
+
+The above is a minimal boilerplate code. Advanced options are discussed in the section on “Leveraging `.out()`”.
+
+Let's explore the wink-nlp document in the next section.

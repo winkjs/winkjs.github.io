@@ -59,6 +59,9 @@ activate :blog do |blog|
   blog.paginate = true;
 end
 
+# Seperate layout for docs
+page "/wink-nlp/*", :layout => "docs"
+
 activate :deploy do |deploy|
   deploy.deploy_method = :git
   deploy.remote   = 'origin'

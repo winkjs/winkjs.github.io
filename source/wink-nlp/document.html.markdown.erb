@@ -1,0 +1,65 @@
+# Document
+
+What does a document look like? Well, it depends on the context! Sometimes it is just a collection of tokens while in another context it could be a collection of sentences or even a collection of named entities such as time, date, or URLs. The document provides you all these views dynamically based on your context. It lets you access these in a flexible manner. Consider the following text:
+
+<pre class="prettyprint source lang-javascript"><code>var text = `On July 20, 1969, a voice crackled from the speakers.
+He said simply, "the Eagle has landed."
+They spent nearly 21 hours on the lunar surface.
+20% of the world\'s population watched humans walk on Moon.`;
+
+var document = nlp.readDoc();</code></pre>
+
+
+The document has `.sentences()`, `.entities()` and `.tokens()` methods to obtain their collection:
+
+<pre class="prettyprint source lang-javascript"><code>document.sentences().out();
+// Returns:
+// [ 'On July 20, 1969, a voice crackled from the speakers.',
+//   'He said simply, "the Eagle has landed."',
+//   'They spent nearly 21 hours on the lunar surface.',
+//   '20% of the world\'s population watched humans walk on Moon.'
+// ]
+
+document.entities().out();
+// Returns:
+// [ 'July 20, 1969', 'nearly 21 hours', '20%' ]
+
+document.tokens().out();
+// Returns:
+// [ 'On', 'July', '20', ',', ... 'walk', 'on', 'Moon', '.' ]</code></pre>
+
+
+Each element of a collection is referred to as an **item**. In other words a **single** token, entity, or sentence is an **item**. An item is accessed via the `.itemAt(n)` method, where `n` is the index of the item. Like Javascript, this index is also 0-based. For example:
+
+<pre class="prettyprint source lang-javascript"><code>document.entities().itemAt(1).out();
+// Returns:
+// 'nearly 21 hours'</code></pre>
+
+Since `.out()` was called on an item, it automatically returned a string instead of an array.
+
+<div class="docs-tip docs-tip--green">
+By default, the `.out()` returns a string when it is applied to an item and an array of strings when it is applied to a collection.
+</div>
+
+At this stage we may ask again, “What does a single sentence or entity look like?” The answer remains unchanged — it depends! Following example illustrates the idea:
+
+<pre class="prettyprint source lang-javascript"><code>document.sentences().itemAt(0).entities().out();
+// Returns:
+// [ 'July 20, 1969' ]
+document.sentences()   // Collection of all sentences.
+        .itemAt(0)     // Its 0th sentence.
+        .entities()    // Collection of entities in sentence #0.
+        .itemAt(0)     // Its 0th entity.
+        .tokens()      // Collection of tokens in entity #0.
+        .out();           // Array of tokens in 0th entity of
+                       // 0th sentence of the document!
+// Returns:
+// [ 'July', '20', ',', '1969' ]</code></pre>
+
+An attempt to access a non-existent item using `.itemAt()`  returns undefined:
+
+<pre class="prettyprint source lang-javascript"><code>document.sentences().itemAt(-1);
+// Returns:
+// undefined</code></pre>
+
+In essence, a document is composed of collections of sentences, named entities, and tokens. Collections and items along with their methods are explained in the next section.

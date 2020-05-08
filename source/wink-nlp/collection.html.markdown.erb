@@ -1,0 +1,123 @@
+# Collection
+
+A collection may be thought of as similar to the Javascript Array. It contains 0 or more items of the same type. There are three item types — token, entity, and sentence.  With the collection’s API methods you can easily:
+
+* Access a specific item using `.itemAt()`
+* Filter items to form a new collection using `.filter()`
+* Iterate through items using `.each()`
+* Produce output with `.out()`
+* Find its length using `.length()`
+
+By default, the `.readDoc()` method automatically creates three collections — sentences, named entities, and tokens.
+
+<div class="docs-tip docs-tip--yellow">
+While collection has similarities to a Javascript Array but it is not identical to Javascript collections such as arrays or sets.
+</div>
+
+Every type of item has its own set of properties. The value property is common to all item types. Token and entity items have another useful property — their type. Like collection, item also exposes a set of API methods including `.out()`. The properties are accessed by supplying its.propertyName  parameter to the `item.out()` method. For example, the type property is accessed using `.out( its.type )`.
+
+Let’s explore the API with the help of the following text that has been transformed into a document:
+
+<pre class="prettyprint source lang-javascript"><code>var text = `The Godfather premiered on March 15, 1972.
+It was released on March 24, 1972.
+It is the first installment in The Godfather trilogy.
+The story of the movie spans from 1945 to 1955.
+About 90 percent of the film was shot in New York City.
+The movie was made on a budget of $7.2 million.
+And it has a running time of 177 minutes.`;
+
+var document = nlp.readDoc( text );</code></pre>
+
+## Access a specific item
+
+An item of a collection is accessed via the `.itemAt()` method:
+
+<pre class="prettyprint source lang-javascript"><code>// Access 3rd sentence of the document:
+// 'The story of the movie spans from 1945 to 1955.'
+var sentence3 = document.sentences().itemAt(3);
+
+// Access 2nd entity of the document:
+// 'first'
+var entity2 = document.entities().itemAt(2);
+
+// Access 1st token of the document:
+// 'Godfather'
+var token1 = document.tokens().itemAt(1);</code></pre>
+
+<div class="docs-tip docs-tip--yellow">
+Like Javascript, `.itemAt()` uses a 0-based index and  returns undefined when a non-existent item (i.e. outside the valid range) is accessed.
+</div>
+
+## Filter items
+
+Items can be filtered on the basis of their properties, to form a filtered collection. For example, you can filter all “date” entities, remove stop words, or select only words that have been negated. Possibilities are limitless.
+
+Like the javascript’s array filter method, the `.filter()` method in a collection returns a new collection of items containing items that pass the test provided in the callback function.
+
+The following example selects tokens from the 3rd sentence of the document that are of type ‘word’ and are not stop words:
+
+<pre class="prettyprint source lang-javascript"><code>document.sentences()
+  .itemAt(3) // The story of the movie spans from 1945 to 1955.
+  .tokens()
+  .filter(
+    (t) => t.out(its.type) === 'word' && !t.out(its.stopWordFlag)
+   )
+  .out();
+// Returns:
+// [ 'story', 'movie', 'spans' ]</code></pre>
+
+## Iterate through items
+
+It is as simple as using `.forEach()` on a Javascript array. Let’s print all the dates from the example text:
+
+<pre class="prettyprint source lang-javascript"><code>document.entities()
+        .each((e) => {
+          if (e.out(its.type) === '#DATE')
+            console.log(e.out());
+        } );
+// -> 'March 15, 1972'
+// -> 'March 24, 1972'</code></pre>
+
+<div class="docs-tip docs-tip--green">
+Note '1945 to 1955' is not printed as it is of type duration and not of type date.
+</div>
+
+The `.each()` calls the provided callback function once for each entity in the entities collection beginning from 0th entity item to the last.
+
+## Produce output
+
+The `collection.out()` by default returns an array of values of items in the collection:
+
+<pre class="prettyprint source lang-javascript"><code>document.sentences().out(); // Returns:
+[ 'The Godfather premiered on March 15, 1972.'
+  'It was released on March 24, 1972.'
+  'It is the first installment in The Godfather trilogy.'
+  'The story of the movie spans from 1945 to 1955.'
+  'About 90 percent of the film was shot in New York City.'
+  'The movie was made on a budget of $7.2 million.'
+  'And it has a running time of 177 minutes.' ]
+document.entities().out(); // Returns:
+[ 'March 15, 1972',
+  'March 24, 1972',
+  'first',
+  'from 1945 to 1955',
+  'About 90 percent',
+  '$7.2 million',
+  '177 minutes' ]
+document.tokens().out(); // Returns:
+[ 'The', 'Godfather', 'premiered', ... '177', 'minutes', '.' ]</code></pre>
+
+It is possible to obtain array of any property of items in a collection:
+
+<pre class="prettyprint source lang-javascript"><code>document.entities().out( its.type ); // Returns:
+[ '#DATE',
+  '#DATE',
+  '#ORDINAL',
+  '#DURATION',
+  '#PERCENT',
+  '#MONEY',
+  '#DURATION' ]</code></pre>
+
+## Find length
+
+Find the number of items in a collection i.e. its length by using `.length()` method. For example `document.sentences().length()` returns a numeric value –  `7`.

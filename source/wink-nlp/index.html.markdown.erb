@@ -1,0 +1,61 @@
+# wink-nlp
+
+An [NLP](https://en.wikipedia.org/wiki/Natural_language_processing) library in JavaScript
+
+**wink-nlp** is an open-source package for Natural Language Processing in nodeJS. With no external dependencies, wink-nlp offers state-of-the-art features in a **size less than an mp3 song**! This package is **powerful yet simple**, catering to the entire spectrum of users, right from developers, solution providers to machine learning experts. It is optimized for a balance of performance and accuracy.
+
+## Size
+* The entire code of `wink-nlp` is about **1000 lines** and just **120 KB** in size. The **minified code is just 45 KB** in size!
+* The size of the model including the complete lexicon and code is **2.2 MB**. The **minified model is just 600 KB** in size!
+* The models are designed to perform seamlessly on Mobile, browser and run in Server environment as - `wink-nlp-lite`, `wink-nlp-web` and `wink-nlp`.
+
+## Performance & Benchmarks
+High performance with text as small as 1 token to as large as 30 million tokens!
+
+## Linguistic features
+* The wink-nlp vocabulary and its most common usage (also called the Lexicon) is based on **Wordnet 3.0** and **fnTBL**.
+* Named Entity Recognition follows **ONTO Release 5.0 guidelines**.
+* The Part of Speech tags assigned by wink-nlp follows the **Universal dependencies**.
+
+_**Process Pipeline**_
+
+wink-nlp comes with a pretrained language model and text is processed in different steps - Tokenization, Sentence Boundary Detection, Named Entity Recognition (NER), Part of Speech (PoS) tagging and chunking. You can also contribute to building your own language model! See how
+
+_**Tokenizer**_
+
+wink-nlp offers a non-destructive tokenization of a typical English sentence that happens at a speed of over a **million tokens/second** and the tokenizer intelligently returns 17 different token properties. This exceptionally smart tokenizer supports **English, French, German** and more languages and even detects typos of missing spaces. For e.g. Mr.G.K.WOLFE will be tokenized as - `MR.`, `G.K.` and `WOLFE`. The non-destructive nature of the tokenizer allows re-construction of the original text!
+
+## API
+wink-nlp offers an intuitive and developer-friendly API, making NLP tasks as easy as going through a book! The API is instinctively designed to help you go form a **document** to a **sentence** and to a **token** in seconds.
+
+* `wink-`nlp offers a powerful and customizable **text visualization** tool as an API called `markup` which can highlight text for any medium such as Markdown, HTML or even Unix terminal.
+* The API also lets you extract the **GloVe vectors** and **hash values** of the tokens.
+* It also lets you create text features via APIs for **bag of words, n-grams and frequency table**.
+
+## License
+Everything used to build wink-nlp right from the data to the source code is **MIT licensed**. What does it mean for you? It is a permissive license that gives you the choice to keep your source code private or open source it, as long as you give credit to wink-nlp. This allows projects built using wink-nlp to be freely distributed with the only requirement of keeping the copyright notice intact.
+
+## Installation
+Use [npm](https://www.npmjs.com/package/wink-nlp) to install.
+
+<pre class="prettyprint source"><code>npm install wink-nlp --save
+</code></pre>
+
+## Example
+
+<pre class="prettyprint source lang-javascript"><code>&lt;example>
+</code></pre>
+
+## Documentation
+Check out the **wink-nlp** Tutorial and API documentation to learn more.
+
+## Need Help?
+If you spot a bug and the same has not yet been reported, raise a new issue or consider fixing it and sending a pull request.
+
+## About wink
+[Wink](https://winkjs.org) is a family of open source packages for **Statistical Analysis, Natural Language Processing** and **Machine Learning** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
+
+## Copyright & License
+**wink-nlp** is copyright of [GRAYPE Systems Private Limited](https://graype.in) 2017-20.
+
+It is licensed under the terms of the MIT License.
