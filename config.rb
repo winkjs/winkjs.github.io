@@ -60,7 +60,7 @@ activate :blog do |blog|
 end
 
 # Seperate layout for docs
-page "/nlp/*", :layout => "docs"
+page "/wink-nlp/*", :layout => "docs"
 
 activate :deploy do |deploy|
   deploy.deploy_method = :git
