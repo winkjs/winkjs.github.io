@@ -467,6 +467,10 @@ footer {
   background: #d5fdf4;
 }
 
+.docs-tip--blue {
+  background: #eaf3ff;
+}
+
 table {
   border-spacing: 0;
   border-collapse: collapse;
