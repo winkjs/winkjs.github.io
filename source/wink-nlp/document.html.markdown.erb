@@ -1,16 +1,19 @@
-# Document
+# Understanding Document
 
-What does a document look like? Well, it depends on the context! Sometimes it is just a collection of tokens while in another context it could be a collection of sentences or even a collection of named entities such as time, date, or URLs. The document provides you all these views dynamically based on your context. It lets you access these in a flexible manner. Consider the following text:
+The document provides different views — dynamically — based on your context. It can be viewed as  a _collection_ of __tokens__ while in another context it could be a _collection_ of __sentences__ or a _collection_ of __named entities__ such as time, date, or URLs. It lets you access these in a flexible manner. Consider the following text:
 
-<pre class="prettyprint source lang-javascript"><code>var text = `On July 20, 1969, a voice crackled from the speakers.
+
+<pre class="prettyprint source lang-javascript"><code>const text = `On July 20, 1969, a voice crackled from the speakers.
 He said simply, "the Eagle has landed."
 They spent nearly 21 hours on the lunar surface.
 20% of the world\'s population watched humans walk on Moon.`;
 
-var document = nlp.readDoc();</code></pre>
+const document = nlp.readDoc(text);</code></pre>
 
 
-The document has `.sentences()`, `.entities()` and `.tokens()` methods to obtain their collection:
+The document has `sentences()`, `entities()` and `tokens()` methods to obtain their collection:
+
+
 
 <pre class="prettyprint source lang-javascript"><code>document.sentences().out();
 // Returns:
@@ -29,19 +32,20 @@ document.tokens().out();
 // [ 'On', 'July', '20', ',', ... 'walk', 'on', 'Moon', '.' ]</code></pre>
 
 
-Each element of a collection is referred to as an **item**. In other words a **single** token, entity, or sentence is an **item**. An item is accessed via the `.itemAt(n)` method, where `n` is the index of the item. Like Javascript, this index is also 0-based. For example:
+Each element of a collection is referred to as an __item__. In other words a __single__ token, entity, or sentence is an __item__. An item is accessed via the `itemAt(n)` method, where `n` is the index of the item. Like Javascript, this index is also 0-based. For example:
+
 
 <pre class="prettyprint source lang-javascript"><code>document.entities().itemAt(1).out();
 // Returns:
 // 'nearly 21 hours'</code></pre>
 
-Since `.out()` was called on an item, it automatically returned a string instead of an array.
+Since `out()` was called on an __item__, it automatically returned a string instead of an array.
 
 <div class="docs-tip docs-tip--green">
-By default, the `.out()` returns a string when it is applied to an item and an array of strings when it is applied to a collection.
+By default, the <code>out()</code> returns a <strong>string</strong> when it is applied to an <strong>item</strong> and an <strong>array of strings</strong> when it is applied to a <strong>collection</strong>.
 </div>
 
-At this stage we may ask again, “What does a single sentence or entity look like?” The answer remains unchanged — it depends! Following example illustrates the idea:
+Next, let’s look at what a single sentence or entity might look like:
 
 <pre class="prettyprint source lang-javascript"><code>document.sentences().itemAt(0).entities().out();
 // Returns:
@@ -56,10 +60,10 @@ document.sentences()   // Collection of all sentences.
 // Returns:
 // [ 'July', '20', ',', '1969' ]</code></pre>
 
-An attempt to access a non-existent item using `.itemAt()`  returns undefined:
+An attempt to access a non-existent item using `itemAt()` returns `undefined`:
 
 <pre class="prettyprint source lang-javascript"><code>document.sentences().itemAt(-1);
 // Returns:
 // undefined</code></pre>
 
-In essence, a document is composed of collections of sentences, named entities, and tokens. Collections and items along with their methods are explained in the next section.
+In essence, a document is composed of collections of sentences, named entities, and tokens. Collections and items along with their methods are explained in the [next section](collection.html).
