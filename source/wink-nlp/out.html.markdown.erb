@@ -1,9 +1,28 @@
 # Leveraging .out()
 
-In order to understand its versatility, let us explore how it works on an item and on collection.
+The `out()` method produces appropriate JavaScript built-in datatypes depending on the usage. It is available universally at all levels — document, collection, and item. By default i.e without any input parameter, the `out()` returns a __string__ when it is applied to an __item__ and an __array of strings__ when it is applied to a __collection__. The behaviour of `doc.out()` is similar to `item.out()` as shown below:
+
+<pre class="prettyprint source lang-javascript"><code>const text = `Its quarterly profits jumped 76% to
+$1.13 billion for the three months to
+December, from $639million of previous year.`;
+const doc = nlp.readDoc( text );</code></pre>
+
+`doc.out()` reproduces the original text:
+
+<pre class="prettyprint source lang-javascript"><code>doc.out()
+// -> Its quarterly profits jumped 76% to
+//    $1.13 billion for the three months to
+//    December, from $639million of previous year.</code></pre>
 
 ## item.out()
 
-As we have seen in previous examples, by default it returns the value of the item as Javascript string. By using `.out()` you can access any property or view of the item.
+While working with an item, any of its properties can be extracted by passing <code>its.<strong>propertyName</strong></code> parameter to the `item.out()` method. For example `doc.tokens().itemAt(0).out(its.shape)` would return `Xxx` — the shape of zeroth token, "Its". Similarly `doc.tokens().itemAt(0).out(its.case)` would return `titleCase`.
 
-The `.out()` produces output in javascript built-in datatypes intelligently depending on the usage. It is available universally at all levels — document, collect, and item. It is one of the most versatile API methods; for its in depth coverage, refer to the section on “Leveraging .out()”.
+<div class="docs-tip docs-tip--yellow">
+  The its  is a helper and is required using the following statement:<br>
+  <code>const its = require( 'wink-nlp/src/its.js' );</code>
+</div>
+
+Each item type has several properties including few that are common across all types. The most prominent one is `its.value`  — the default for the `out()` method. Another important common property, applicable to latin script languages such as English or French, is `its.normal`. It is useful for obtaining the lower-cased value. It also has some language specific flavour — for example in english, apart from lower casing the token it also automatically maps the british spellings to its american equivalent if any.
+
+A comprehensive list of properties is available in the reference section titled “its helper”. A select few are outlined below:
