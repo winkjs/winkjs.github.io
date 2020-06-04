@@ -3,15 +3,15 @@
 Let's start with "Hello, World!" in `wink-nlp`:
 
 <pre class="prettyprint source lang-javascript"><code>var text = 'Hello   World!';
-var document = nlp.readDoc(text);
-console.log(document.out());
+var doc = nlp.readDoc(text);
+console.log(doc.out());
 // -> Hello   World!</code></pre>
 
 The `.readDoc()` method of nlp transforms the input text string into a wink-nlp document. It is the centerpiece of your code. The document provides a rich set of chainable API methods for easy navigation through it's sentences, entities and/or tokens. This simplifies information processing and extraction from a document.
 
-The `out()` method always returns JavaScript’s built-in datatypes — most often arrays of Strings or objects. `document.out()` is context dependent, for example, it produces a string in the code above but when applied on tokens, it outputs an array of strings:
+The `out()` method always returns JavaScript’s built-in datatypes — most often arrays of Strings or objects. `doc.out()` is context dependent, for example, it produces a string in the code above but when applied on tokens, it outputs an array of strings:
 
-<pre class="prettyprint source lang-javascript"><code>console.log( document.tokens().out() );
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.tokens().out() );
 // -> [ 'Hello', 'World', '!' ]</code></pre>
 
 <div class="docs-tip docs-tip--green">

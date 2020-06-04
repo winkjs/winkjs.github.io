@@ -8,14 +8,14 @@ He said simply, "the Eagle has landed."
 They spent nearly 21 hours on the lunar surface.
 20% of the world\'s population watched humans walk on Moon.`;
 
-const document = nlp.readDoc(text);</code></pre>
+const doc = nlp.readDoc(text);</code></pre>
 
 
 The document has `sentences()`, `entities()` and `tokens()` methods to obtain their collection:
 
 
 
-<pre class="prettyprint source lang-javascript"><code>document.sentences().out();
+<pre class="prettyprint source lang-javascript"><code>doc.sentences().out();
 // Returns:
 // [ 'On July 20, 1969, a voice crackled from the speakers.',
 //   'He said simply, "the Eagle has landed."',
@@ -23,11 +23,11 @@ The document has `sentences()`, `entities()` and `tokens()` methods to obtain th
 //   '20% of the world\'s population watched humans walk on Moon.'
 // ]
 
-document.entities().out();
+doc.entities().out();
 // Returns:
 // [ 'July 20, 1969', 'nearly 21 hours', '20%' ]
 
-document.tokens().out();
+doc.tokens().out();
 // Returns:
 // [ 'On', 'July', '20', ',', ... 'walk', 'on', 'Moon', '.' ]</code></pre>
 
@@ -35,7 +35,7 @@ document.tokens().out();
 Each element of a collection is referred to as an __item__. In other words a __single__ token, entity, or sentence is an __item__. An item is accessed via the `itemAt(n)` method, where `n` is the index of the item. Like Javascript, this index is also 0-based. For example:
 
 
-<pre class="prettyprint source lang-javascript"><code>document.entities().itemAt(1).out();
+<pre class="prettyprint source lang-javascript"><code>doc.entities().itemAt(1).out();
 // Returns:
 // 'nearly 21 hours'</code></pre>
 
@@ -47,10 +47,10 @@ By default, the <code>out()</code> returns a <strong>string</strong> when it is 
 
 Next, let’s look at what a single sentence or entity might look like:
 
-<pre class="prettyprint source lang-javascript"><code>document.sentences().itemAt(0).entities().out();
+<pre class="prettyprint source lang-javascript"><code>doc.sentences().itemAt(0).entities().out();
 // Returns:
 // [ 'July 20, 1969' ]
-document.sentences()   // Collection of all sentences.
+doc.sentences()   // Collection of all sentences.
         .itemAt(0)     // Its 0th sentence.
         .entities()    // Collection of entities in sentence #0.
         .itemAt(0)     // Its 0th entity.
@@ -62,7 +62,7 @@ document.sentences()   // Collection of all sentences.
 
 An attempt to access a non-existent item using `itemAt()` returns `undefined`:
 
-<pre class="prettyprint source lang-javascript"><code>document.sentences().itemAt(-1);
+<pre class="prettyprint source lang-javascript"><code>doc.sentences().itemAt(-1);
 // Returns:
 // undefined</code></pre>
 
