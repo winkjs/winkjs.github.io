@@ -1,0 +1,34 @@
+# tokens()
+<code class="signature">.tokens() -> { collection of tokens }</code>
+
+This API returns a collection of tokens in the wink-nlp document, sentence item or entity item.
+
+If the input text is a single word, then the collection of tokens will be returned with a single member.
+
+You can chain it further with other wink-nlp APIs like `each()`, `length()`, `filter()`, etc. However, to get the output in a JavaScript data type, you need to follow this API with `out()`.
+
+__Example:__
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
+const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;
+const doc = nlp.readDoc( text );
+
+// Tokens in wink-nlp doc
+const tokens = doc.tokens();
+console.log( tokens.out() ); // default
+// ->  [ '#Breaking', ':', 'Ca', 'n’t',...'by', '11:59', 'pm', '!' ]
+
+console.log( tokens.out( its.type ) ); // get the token types
+// -> [ 'hashtag', 'punctuation', 'word',...'word', 'punctuation' ]
+
+// Tokens in a sentence item
+const sentence = doc.sentences().itemAt( 0 );//->#Breaking:Can’t get..@TheEllenShow🤩
+console.log( 'Tokens in Sentence No.: 1' );
+console.log( sentence.tokens().out() );
+// -> [ '#Breaking', ':', 'Ca', 'n’t',...'@TheEllenShow', '🤩', '!' ]
+
+// Tokens in an entity item
+const entity = doc.entities().itemAt( 9 ); // -> 11:59 pm
+console.log( 'Tokens in Entity No.: 10' );
+console.log( entity.tokens().out() );
+// -> Tokens in Entity No.: 10
+//    [ '11:59', 'pm' ]</code></pre>

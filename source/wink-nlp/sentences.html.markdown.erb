@@ -1,0 +1,33 @@
+# sentences()
+
+<code class="signature">.sentences() -> { collection of sentences }</code>
+
+This API returns a collection of sentences in the wink-nlp document. If the input text contains only a single statement (like a tweet!) or no sentence-break is found, then the complete wink-nlp document is returned as one sentence in a single-member collection of sentences.
+
+You can chain it further with other wink-nlp APIs like `each()`, `length()`, `filter()`, etc. However, to get the output in a JavaScript data type, you need to follow this API with `out()`.
+
+__Example:__
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here>
+const text = `AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com! The U.S.A is my birth place. I was born on 06.12.1996. I climbed Mt. Everest.`;
+const doc = nlp.readDoc( text );
+const sentences = doc.sentences().out();
+console.log( sentences );
+// -> [ 'AI Inc. is focussing on AI.',
+  'I work for AI Inc.',
+  'My mail is\nr2d2@yahoo.com!',
+  'The U.S.A is my birth place.',
+  'I was born on 06.12.1996.',
+  'I climbed\nMt. Everest.' ]
+
+// Tweet
+const text = '3rd TIME watching That70sShow:D @Netflix http://tiny.cc/fijqkz';
+const doc = nlp.readDoc( text );
+console.log( doc.sentences().out() );
+//->['3rd TIME watching That70sShow:D @Netflix http://tiny.cc/fijqkz']
+
+// Single sentence
+const text = 'Mr. Z owns AI Inc. and he climbed Mt. Everest.';
+const doc = nlp.readDoc( text );
+console.log( doc.sentences().out() );
+// -> [ 'Mr. Z owns AI Inc. and he climbed Mt. Everest.' ]</code></pre>
