@@ -26,3 +26,130 @@ While working with an item, any of its properties can be extracted by passing <c
 Each item type has several properties including few that are common across all types. The most prominent one is `its.value`  — the default for the `out()` method. Another important common property, applicable to latin script languages such as English or French, is `its.normal`. It is useful for obtaining the lower-cased value. It also has some language specific flavour — for example in english, apart from lower casing the token it also automatically maps the british spellings to its american equivalent if any.
 
 A comprehensive list of properties is available in the reference section titled “its helper”. A select few are outlined below:
+
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Properties</th>
+  </tr>
+
+  <tr>
+    <td>Token</td>
+    <td>
+      <ul>
+        <li><code>its.normal</code> — lower-cased value of token; applies to latin script languages such as English or French. When used in english language, it maps the british spelling to its equivalent american spelling, if any.</li>
+        <li><code>its.pos</code> — part-of-speech.</li>
+        <li><code>its.stopWordFlag</code> — true if the token is a stop word.</li>
+        <li><code>its.type</code> — type of token determined during tokenization e.g. <code>word</code>, <code>number</code>, <code>punctuation</code> or <code>symbol</code>.</li>
+        <li><code>its.vector</code> — the word vector of the token.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Entity</td>
+    <td>
+      <ul>
+        <li><code>its.type</code> — type of entity determined during named entity recognition e.g. <code>DATE</code>, <code>DURATION</code>, or <code>MONEY</code>.</li>
+        <li><code>its.span</code> — span of entity in terms of indexes of first tokens and the last token of the entity.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Sentence</td>
+    <td>
+      <ul>
+        <li><code>its.span</code> — span of sentence in terms of indexes of first tokens and the last token of the entity.</li>
+        <li><code>its.negationFlag</code> — true if the sentence has any negation; for example, “I didn’t like it.” would have negation.</li>
+        <li><code>its.markedUpText</code> — marked up text of the sentence, which has already been marked up using <code>item.markup()</code>  API method. Useful in text visualization and highlighting.</li>
+        <li><code>its.sentiment</code> - sentiment score of the sentence. Its value is between -1 and +1.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Document</td>
+    <td>
+      <ul>
+        <li><code>its.sentiment</code> — sentiment score of the document. Its value is between -1 and +1.</li>
+        <li><code>its.markedUpText</code> — marked up text of the document, which has already been marked up using <code>item.markup()</code>  API method. Useful in text visualization and highlighting.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<div class="docs-tip docs-tip--yellow">
+  The <code>item.out()</code> method automatically falls back to the default i.e. its.value whenever the input parameter is invalid or the property does not apply to the item in question. For example <code>doc.out(its.case)</code> would return the same as <code>doc.out()</code>.
+</div>
+
+This is useful in a variety of NLP tasks such as text pre-processing and information extraction. For example, extracting nouns from a sentence gives a rough sense of its context:
+
+<pre class="prettyprint source lang-javascript"><code>doc.tokens()
+        .filter(
+          // Exclude nouns inside an entity
+          (t) => !t.parentEntity() && t.out(its.pos) === 'NOUN'
+         )
+         .out();
+// -> [ 'profits' ]</code></pre>
+
+Let us take another example of text classification or intent detection. These sometimes require replacement of entity values by their types. Such replacements are helpful when each individual entity’s value is less semantically important compared to its type. These are typically required in addition to punctuation and stop word removal. Here is an example that illustrates how all of this can be easily achieved using the `out()` method:
+
+<pre class="prettyprint source lang-javascript"><code>const processedTokens = [];
+const detectedEntities = new Set();
+doc.tokens()
+        .each( (t) => {
+          const pe = t.parentEntity();
+          if (pe && !detectedEntities.has(pe.index())) {
+            detectedEntities.add(pe.index());
+            processedTokens.push('#'+pe.out(its.type));
+          } else if (!pe && !t.out(its.stopWordFlag) &&
+                     (t.out(its.type) === 'word'))
+                   processedTokens.push(t.out(its.normal));
+        });
+console.log( processedTokens );
+// -> [ 'quarterly', 'profits', 'jumped', '#PERCENT', '#MONEY',
+//      '#DURATION', '#DATE', '#MONEY', '#DATE']</code></pre>
+
+## collection.out()
+
+By default, `collection.out()` method produces an array of strings, where collection can be of either sentences, entities, customEntities or tokens. For example:
+
+<pre class="prettyprint source lang-javascript"><code>// Each string in the array is an entity.
+doc.entities().out()
+// -> ['76%', '$1.13 billion', 'three months', 'December',
+//      '$639million', 'previous year']</code></pre>
+
+The <code>its.<strong>propertyName</strong></code> parameter in this case acts like a mapper:
+
+<pre class="prettyprint source lang-javascript"><code>doc.entities().itemAt(1).tokens().out(its.type);
+// -> [ 'currency', 'number', 'word' ]
+doc.entities().itemAt(1).tokens().out(its.shape);
+// -> [ '$', 'd.dd', 'xxxx' ]</code></pre>
+
+
+Note <code>its.shape</code> trims after any four consecutive identical shape patterns, which is why the shape of “billion” is “xxxx” and not “xxxxxxx”.
+
+The `collection.out()` method also accepts a second parameter — <code>as.<strong>reducedValue</strong></code>. Here “as” is another helper like “its”.
+
+<div class="docs-tip docs-tip--yellow">
+  The as  is a helper and is required using the following statement:<br>
+  <code>const as = require( 'wink-nlp/src/as.js' );</code>
+</div>
+
+The <code>as.<strong>reducedValue</strong></code> acts like a reducer and it defaults to as.array. Some of the “as” options are `as.bow` (bag of words) and `as.bigrams`. These reducers further simplify a number of common NLP tasks. Here is an example of bag of words creation:
+
+<pre class="prettyprint source lang-javascript"><code>const poem = `Rain, rain, go away
+Come again another day!`;
+const doc = nlp.readDoc( poem );
+doc.tokens()
+        .filter(
+          (t) => !t.out(its.stopWordFlag) &&
+                 (t.out(its.type) === 'word'))
+        .out(its.normal, as.bow);
+// -> { rain: 2, away: 1, come: 1, day: 1 }</code></pre>
+
+The `out()` method plays an important role in wink-nlp applications. Here is its summary:
+
+1. The `item.out()` method accepts <code>its.<strong>propertyName</strong></code> as a parameter, whose default value is `its.value`, which is also the fall back if contextually invalid value is passed.
+
+2. The `document.out()` method behaves like `item.out()`.
+
+3. The `collection.out()` method has two parameters — <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code> — think of them as a mapper and reducer respectively. Their default values are `its.value` and `as.array`.
