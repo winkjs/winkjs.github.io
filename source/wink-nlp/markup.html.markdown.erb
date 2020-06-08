@@ -1,9 +1,27 @@
 # Visualizing using markup
 
-## A short detour to markup() & out()
-By default, markup encloses the marked-up item inside `<mark>` tag. While `document.out()` outputs a string value by default but when supplied with the `its.markedUpText` parameter, it returns the marked-up text string instead:
+The `item.markup()` method combined with `collection.out(its.markedUpText)` provides a mechanism to annotate text for visualization. This is completely medium agnostic, which means you can either visualize using HTML, SVG or even the classic unix terminal. Consider the following text:
 
-<pre class="prettyprint source lang-javascript"><code>document.out(its.markedUpText);
-// Returns marked-up text; showing only partial string value:
-'The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;.
-It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.'</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const text = `Its quarterly profits jumped 76% to
+$1.13 billion for the three months to
+December, from $639million of previous year.`;
+const doc = nlp.readDoc( text );
+</code></pre>
+
+Highlight the entities in the above text and then see the marked-up text:
+
+<pre class="prettyprint source lang-javascript"><code>doc.entities().each((e) => e.markup());
+doc.out(its.markedUpText);
+// -> Its quarterly profits jumped &lt;mark&gt;76%&lt;/mark&gt; to
+//    &lt;mark&gt;$1.13 billion&lt;/mark&gt; for the &lt;mark&gt;three months&lt;/mark&gt; to
+//    &lt;mark&gt;December&lt;/mark&gt;, from &lt;mark&gt;$639million&lt;/mark&gt; of &lt;mark&gt;previous year&lt;/mark&gt;.</code></pre>
+
+This returned the original text with every entitiy annotated with the HTML `&lt;mark&gt;` tag. This text, when viewed as HTML appears as:
+
+<blockquote>
+  Its quarterly profits jumped <mark>76%</mark> to <mark>$1.13 billion</mark> for the <mark>three months</mark> to <mark>December</mark>, from <mark>$639million</mark> of <mark>previous year</mark>.
+</blockquote>
+
+The `item.markup()` accepts two parameters —  `beginTag` and `endTag`. Their default values are &lt;mark&gt; and &lt;/mark&gt; respectively.
+
+Similarly it is also possible to highlight items on the console by using [color codes](https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color) to set the values of begin and end tags in the `item.markup()` method.
