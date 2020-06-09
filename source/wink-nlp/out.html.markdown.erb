@@ -1,0 +1,137 @@
+# out()
+
+The `out()` method produces output in Javascript built-in datatypes intelligently depending on the usage. It is available universally at all levels — document, collection, and item.
+
+No other wink-nlp APIs can be chained after an output is generated in a JavaScript data type. Which means that you can not follow the `out()` method with any other wink-nlp method.
+
+## item.out() and document.out()
+<code class="signature">.out( its.propertyName<sub>optional</sub> ) -> { string<sub>default</sub> }<code>
+
+The behaviour of `document.out()` and `item.out()` is similar. The `out()` method accepts <code>its.<strong>propertyName</strong></code> as its parameter. For example, The default parameter is <code>its.value</code>, which returns the wink-nlp doc as a string. Some properties like shape, prefix, suffix, PoS tag, etc. can be computed only for token items.
+
+You can find a [complete list of properties]() in the reference section.
+
+__Examples:__
+
+Let’s explore the `out()` method for the wink-nlp document and items with the following example text:
+
+<pre class="prettyprint source lang-javascript"><code>const text = `#Celebration Nov. 20, 2018 marks the @Space_Station\'s 20th anniversary🌌! Our orbiting laboratory makes technology and research breakthroughs beyond    Earth🌎. Unpack its architecture here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀`;</code></pre>
+
+### document.out()
+<code class="signature">doc.out( its.propertyName<sub>optional</sub> ) -> { string<sub>default</sub> }</code>
+
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
+const doc = nlp.readDoc( text );
+console.log( doc.out() );
+// -> #Celebration Nov. 20, 2018 marks the @Space_Station's 20th
+//    anniversary🌌! Our orbiting laboratory makes technology and
+//    research breakthroughs beyond    Earth🌎. Unpack its architecture
+//    here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀</code></pre>
+
+<div class="docs-tip docs-tip--green">
+  wink-nlp has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between "beyond" and "Earth" in the following examples.
+</div>
+
+### sentence.out()
+<code class="signature">doc.sentences().itemAt( 0 ).out( its.propertyName) -> { string<sub>default</sub> }</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
+const doc = nlp.readDoc( text );
+const sentence = doc.sentences().itemAt( 1 )
+console.log( `${sentence.index()}:`, sentence.out() );
+// -> 1: Our orbiting laboratory makes technology and research
+//    breakthroughs beyond   Earth🌎.</code></pre>
+
+### entity.out()
+<code class="signature">doc.entities().itemAt( 0 ).out(its.propertyName) -> {string<sub>default</sub>}</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const entity = doc.entities().itemAt( 3 );
+console.log( entity.out( its.value ) ); // Returns: string
+// -> 20th
+
+console.log( entity.out( its.detail ) ); // Returns: object
+// -> { value: '20th', type: 'ORDINAL' }
+
+console.log( entity.out( its.type ) ); // Returns: string
+// -> ORDINAL</code></pre>
+
+### customEntity.out()
+
+### token.out()
+<code class="signature">document.tokens().itemAt( 0 ).out( its.propertyName) -> {string<sub>default</sub>}</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const token = doc.tokens().itemAt( 31 );
+console.log(`Token: ${token.out()}, Type: "${token.out(its.type)}"`);
+// -> Token: #SpaceStation20th, Type: "hashtag"</code></pre>
+
+## collection.out()
+<code class="signature">.out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+
+Any wink-nlp collection (sentences, entities or tokens) followed by the `out()` method returns an array of strings by default.
+
+The out() API for collection accepts two parameters -
+1. its.<strong>propertyName</strong>
+2. as.<strong>reducedValue</strong>
+
+The first parameter, <code>its.<strong>propertyName</strong></code> behaves similar to the `out()` method for document and item.
+
+The second parameter is a predefined reducer function which is executed on each item of the collection to compute things like the bag of words, frequency table, bigrams, etc. It defaults to <code>as.array</code>.
+
+You can find a [complete list of reducers]() in the reference section.
+
+__Examples:__
+Let’s explore the `out()` method for collections with the following example text:
+
+<pre class="prettyprint source lang-javascript"><code>const text = `The Godfather premiered on March 15, 1972 and was released on March 24, 1972. It is the first installment in The Godfather trilogy.The story of the movie spans from 1945 to 1955.`;</code></pre>
+
+### sentences().out()
+<code class="signature">document.sentences().out(its.propertyName, as.reducedValue)->{string[ ]<sub>default</sub>}</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
+const doc = nlp.readDoc( text );
+console.log( doc.sentences().out() );
+//-> ['The Godfather premiered on March 15, 1972 and was released on March 24, 1972.',
+//    'It is the first installment in The Godfather trilogy.',
+//    'The story of the movie spans from 1945 to 1955.' ]</code></pre>
+
+## entities.out()
+<code class="signature">document.entities().out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+
+The default, string array returned by <code>its.value</code> contains only the text of the entity. However, the <code>its.detail</code> property returns an object array with the entity text and type together. For example:
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
+const doc = nlp.readDoc( text );
+const entities=doc.entities().out(its.value, as.array);//->Returns: string[]
+console.log( entities );
+// -> [ 'March 15, 1972',
+//      'March 24, 1972',
+//      'first',
+//      'from 1945 to 1955' ]
+
+const entities=doc.entities().out(its.detail, as.array);//->Returns: object[]
+console.log( entities );
+// -> [ { value: 'March 15, 1972', type: 'DATE' },
+//      { value: 'March 24, 1972', type: 'DATE' },
+//      { value: 'first', type: 'ORDINAL' },
+//      { value: 'from 1945 to 1955', type: 'DURATION' } ]
+
+const entities=doc.entities().out(its.type, as.array);//->Returns: string[]
+console.log( entities );
+// -> [ 'DATE', 'DATE', 'ORDINAL', 'DURATION' ]</code></pre>
+
+### customEntities().out()
+
+### tokens().out()
+<code class="signature">doc.tokens().out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
+const doc = nlp.readDoc( text );
+const t = doc.tokens();
+console.log( t.out() ); // default
+// -> [ 'The', 'Godfather', 'premiered',...'1945', 'to', '1955', '.' ]
+
+console.log( t.out( its.type ) );//get the token types
+// -> [ 'word', 'word', 'word',...'number', 'word', 'number', 'punctuation' ]</code></pre>
