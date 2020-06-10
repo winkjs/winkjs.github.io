@@ -1,0 +1,83 @@
+# markup()
+<code class="signature">.markup( beginTag<sub>opt</sub>, endTag<sub>opt</sub> ) → { void }</code>
+
+This API allows you to mark any `item` in wink-nlp with your choice of tags like symbols, HTML tags, ANSI escape sequences, etc.
+
+The tags can be changed according to need. The default values are:
+
+- `beginTag` - `<mark>`
+- `endTag` - `</mark>`
+
+While the `markup()` method returns nothing, you can view the marked up text in a wink-nlp document, sentence, or collection of sentences. To get the string equivalent of the marked text, use the `its.markedUpText()` property as parameter for `out()` for the wink-nlp doc, sentences collection or sentence item.
+
+__Examples:__
+
+<pre class="prettyprint source lang-javascript"><code>// Input text
+const text = `The Godfather premiered on March 15, 1972. It was released on March 24, 1972.`;</code></pre>
+
+## sentence.markup()
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const doc = nlp.readDoc( text );
+const sentence = doc.sentences().itemAt( 0 );
+sentence.markup();
+console.log( sentence.out( its.markedUpText ) );
+// Returns marked-up text in sentence item, as a string
+// -> &lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt;
+
+console.log( doc.out( its.markedUpText ) );
+// Returns marked-up text in document, as a string
+// -> &lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt; It was released on March 24, 1972.
+
+console.log( doc.sentences().out( its.markedUpText ) );
+// Returns marked-up text in collection of sentences, as string array
+// -> [ '&lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt;',
+//      'It was released on March 24, 1972.']</code></pre>
+
+## entity.markup()
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const doc = nlp.readDoc( text );
+doc.entities()
+        .each((entity) => {
+          // Extract type of entity using .out() with “its.type”
+          // as input parameter.
+          if (entity.out(its.type) === 'DATE')
+            entity.markup();
+        } );
+console.log( doc.out( its.markedUpText ) );
+// Returns marked-up text in document, as a string
+// The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;. It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.
+
+console.log( doc.sentences().out( its.markedUpText ) );
+// Returns marked-up text in collection of sentences, as string array
+// [ 'The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;.',
+//   'It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.']
+
+console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
+// Returns marked-up text in sentence item, as a string
+// It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.</code></pre>
+
+## customEntity.markup()
+
+## token.markup()
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const doc = nlp.readDoc( text );
+doc.tokens()
+        .each((token) => {
+          // Extract type of entity using .out() with “its.type”
+          // as input parameter.
+          if (token.out(its.type) === 'number')
+            token.markup();
+        } );
+console.log(doc.out( its.markedUpText ) );
+// Returns marked-up text in document, as a string
+// The Godfather premiered on March &lt;mark&gt;15&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;. It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.
+
+console.log(doc.sentences().out( its.markedUpText ) );
+// Returns marked-up text in collection of sentences, as string array
+// [ 'The Godfather premiered on March &lt;mark&gt;15&lt;/mark&gt;,
+//    &lt;mark&gt;1972&lt;/mark&gt;.',
+//   'It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.']
+
+console.log(doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
+// Returns marked-up text in sentence item, as a string
+// It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.</code></pre>
