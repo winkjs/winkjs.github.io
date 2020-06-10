@@ -1,0 +1,19 @@
+# parentEntity()
+<code class="signature">.parentEntity() -> { wink-nlp entity }</code>
+
+This method returns the parent `entity` (if any) of a `token` item, as only a `token` can have a parent `entity`. If there is no parent entity, it returns `undefined`.
+
+The `entity` is returned in a wink-nlp format and can either be chained with other wink-nlp methods or followed by `out()` to get the entity as a string.
+
+<div class="docs-tip docs-tip--green">
+  wink-nlp has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between " , " and "1972" in the following example.
+</div>
+
+__Examples:__
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
+const text = `The Godfather premiered on March 15, 1972. It was     released on March 24, 1972.`;
+const doc = nlp.readDoc( text );
+const token = doc.tokens().itemAt( 7 ); // -> 1972
+const parentEntity = token.parentEntity();
+console.log(`Token: ${token.out()}, Parent entity: "${parentEntity.out()}"`);
+// -> Token: 1972, Parent entity: "March 15, 1972"</code></pre>
