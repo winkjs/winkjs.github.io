@@ -1,0 +1,125 @@
+# Part-of-Speech reference
+
+wink-nlp follows the <a href="https://universaldependencies.org/u/pos/">Universal POS tags</a>, a summary of which is given in the table below. The POS tags of a token can be accessed via the <code>out( its.pos )</code> method.
+
+Some POS tags are language and context dependent. For example, gerunds may be tagged as either VERB or NOUN. Look at the POS tag of the word “singing” in these two example sentences:
+<ul>
+  <li>“I love singing/<span class="pos">VERB</span>.”</li>
+  <li>“Singing/<span class="pos">NOUN</span> is my hobby.”</li>
+</ul>
+
+<table>
+  <tr>
+    <th>POS tag</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>ADJ</code></td>
+    <td>Adjective: Red, unique, rare, huge, happy</td>
+    <td>That building is huge/ADJ!</td>
+  </tr>
+
+  <tr>
+    <td><code>ADP</code></td>
+    <td>Adposition: There are prepositions and postpositions lik in, of, to etc.</td>
+    <td>The dog jumped over/ADP the wall.</td>
+  </tr>
+
+  <tr>
+    <td><code>ADV</code></td>
+    <td>Adverb: Very, happyli, briefly, soon</td>
+    <td>The roads are very/ADV steep.</td>
+  </tr>
+
+  <tr>
+    <td><code>AUX</code></td>
+    <td>Auxiliary: Do, did, is, am, are, should, must, will</td>
+    <td>I must/AUX get some sleep.</td>
+  </tr>
+
+  <tr>
+    <td><code>CCONJ</code></td>
+    <td>Coordinating conjuction: And, or, but</td>
+    <td>I like tea and/CCONJ coffee.</td>
+  </tr>
+
+  <tr>
+    <td><code>DET</code></td>
+    <td>Determiner: Words like an article, possessive, demonstrative, or quantifier. For example, my, that, few, etc.</td>
+    <td>This/DET laptop is mine.</td>
+  </tr>
+
+  <tr>
+    <td><code>INTJ</code></td>
+    <td>Interjection: Alas, oh, wow</td>
+    <td>Wow/INTJ, what a beautiful day!</td>
+  </tr>
+
+  <tr>
+    <td><code>NOUN</code></td>
+    <td>Noun: Man, dog, table, chair</td>
+    <td>The woman/NOUN in the picture/NOUN is my mother/NOUN.</td>
+  </tr>
+
+  <tr>
+    <td><code>NUM</code></td>
+    <td>Numeral: A word or number like one, five, 3.14, 100, etc.</td>
+    <td>All visitors must pay $20/NUM.</td>
+  </tr>
+
+  <tr>
+    <td><code>PART</code></td>
+    <td>Particle: 's, not, n't</td>
+    <td>I am not/PART feeling well.</td>
+  </tr>
+
+  <tr>
+    <td><code>PRON</code></td>
+    <td>Pronoun: You, I he, she, myself, what, who, something, nobody, mine</td>
+    <td>I/PRON like coffee. What/PRON about you/PRON?</td>
+  </tr>
+
+  <tr>
+    <td><code>PROPN</code></td>
+    <td>Proper noun: Words that refer to a specific person, place or thing like John Smith, London, UN, etc. </td>
+    <td>Mary/PROPN lives in Chicago/PROPN.</td>
+  </tr>
+
+  <tr>
+    <td><code>PUNCT</code></td>
+    <td>Punctuation marks: like ‘Period: .’, ‘Comma: ,’, ‘Parentheses: ()’</td>
+    <td>Hello,/PUNCT world!/PUNCT</td>
+  </tr>
+
+  <tr>
+    <td><code>SCONJ</code></td>
+    <td>Subordinating conjuction: That, if, while</td>
+    <td>Since/SCONJ he lost his money he couldn't go on the camping trip.</td>
+  </tr>
+
+  <tr>
+    <td><code>SYM</code></td>
+    <td>Symbol: Currency symbols($), Mathematical operators(+,=), emojis and emoticons( :), 😝), etc.</td>
+    <td>Hello :)/SYM</td>
+  </tr>
+
+  <tr>
+    <td><code>VERB</code></td>
+    <td>Verb: Run, sing, develop</td>
+    <td>I run/VERB 3 miles every morning.</td>
+  </tr>
+
+  <tr>
+    <td><code>X</code></td>
+    <td>Other: Words that cannot be assigned any POS tag</td>
+    <td>He is my मित्र/X</td>
+  </tr>
+
+  <tr>
+    <td><code>SPACE</code></td>
+    <td>Space: New line (\n), tab (\t), return (\r) or any combination of these characters is tagged as SPACE. This tag is not based on Universal POS tags.</td>
+    <td>Hello &nbsp;&nbsp;&nbsp;&nbsp;/SPACE world!</td>
+  </tr>
+</table>
