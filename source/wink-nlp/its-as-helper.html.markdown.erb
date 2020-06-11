@@ -25,10 +25,194 @@ console.log(doc.tokens().out(its.abbrevFlag));
 // -> [ false, false, false, false, true ]</code></pre>
 
 <div class="docs-tip">
-  <strong>Convention:</strong> In the following table, if a propertyName applies to any wink-nlp item type, then it applies to its corresponding collection as well. For example, as the table mentions that its.abbrevFlag applies to a token item, then it also applies to a token collection.
+  <strong>Convention:</strong> In the following table, if a <code><strong>propertyName</strong></code> applies to any wink-nlp <strong>item</strong> type, then it applies to its corresponding collection as well. For example, as the table mentions that <code>its.abbrevFlag</code> applies to a token item, then it also applies to a token collection.
 </div>
 
 ## propertyName
+
+<table>
+  <tr>
+    <th>propertyName</th>
+    <th>Description</th>
+    <th>Applies to</th>
+    <th>Type</th>
+  </tr>
+
+  <tr>
+    <td><code>its.abbrevFlag</code></td>
+    <td>
+      <code>true</code> if a token is an abbreviation. Common abbreviations like honorifics, unit of measures, education qualifications and more are a part of the lexicon. All initials followed by a period sign are flagged as abbreviations, even if they are not a part of the lexicon. For example, “AI” will not be flagged as an abbreviation, but “A.I.” will be.
+    </td>
+    <td>Token</td>
+    <td><code>boolean</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.case</code></td>
+    <td>
+      lowerCase, upperCase, titleCase or other (for digits, symbols, etc.)
+    </td>
+    <td>Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.contractionFlag</code></td>
+    <td>
+      <code>true</code> if a token is a contraction. Here is an example in English: “Can’t stop watching Netflix”
+      Token: Ca, contractionFlag: <code>true</code>
+      Token: n't, contractionFlag: <code>true</code>
+      Token: stop, contractionFlag: <code>false</code>
+    </td>
+    <td>Token</td>
+    <td><code>boolean</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.detail</code></td>
+    <td>
+      The value and type of an entity together in an object. For example, {value: 'March 15, 1972', type: 'DATE' }
+    </td>
+    <td>Entity</td>
+    <td><code>object</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.lemma</code></td>
+    <td>
+      Base form of a token. An example in English, eat, eating, eaten, ate have the lemma “eat”
+    </td>
+    <td>Document, Sentence, Entity, Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.markedUpText</code></td>
+    <td>
+      JavaScript string equivalent of text marked up using the <code>markup()</code> method
+    </td>
+    <td>Document, Sentence</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.negationFlag</code></td>
+    <td>
+      <code>true</code> if a token is negated. In English, tokens could be negated by words like not, neither, nor, rarely, scarcely, etc. For example, for the text “I didn’t like it.” , the negationFlag will be <code>true</code>
+    </td>
+    <td>Document, Sentence, Token</td>
+    <td><code>boolean</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.normal</code></td>
+    <td>
+      The lower-cased form of a token. In a document, sentence or entity whitespaces are limited to one. This property is applicable to latin script languages such as English or French. When used in english language, it maps the British spelling to its equivalent American spelling, if any. Refer to normalization rules in the language model.
+    </td>
+    <td>Document, Sentence, Entity, Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.pos</code></td>
+    <td><a href="part-of-speech.html">Part-of-speech</a> tag of the token.</td>
+    <td>Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.preceedingSpaces</code></td>
+    <td>Whitespaces before a token in string format</td>
+    <td>Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.prefix</code></td>
+    <td>
+      First two characters of a token. For example, the token “time” will have the prefix “ti”
+    </td>
+    <td>Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.sentiment</code></td>
+    <td>Sentiment score with a value between -1 and +1</td>
+    <td>Document, Sentence</td>
+    <td><code>number</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.shape</code></td>
+    <td>
+      The shape of a token is mapped as follows: Each alphabet in a token is mapped as X or x depending on its case, digits are mapped as d and all other characters are mapped as themselves. The shape code is trimmed after any four consecutive identical shape patterns. An example in English, shape of token “Billion” will be “Xxxxx” and not “Xxxxxxx”
+    </td>
+    <td>Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.span</code></td>
+    <td>Indexes of the first and last token</td>
+    <td>Document, Sentence, Entity</td>
+    <td><code>number[]</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.stem</code></td>
+    <td>
+      Stem of a token. An example in English, “flying” will be stemmed to “fly”.
+    </td>
+    <td>Document, Sentence, Entity, Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.stopWordFlag</code></td>
+    <td>
+      <code>true</code> if a token is a stop word. The representative list of   stop words are part of the language model.
+    </td>
+    <td>Token</td>
+    <td><code>boolean</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.suffix</code></td>
+    <td>
+      Last three characters of a token. For example, the token “time” will have the suffix “ime”
+    </td>
+    <td>Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.type</code></td>
+    <td>
+      The type of entity or token. For a complete list of entity and token types refer to the documentation of the desired language model.
+    </td>
+    <td>Entity, Token</td>
+    <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.uniqueId</code></td>
+    <td>
+      The unique ID of a token. For example, “Hello world” will have the following tokens:
+      Token: Hello, Unique ID: 34736
+      Token: World, Unique ID: 10980
+    </td>
+    <td>Token</td>
+    <td><code>number</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.value</code></td>
+    <td>JavaScript sting equivalent. This is the default property.</td>
+    <td>Document, Sentence, Entity, Token</td>
+    <td><code>string</code></td>
+  </tr>
+</table>
 
 # <code>as</code> helper
 
