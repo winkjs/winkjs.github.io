@@ -44,7 +44,7 @@ doc.customEntities().out();
   Note the part-of-speech tags in the patterns follow the <a href="https://universaldependencies.org/u/pos/all.html">Universal POS tags standard</a> and therefore are always in UPPERCASE. Similarly, entity names are also in UPPERCASE. Some examples are DATE, DURATION, or EMAIL. For a complete list of entities and pos tags refer to the documentation of the desired language model.
 </div>
 
-## Query patterns
+## Shorthand patterns
 
 Let us say we wish to extract noun phrases from the following text:
 
@@ -70,7 +70,7 @@ To keep things simple, we assume that a noun phrase could be simply composed as:
   }
 ];</code></pre>
 
-The above pattern could be transformed into the following query pattern:
+The above list could be transformed into the following shorthand pattern:
 
 <pre class="prettyprint source lang-javascript"><code>const patterns = [
   {
@@ -79,7 +79,7 @@ The above pattern could be transformed into the following query pattern:
   }
 ];</code></pre>
 
-In query patterns:
+In shorthand patterns:
 
 1. Options are listed between opening and closing square brackets
 2. Each option is separated by a vertical pipe character as in `[NOUN|PROPN]``
