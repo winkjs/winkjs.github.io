@@ -2,6 +2,10 @@
     <nav class="container">
       <h2 class="col-md-12">Natural Language Processing</h2>
       <div class="col-md-4">
+        <%= partial( :package, :locals => { :name => "nlp" } ) %>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-md-4">
         <%= partial( :package, :locals => { :name => "nlp-utils" } ) %>
         <%= partial( :package, :locals => { :name => "tokenizer" } ) %>
         <%= partial( :package, :locals => { :name => "sentiment" } ) %>

@@ -7,6 +7,10 @@
       "info": "NLP Functions for amplifying negations, managing elisions, creating ngrams, stems, phonetic codes to tokens and more.",
       "docs": true
   },
+  "nlp": {
+    "info": "Advanced NLP tasks like tokenization, sentence boundary detection, negation, sentiment analysis, POS tagger, entitity recognition and more.",
+    "docs": true
+  },
   "tokenizer": {
     "info": "Multilingual tokenizer that automatically tags each token with its type such as word, email, time or hashtag.",
     "docs": true
