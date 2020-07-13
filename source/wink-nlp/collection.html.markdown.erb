@@ -1,9 +1,9 @@
 # Collection
 
-A collection may be thought of as similar to the Javascript Array. It contains 0 or more items of the __same type__. There are three item types — token, entity, and sentence.
+A collection may be thought of as similar to the Javascript Array. It contains zero or more items of the __same type__. There are three item types — token, entity, and sentence.
 
 <div class="docs-tip docs-tip--blue">
-  <strong>Convention:</strong> A collection name is always in <strong>plural</strong> i.e. sentences, entities, and tokens; whereas an item name is always in <strong>singular</strong> i.e. sentence, entity and token.
+  <strong>Convention:</strong> A collection name is always in the <strong>plural</strong> i.e. sentences, entities, and tokens; whereas an item name is always in the <strong>singular</strong> i.e. sentence, entity and token.
 </div>
 
 * Access a specific item using `itemAt()`
@@ -56,7 +56,7 @@ const token1 = doc.tokens().itemAt(1);
 
 Items can be filtered on the basis of their properties, to form a filtered collection. For example, you can filter all “date” entities, remove stop words, or select only words that have been negated.
 
-Like JavaScript’s array filter method, the `filter()` method in a collection returns a new collection of items containing items that pass the test provided in the callback function.
+Like JavaScript’s array filter method, the `filter()` method in a collection returns a new collection of items that pass the test provided in the callback function.
 
 Filters provide a quick and easy way to extract information. The following example selects tokens from the 3rd sentence of the document that are of type ‘word’ and are not stop words:
 
@@ -73,13 +73,13 @@ Filters provide a quick and easy way to extract information. The following examp
 </code></pre>
 
 <div class="docs-tip docs-tip--yellow">
-  The its  is a helper and is required using the following statement:<br>
+  <code>its</code> is a helper and is required using the following statement:<br>
   <code>const its = require( 'wink-nlp/src/its.js' );</code>
 </div>
 
 ## Iterate through items
 
-Similar to a JavaScript array, collections have a `forEach()` method to iterate over its items. It also has a `length()` method to get the number of items, Let’s count the number of dates in the example text and then print them out:
+Similar to a JavaScript array, collections have a `forEach()` method to iterate over its items. It also has a `length()` method to get the number of items. Let’s count the number of dates in the example text and then print them out:
 
 <pre class="prettyprint source lang-javascript"><code>doc.entities().length()
 // -> 2
@@ -96,7 +96,7 @@ doc.entities()
 Note '1945 to 1955' is not printed as it is of type duration and not of type date.
 </div>
 
-The `each()` method calls the provided callback function once for each entity in the entities collection beginning from 0th entity item to the last.
+The `each()` method calls the provided callback function once for every entity in the entities collection beginning from 0th entity item to the last.
 
 ## Produce output
 

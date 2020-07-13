@@ -2,14 +2,16 @@
 
 The `out()` method produces output in Javascript built-in datatypes intelligently depending on the usage. It is available universally at all levels — document, collection, and item.
 
-No other wink-nlp APIs can be chained after an output is generated in a JavaScript data type. Which means that you can not follow the `out()` method with any other wink-nlp method.
+<div class="docs-tip">
+  No other wink-nlp APIs can be chained after the <code>out()</code> method. This method returns the output in JavaScript data types.
+</div>
 
-## item.out() and document.out()
+## item.out() and doc.out()
 <code class="signature">.out( its.propertyName<sub>optional</sub> ) -> { string<sub>default</sub> }<code>
 
-The behaviour of `document.out()` and `item.out()` is similar. The `out()` method accepts <code>its.<strong>propertyName</strong></code> as its parameter. For example, The default parameter is <code>its.value</code>, which returns the wink-nlp doc as a string. Some properties like shape, prefix, suffix, PoS tag, etc. can be computed only for token items.
+The behaviour of `doc.out()` and `item.out()` is similar. The `out()` method accepts <code>its.<strong>propertyName</strong></code> as one of its parameter. The default parameter is <code>its.value</code>, which returns the wink-nlp doc as a string. Some properties like shape, prefix, suffix, PoS tag, etc. can be computed only for token items.
 
-You can find a [complete list of properties]() in the reference section.
+You can find a [complete list of properties](/wink-nlp/its-as-helper.html) in the reference section.
 
 __Examples:__
 
@@ -17,7 +19,7 @@ Let’s explore the `out()` method for the wink-nlp document and items with the 
 
 <pre class="prettyprint source lang-javascript"><code>const text = `#Celebration Nov. 20, 2018 marks the @Space_Station\'s 20th anniversary🌌! Our orbiting laboratory makes technology and research breakthroughs beyond    Earth🌎. Unpack its architecture here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀`;</code></pre>
 
-### document.out()
+### doc.out()
 <code class="signature">doc.out( its.propertyName<sub>optional</sub> ) -> { string<sub>default</sub> }</code>
 
 
@@ -60,7 +62,7 @@ console.log( entity.out( its.type ) ); // Returns: string
 ### customEntity.out()
 
 ### token.out()
-<code class="signature">document.tokens().itemAt( 0 ).out( its.propertyName) -> {string<sub>default</sub>}</code>
+<code class="signature">doc.tokens().itemAt( 0 ).out( its.propertyName) -> {string<sub>default</sub>}</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const token = doc.tokens().itemAt( 31 );
@@ -70,25 +72,25 @@ console.log(`Token: ${token.out()}, Type: "${token.out(its.type)}"`);
 ## collection.out()
 <code class="signature">.out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
 
-Any wink-nlp collection (sentences, entities or tokens) followed by the `out()` method returns an array of strings by default.
+Any wink-nlp collection followed by the `out()` method returns an array of strings by default.
 
-The out() API for collection accepts two parameters -
-1. its.<strong>propertyName</strong>
-2. as.<strong>reducedValue</strong>
+The out() API for collection accepts two parameters: <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code>.
 
 The first parameter, <code>its.<strong>propertyName</strong></code> behaves similar to the `out()` method for document and item.
 
-The second parameter is a predefined reducer function which is executed on each item of the collection to compute things like the bag of words, frequency table, bigrams, etc. It defaults to <code>as.array</code>.
+The second parameter is a predefined reducer function which is executed on each item of the collection to compute bag of words, frequency table, bigrams, etc. It defaults to <code>as.array</code>.
 
-You can find a [complete list of reducers]() in the reference section.
+You can find a [complete list of reducers](/wink-nlp/its-as-helper.html#codeascode-helper) in the reference section.
 
 __Examples:__
 Let’s explore the `out()` method for collections with the following example text:
 
-<pre class="prettyprint source lang-javascript"><code>const text = `The Godfather premiered on March 15, 1972 and was released on March 24, 1972. It is the first installment in The Godfather trilogy.The story of the movie spans from 1945 to 1955.`;</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const text = `The Godfather premiered on March 15, 1972 and was released on
+  March 24, 1972. It is the first installment in The Godfather trilogy. The
+  story of the movie spans from 1945 to 1955.`;</code></pre>
 
 ### sentences().out()
-<code class="signature">document.sentences().out(its.propertyName, as.reducedValue)->{string[ ]<sub>default</sub>}</code>
+<code class="signature">doc.sentences().out(its.propertyName, as.reducedValue)->{string[ ]<sub>default</sub>}</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
 const doc = nlp.readDoc( text );
@@ -98,7 +100,7 @@ console.log( doc.sentences().out() );
 //    'The story of the movie spans from 1945 to 1955.' ]</code></pre>
 
 ## entities.out()
-<code class="signature">document.entities().out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+<code class="signature">doc.entities().out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
 
 The default, string array returned by <code>its.value</code> contains only the text of the entity. However, the <code>its.detail</code> property returns an object array with the entity text and type together. For example:
 

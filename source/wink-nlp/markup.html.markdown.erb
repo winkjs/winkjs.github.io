@@ -3,12 +3,17 @@
 
 This API allows you to mark any `item` in wink-nlp with your choice of tags like symbols, HTML tags, ANSI escape sequences, etc.
 
-The tags can be changed according to need. The default values are:
+The tags can be changed according to the requirement. The default values are:
 
 - `beginTag` - `<mark>`
 - `endTag` - `</mark>`
 
-While the `markup()` method returns nothing, you can view the marked up text in a wink-nlp document, sentence, or collection of sentences. To get the string equivalent of the marked text, use the `its.markedUpText()` property as parameter for `out()` for the wink-nlp doc, sentences collection or sentence item.
+While the markup() method returns nothing, you can view the marked up text in a JavaScript string format. Use the its.markedUpText() property as 
+parameter for out().
+
+<div class="docs-tip">
+  You can only view the marked up text in a wink-nlp doc, collection of sentences and sentence item.
+</div>
 
 __Examples:__
 

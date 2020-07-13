@@ -19,7 +19,7 @@ const doc = nlp.readDoc( text );</code></pre>
 While working with an item, any of its properties can be extracted by passing <code>its.<strong>propertyName</strong></code> parameter to the `item.out()` method. For example `doc.tokens().itemAt(0).out(its.shape)` would return `Xxx` — the shape of zeroth token, "Its". Similarly `doc.tokens().itemAt(0).out(its.case)` would return `titleCase`.
 
 <div class="docs-tip docs-tip--yellow">
-  The its  is a helper and is required using the following statement:<br>
+  <code>its</code> is a helper and is required using the following statement:<br>
   <code>const its = require( 'wink-nlp/src/its.js' );</code>
 </div>
 
@@ -130,7 +130,7 @@ Note <code>its.shape</code> trims after any four consecutive identical shape pat
 The `collection.out()` method also accepts a second parameter — <code>as.<strong>reducedValue</strong></code>. Here “as” is another helper like “its”.
 
 <div class="docs-tip docs-tip--yellow">
-  The as  is a helper and is required using the following statement:<br>
+  <code>as</code> is a helper and is required using the following statement:<br>
   <code>const as = require( 'wink-nlp/src/as.js' );</code>
 </div>
 
