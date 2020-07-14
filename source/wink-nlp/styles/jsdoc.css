@@ -14,8 +14,12 @@ body {
   background-color: white;
   margin: 0 auto;
   padding: 0;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',Arial,sans-serif;
+  font-family: 'ff-tisa-sans-web-pro', serif;
   font-size: 16px;
+}
+
+#main {
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans','Helvetica Neue',Arial,sans-serif;
 }
 
 img {
@@ -854,4 +858,9 @@ html[data-search-mode] .level-hide {
 
 #disqus_thread{
     margin-left: 30px;
+}
+
+.pos {
+  color: #c8ccd1;
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
 }
