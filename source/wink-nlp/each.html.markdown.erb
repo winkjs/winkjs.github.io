@@ -14,7 +14,7 @@ const text = `#Breaking: Can’t get over this #Oscars selfie from
 best selfie@r2d2@gmail.com💯`;</code></pre>
 
 ## sentences().each()
-<code class="signature">document.sentences().each( callback ) -> { void }</code>
+<code class="signature">doc.sentences().each( callback ) -> { void }</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const doc = nlp.readDoc( text );
@@ -28,7 +28,7 @@ doc.sentences()
 //       your best selfie@r2d2@gmail.com💯</code></pre>
 
 ## entities().each()
-<code class="signature">document.entities().each( callback ) -> { void }</code>
+<code class="signature">doc.entities().each( callback ) -> { void }</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const doc = nlp.readDoc( text );
@@ -49,7 +49,7 @@ doc.entities()
 ## customEntities().each()
 
 ## tokens().each()
-<code class="signature">document.tokens().each( callback ) -> { void }</code>
+<code class="signature">doc.tokens().each( callback ) -> { void }</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const doc = nlp.readDoc( text );
