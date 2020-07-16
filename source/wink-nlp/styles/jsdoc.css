@@ -860,7 +860,42 @@ html[data-search-mode] .level-hide {
     margin-left: 30px;
 }
 
+/* New for wink-nlp */
+
 .pos {
   color: #c8ccd1;
   font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+}
+
+.l-horizontal {
+  display: flex
+}
+
+.bottom-nav-link {
+  margin-top: 40px;
+  border: 1px solid #c8ccd1;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 16px;
+}
+
+.bottom-nav-link:hover {
+  border-color: #606;
+}
+
+.bottom-nav-link__title {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #c8ccd1;
+  display: block;
+}
+
+.empty-nav-link {
+  width: 100%;
+}
+
+.next-nav-link {
+  text-align: right;
+  margin-left: 16px;
 }
