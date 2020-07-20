@@ -1,6 +1,6 @@
 # Understanding Document
 
-The document provides different views — dynamically — based on your context. It can be viewed as  a _collection_ of __tokens__ while in another context it could be a _collection_ of __sentences__ or a _collection_ of __named entities__ such as time, date, or URLs. It lets you access these in a flexible manner. Consider the following text:
+The document provides different views — dynamically — based on your context. It can be viewed as  a __collection__ of tokens while in another context it could be a collection of sentences or a collection of named entities such as time, date, or URLs. It lets you access these in a flexible manner. Consider the following text:
 
 
 <pre class="prettyprint source lang-javascript"><code>const text = `On July 20, 1969, a voice crackled from the speakers.
@@ -32,14 +32,14 @@ doc.tokens().out();
 // [ 'On', 'July', '20', ',', ... 'walk', 'on', 'Moon', '.' ]</code></pre>
 
 
-Each element of a collection is referred to as an __item__. In other words a __single__ token, entity, or sentence is an __item__. An item is accessed via the `itemAt(n)` method, where `n` is the index of the item. Like JavaScript, this index is also 0-based. For example:
+Each element of a collection is referred to as an __item__. In other words a single_ token, entity, or sentence is an item. An item is accessed via the `itemAt(n)` method, where `n` is the index of the item. Like JavaScript, this index is also 0-based. For example:
 
 
 <pre class="prettyprint source lang-javascript"><code>doc.entities().itemAt(1).out();
 // Returns:
 // 'nearly 21 hours'</code></pre>
 
-Since `out()` was called on an __item__, it automatically returned a string instead of an array.
+Since `out()` was called on an item, it automatically returned a string instead of an array.
 
 <div class="docs-tip docs-tip--green">
 By default, the <code>out()</code> returns a <strong>string</strong> when it is applied to an <strong>item</strong> and an <strong>array of strings</strong> when it is applied to a <strong>collection</strong>.
