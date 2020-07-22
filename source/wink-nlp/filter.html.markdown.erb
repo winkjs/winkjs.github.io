@@ -1,5 +1,5 @@
 # filter()
-<code class="signature">.filter( callback ) -> { collection }</code>
+<code class="signature">filter( callback ) → { collection }</code>
 
 This API works only with a collection of entities and tokens.
 It returns a new wink-nlp collection of the same kind. The filtered collection contains items that pass the test implemented by the callback function which is provided as a parameter. The callback function accepts each item of the parent collection (on which the filter() is applied) as a parameter. It works like the JavaScript filter() method.
@@ -12,7 +12,7 @@ __Examples:__
 const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;</code></pre>
 
 ## entities.filter()
-<code class="signature">doc.entities().filter( callback ) -> { collection }</code>
+<code class="signature">doc.entities().filter( callback ) → { collection }</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const doc = nlp.readDoc( text );
@@ -25,7 +25,7 @@ console.log( hashtags );
 ## customEntities().filter()
 
 ## tokens().filter()
-<code class="signature">doc.tokens().filter( callback ) -> { collection }</code>
+<code class="signature">doc.tokens().filter( callback ) → { collection }</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const doc = nlp.readDoc( text );

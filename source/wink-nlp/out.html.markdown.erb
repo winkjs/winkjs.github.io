@@ -7,7 +7,7 @@ The `out()` method produces output in JavaScript built-in datatypes intelligentl
 </div>
 
 ## item.out() and doc.out()
-<code class="signature">.out( its.propertyName<sub>optional</sub> ) -> { string<sub>default</sub> }<code>
+<code class="signature">out( its.propertyName<sub>optional</sub> ) → { string<sub>default</sub> }<code>
 
 The behaviour of `doc.out()` and `item.out()` is similar. The `out()` method accepts <code>its.<strong>propertyName</strong></code> as one of its parameter. The default parameter is <code>its.value</code>, which returns the wink-nlp doc as a string. Some properties like shape, prefix, suffix, PoS tag, etc. can be computed only for token items.
 
@@ -20,7 +20,7 @@ Let’s explore the `out()` method for the wink-nlp document and items with the 
 <pre class="prettyprint source lang-javascript"><code>const text = `#Celebration Nov. 20, 2018 marks the @Space_Station\'s 20th anniversary🌌! Our orbiting laboratory makes technology and research breakthroughs beyond    Earth🌎. Unpack its architecture here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀`;</code></pre>
 
 ### doc.out()
-<code class="signature">doc.out( its.propertyName<sub>optional</sub> ) -> { string<sub>default</sub> }</code>
+<code class="signature">doc.out( its.propertyName<sub>optional</sub> ) → { string<sub>default</sub> }</code>
 
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
@@ -36,7 +36,7 @@ console.log( doc.out() );
 </div>
 
 ### sentence.out()
-<code class="signature">doc.sentences().itemAt( 0 ).out( its.propertyName) -> { string<sub>default</sub> }</code>
+<code class="signature">doc.sentences().itemAt( 0 ).out( its.propertyName) → { string<sub>default</sub> }</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
 const doc = nlp.readDoc( text );
@@ -46,7 +46,7 @@ console.log( `${sentence.index()}:`, sentence.out() );
 //    breakthroughs beyond   Earth🌎.</code></pre>
 
 ### entity.out()
-<code class="signature">doc.entities().itemAt( 0 ).out(its.propertyName) -> {string<sub>default</sub>}</code>
+<code class="signature">doc.entities().itemAt( 0 ).out(its.propertyName) → {string<sub>default</sub>}</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const entity = doc.entities().itemAt( 3 );
@@ -62,7 +62,7 @@ console.log( entity.out( its.type ) ); // Returns: string
 ### customEntity.out()
 
 ### token.out()
-<code class="signature">doc.tokens().itemAt( 0 ).out( its.propertyName) -> {string<sub>default</sub>}</code>
+<code class="signature">doc.tokens().itemAt( 0 ).out( its.propertyName) → {string<sub>default</sub>}</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
 const token = doc.tokens().itemAt( 31 );
@@ -70,7 +70,7 @@ console.log(`Token: ${token.out()}, Type: "${token.out(its.type)}"`);
 // -> Token: #SpaceStation20th, Type: "hashtag"</code></pre>
 
 ## collection.out()
-<code class="signature">.out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+<code class="signature">out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code>
 
 Any wink-nlp collection followed by the `out()` method returns an array of strings by default.
 
@@ -90,7 +90,7 @@ Let’s explore the `out()` method for collections with the following example te
   story of the movie spans from 1945 to 1955.`;</code></pre>
 
 ### sentences().out()
-<code class="signature">doc.sentences().out(its.propertyName, as.reducedValue)->{string[ ]<sub>default</sub>}</code>
+<code class="signature">doc.sentences().out(its.propertyName, as.reducedValue) → {string[ ]<sub>default</sub>}</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
 const doc = nlp.readDoc( text );
@@ -100,7 +100,7 @@ console.log( doc.sentences().out() );
 //    'The story of the movie spans from 1945 to 1955.' ]</code></pre>
 
 ### entities.out()
-<code class="signature">doc.entities().out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+<code class="signature">doc.entities().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code>
 
 The default, string array returned by <code>its.value</code> contains only the text of the entity. However, the <code>its.detail</code> property returns an object array with the entity text and type together. For example:
 
@@ -127,7 +127,7 @@ console.log( entities );
 ### customEntities().out()
 
 ### tokens().out()
-<code class="signature">doc.tokens().out( its.propertyName, as.reducedValue ) -> {string[ ]<sub>default</sub>}</code>
+<code class="signature">doc.tokens().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code>
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
 const doc = nlp.readDoc( text );
