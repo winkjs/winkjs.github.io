@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>wink-nlp - Wink JS - Summary</title>
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <%
+      title = "winkNLP - winkJS"
+      if current_page.data.title then
+        title = current_page.data.title + " : " + title
+      end
+    %>
+    <title><%= title  %></title>
 
     <script src="/wink-nlp/scripts/prettify/prettify.js"></script>
     <script src="/wink-nlp/scripts/prettify/lang-css.js"></script>

@@ -1,3 +1,7 @@
+---
+title: Item and its properties
+---
+
 # Item and its properties
 
 There are three item types — __token__, __entity__, and __sentence__. Items are always accessed via the collection that contains them. Like collections, item also exposes a set of API methods including the `out()` method. Every type of item has its own set of properties. You can access the required property by providing <code>its.<strong>propertyName</strong></code> parameter to the `item.out()` method. For example, `doc.tokens().itemAt(1).out( its.type )` returns the type of first token in the document.
