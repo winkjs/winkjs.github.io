@@ -1,6 +1,6 @@
 # <code>its</code> helper
 
-The wink-nlp document, collection and item have several __contextual__ properties that are accessible via <code>its.<strong>propertyName</strong></code>, an argument of the `out()` method.
+The winkNLP document, collection and item have several __contextual__ properties that are accessible via <code>its.<strong>propertyName</strong></code>, an argument of the `out()` method.
 
 The bold part of the argument, i.e., <code><strong>propertyName</strong></code>, needs to be substituted with a value from the following table, according to requirement. For example, after substituting the value, the argument can be `its.stopWordFlag`, `its.shape`, `its.vector`, etc. The default value of this argument is `its.value`.
 
@@ -25,7 +25,7 @@ console.log(doc.tokens().out(its.abbrevFlag));
 // -> [ false, false, false, false, true ]</code></pre>
 
 <div class="docs-tip">
-  <strong>Convention:</strong> In the following table, if a <code><strong>propertyName</strong></code> applies to any wink-nlp <strong>item</strong> type, then it applies to its corresponding collection as well. For example, as the table mentions that <code>its.abbrevFlag</code> applies to a token item, then it also applies to a token collection.
+  <strong>Convention:</strong> In the following table, if a <code><strong>propertyName</strong></code> applies to any winkNLP <strong>item</strong> type, then it applies to its corresponding collection as well. For example, as the table mentions that <code>its.abbrevFlag</code> applies to a token item, then it also applies to a token collection.
 </div>
 
 ## propertyName

@@ -1,11 +1,11 @@
 # entities()
 <code class="signature">entities() → { collection of entities }</code>
 
-This API returns a collection of entities. You can extract entities from a wink-nlp document or you can call this API on a sentence item and extract a collection of entities from that sentence.
+This API returns a collection of entities. You can extract entities from a winkNLP document or you can call this API on a sentence item and extract a collection of entities from that sentence.
 
 The raw text may have entities like date, ordinal, cardinal, money, percent, time, duration, hashtag, emoji, emoticon, email, url and mention. If the input text does not contain any entities, then an empty collection is returned. If the input text contains only a single entity, like a date or number, then a collection with single member is returned.
 
-You can chain it further with other wink-nlp APIs like `each()`, `length()`, `filter()`, etc. However, to get the output in a JavaScript data type, you need to follow this API with `out()`.
+You can chain it further with other winkNLP APIs like `each()`, `length()`, `filter()`, etc. However, to get the output in a JavaScript data type, you need to follow this API with `out()`.
 
 __Example:__
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
@@ -17,7 +17,7 @@ const text = `At 4:18 p.m. on July 20, 1969, a voice crackled from the speakers
   https://tinyurl.com/y85owr2u`;
 const doc = nlp.readDoc( text );
 
-// Entities in wink-nlp doc
+// Entities in winkNLP doc
 const entities = doc.entities().out();
 console.log( entities );
 // -> [ '4:18 p.m.',

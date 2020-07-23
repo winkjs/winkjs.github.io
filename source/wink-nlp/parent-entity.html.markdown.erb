@@ -1,12 +1,12 @@
 # parentEntity()
-<code class="signature">parentEntity() → { wink-nlp entity }</code>
+<code class="signature">parentEntity() → { winkNLP entity }</code>
 
 This method returns the parent `entity` (if any) of a `token` item, as only a `token` can have a parent `entity`. If there is no parent entity, it returns `undefined`.
 
-The `entity` is returned in a wink-nlp format and can either be chained with other wink-nlp methods or followed by `out()` to get the entity as a string.
+The `entity` is returned in a winkNLP format and can either be chained with other winkNLP methods or followed by `out()` to get the entity as a string.
 
 <div class="docs-tip docs-tip--green">
-  wink-nlp has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between " , " and "1972" in the following example.
+  winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between " , " and "1972" in the following example.
 </div>
 
 __Example:__
