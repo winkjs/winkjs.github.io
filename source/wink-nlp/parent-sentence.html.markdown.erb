@@ -20,7 +20,7 @@ const text = `The Godfather premiered on March 15, 1972. It was     released on 
 const doc = nlp.readDoc( text );
 doc.entities()
    .each( ( e ) => {
-     console.log(`Entity: ${e.out()}, Parent Sentence: ${e.parentSentence().out()}`);
+     console.log( `Entity: ${e.out()}, Parent Sentence: ${e.parentSentence().out()}` );
    } );
 // -> Entity: March 15, 1972, Parent Sentence: The Godfather premiered on March 15, 1972.
 //    Entity: March 24, 1972, Parent Sentence: It was     released on March 24, 1972.</code></pre>
