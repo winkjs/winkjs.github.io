@@ -49,6 +49,24 @@ doc.entities()
 //    8: 💯</code></pre>
 
 ## customEntities().each()
+<code class="signature">doc.customEntities().each( callback ) -> { void }</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[|ADP] [EMOJI|EMOTICON]' ] },
+  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
+  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );
+doc.customEntities()
+  .each( ( customEntity, index ) => {
+    console.log( `${ index }:`, customEntity.out() );
+  } );
+// -> 0: @TheEllenShow🤩
+//    1: out:)
+//    2: r2d2@gmail.com💯
+</code></pre>
 
 ## tokens().each()
 <code class="signature">doc.tokens().each( callback ) → { void }</code>

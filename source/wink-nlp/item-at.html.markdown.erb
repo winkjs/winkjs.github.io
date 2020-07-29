@@ -15,7 +15,14 @@ __Example:__
 
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
 const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
+  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
+  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
+];
+nlp.learnCustomEntities( patterns );
 const doc = nlp.readDoc( text );
+
 const sentence = doc.sentences().itemAt( 1 );
 console.log( sentence.out() );
 // -> Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your
@@ -29,4 +36,6 @@ const token = doc.tokens().itemAt( 3 );
 console.log( token.out() );
 // -> n’t
 
-customEntities().itemAt()</code></pre>
+const customEntity = doc.customEntities().itemAt( 2 );
+console.log( customEntity.out() );
+// -> r2d2@gmail.com💯</code></pre>

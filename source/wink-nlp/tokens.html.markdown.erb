@@ -14,6 +14,12 @@ You can chain it further with other winkNLP APIs like `each()`, `length()`, `fil
 __Example:__
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
 const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
+  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
+];
+nlp.learnCustomEntities( patterns );
+
 const doc = nlp.readDoc( text );
 
 // Tokens in winkNLP doc
@@ -35,4 +41,12 @@ const entity = doc.entities().itemAt( 9 ); // -> 11:59 pm
 console.log( 'Tokens in Entity No.: 10' );
 console.log( entity.tokens().out() );
 // -> Tokens in Entity No.: 10
-//    [ '11:59', 'pm' ]</code></pre>
+//    [ '11:59', 'pm' ]
+
+// Tokens in a custom entity
+console.log(doc.customEntities().out(its.detail));
+const customEntity = doc.customEntities().itemAt( 0 ); // -> @TheEllenShow🤩
+console.log( 'Tokens in Custom Entity No.: 1' );
+console.log( customEntity.tokens().out() );
+// -> Tokens in Custom Entity No.: 1
+//    [ '@TheEllenShow', '🤩' ]</code></pre>

@@ -34,7 +34,17 @@ console.log( parentDoc );
 //    on March 24, 1972.</code></pre>
 
 ## customEntity.parentDocument()
-<pre class="prettyprint source lang-javascript"><code></code></pre>
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );
+
+const customEntity = doc.customEntities().itemAt( 1 );
+const cParentDoc = customEntity.parentDocument().out();
+console.log( cParentDoc );
+// -> The Godfather premiered on March 15, 1972. It was     released on March 24, 1972.</code></pre>
 
 ## token.parentDocument()
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here

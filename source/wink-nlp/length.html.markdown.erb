@@ -12,9 +12,15 @@ It works like the JavaScript `Array.length()` method.
 __Example:__
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
 const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
+  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
+  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
+];
+nlp.learnCustomEntities( patterns );
 const doc = nlp.readDoc( text );
 
 console.log( doc.sentences().length() ); // -> 2
 console.log( doc.entities().length() ); // -> 9
 console.log( doc.tokens().length() ); // -> 26
-customEntities().length()</code></pre>
+console.log( doc.customEntities().length() ); // -> 3</code></pre>

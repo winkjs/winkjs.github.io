@@ -64,6 +64,34 @@ console.log( entity.out( its.type ) ); // Returns: string
 // -> ORDINAL</code></pre>
 
 ### customEntity.out()
+<code class="signature">doc.customEntities().itemAt( 0 ).out( its.propertyName ) -> { string<sub>default</sub>}</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[NOUN|PROPN] [EMOJI]' ] },
+  { name: 'hashtagEmoji', patterns: [ '[HASHTAG] [EMOJI]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );
+
+// Collection of custom entities
+customEntities = doc.customEntities().out( its.detail );
+console.log( customEntities );
+// -> [ { value: 'anniversary🌌', type: 'wordEmoji' },
+//      { value: 'Earth🌎', type: 'wordEmoji' },
+//      { value: '#SpaceStation20th🚀', type: 'hashtagEmoji' } ]
+
+// Custom entity item
+const customEntity = doc.customEntities().itemAt( 1 );
+console.log( customEntity.out( its.value ) ); // Returns: string
+// -> Earth🌎
+
+console.log( customEntity.out( its.detail ) ); // Returns: object
+// -> { value: 'Earth🌎', type: 'wordEmoji' }
+
+console.log( customEntity.out( its.type ) ); // Returns: string
+// -> wordEmoji
+</code></pre>
 
 ### token.out()
 <code class="signature">doc.tokens().itemAt( 0 ).out( its.propertyName) → {string<sub>default</sub>}</code>
@@ -127,6 +155,19 @@ console.log( entities );
 // -> [ 'DATE', 'DATE', 'ORDINAL', 'DURATION' ]</code></pre>
 
 ### customEntities().out()
+<code class="signature">doc.customEntities().out( its.propertyName, as.reducedValue ) -> { string[]<sub>default</sub>}</code>
+
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+                 ];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );
+console.log( doc.customEntities().out() );
+// -> [ 'premiered on March 15, 1972',
+//      'released on March 24, 1972',
+//      'spans from 1945 to 1955' ]
+</code></pre>
 
 ### tokens().out()
 <code class="signature">doc.tokens().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code>

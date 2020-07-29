@@ -66,6 +66,29 @@ console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
 // It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.</code></pre>
 
 ## customEntity.markup()
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+];
+nlp.learnCustomEntities( patterns );
+
+const doc = nlp.readDoc( text );
+
+const customEntity = doc.customEntities().itemAt( 1 );
+customEntity.markup();
+
+// Returns marked-up text in document
+console.log( doc.out( its.markedUpText ) );
+// -> The Godfather premiered on March 15, 1972. It was &lt;mark&gt;released on March 24, 1972&lt;/mark&gt;.
+
+// Returns marked-up text in collection of sentences
+console.log( doc.sentences().out( its.markedUpText ) );
+// -> [ 'The Godfather premiered on March 15, 1972.',
+//      'It was &lt;mark&gt;released on March 24, 1972&lt;/mark&gt;.' ]
+
+// Returns marked-up text in sentence item
+console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
+// -> It was &lt;mark&gt;released on March 24, 1972&lt;/mark&gt;.</code></pre>
 
 ## token.markup()
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here

@@ -26,7 +26,18 @@ doc.entities()
 //    Entity: March 24, 1972, Parent Sentence: It was     released on March 24, 1972.</code></pre>
 
 ## customEntity.parentSentence()
-<pre class="prettyprint source lang-javascript"><code></code></pre>
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );
+
+doc.customEntities().each( ( c ) => {
+  console.log( `Custom Entity: ${ c.out() }, Parent Sentence: ${ c.parentSentence().out() }` );
+} );
+// -> Custom Entity: premiered on March 15, 1972, Parent Sentence: The Godfather premiered on March 15, 1972.
+//    Custom Entity: released on March 24, 1972, Parent Sentence: It was     released on March 24, 1972.</code></pre>
 
 ## token.parentSentence()
 <pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
