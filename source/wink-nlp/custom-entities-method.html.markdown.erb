@@ -1,0 +1,40 @@
+---
+title: customEntities
+---
+
+# customEntities()
+<code class="signature">customEntities() -> { collection of customEntities}</code>
+
+This method returns a collection of custom entities and has the same behavior as the `entities()` method. As with the named entities, custom entities can be extracted from a winkNLP document or a sentence item.
+
+In case no matches are found for the patterns defined in the `learnCustomEntities()` method, then the `customEntities()` method returns an empty array. Similarly, if the `learnCustomEntities()` method is not called at all and you still call `customEntities()`, it will return an empty array.
+
+You can chain it further with other winkNLP methods like `each()`, `length()`, `filter()`, etc. However, to get the output in a JavaScript data type, you need to follow this API with `out()`.
+
+__Example:__
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
+const text = `I wish to order 1 small classic with corn topping and 2 large supreme with Olives, Onion topping.`;
+const pizza = [
+  { name: 'Category', patterns: [ '[Classic|Supreme|Extravaganza|Favorite]' ] },
+  { name: 'Qty', patterns: [ 'CARDINAL' ] },
+  { name: 'Topping', patterns: [ '[Corn|Capsicum|Onion|Peppers|Cheese|Jalapenos|Olives]' ] },
+  { name: 'Size', patterns: [ '[Small|Medium|Large|Chairman|Wedge]' ] }
+ ];
+
+nlp.learnCustomEntities( pizza, {matchValue: false, usePOS: true, useEntity: true } );
+
+const doc = nlp.readDoc( text );
+
+// Custom Entities in wink-nlp doc
+const customEntities = doc.customEntities().out( its.detail );
+console.log( customEntities );
+// -> [ { value: '1', type: 'Qty' },
+//      { value: 'small', type: 'Size' },
+//      { value: 'classic', type: 'Category' },
+//      { value: 'corn', type: 'Topping' },
+//      { value: '2', type: 'Qty' },
+//      { value: 'large', type: 'Size' },
+//      { value: 'supreme', type: 'Category' },
+//      { value: 'Olives', type: 'Topping' },
+//      { value: 'Onion', type: 'Topping' } ]
+</code></pre>
