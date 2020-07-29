@@ -1,0 +1,29 @@
+---
+title: parentCustomEntity
+---
+
+# parentCustomEntity()
+<code class="signature">parentCustomEntity() -> { wink-nlp custom entity }</code>
+
+This method returns the parent custom entity (if any) of a `token` item, as only a `token` may have a parent custom entity. If there is no parent custom entity, it returns `undefined`.
+
+The custom entity is returned in a winkNLP format and can either be chained with other winkNLP methods or it can be followed by `out()` to get the entity as a string.
+
+
+<div class="docs-tip docs-tip--green">
+  winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between " , " and "1972" in the following example.
+</div>
+
+__Example:__
+<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+const text = `The Godfather premiered on March 15, 1972. It was released on March    24, 1972.`;
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );
+
+const token = doc.tokens().itemAt( 11 ); // -> released
+const parentCustomEntity = token.parentCustomEntity();
+console.log( `Token: ${ token.out() }, Parent custom entity: "${ parentCustomEntity.out() }"` );
+// -> Token: released, Parent custom entity: "released on March    24, 1972"</code></pre>
