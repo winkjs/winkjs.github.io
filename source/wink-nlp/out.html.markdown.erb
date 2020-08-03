@@ -21,15 +21,19 @@ __Examples:__
 
 Let’s explore the `out()` method for the winkNLP document and items with the following example text:
 
-<pre class="prettyprint source lang-javascript"><code>const text = `#Celebration Nov. 20, 2018 marks the @Space_Station\'s 20th anniversary🌌! Our orbiting laboratory makes technology and research breakthroughs beyond    Earth🌎. Unpack its architecture here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀`;</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const text = '#Celebration Nov. 20, 2018 marks the @Space_Station\'s 20th anniversary🌌! Our orbiting laboratory makes technology and research breakthroughs beyond    Earth🌎. Unpack its architecture here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀';
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[NOUN|PROPN] [EMOJI]' ] },
+  { name: 'hashtagEmoji', patterns: [ '[HASHTAG] [EMOJI]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );</code></pre>
 
 ### doc.out()
 <code class="signature">doc.out( its.propertyName<sub>optional</sub> ) → { string<sub>default</sub> }</code>
 
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
-const doc = nlp.readDoc( text );
-console.log( doc.out() );
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.out() );
 // -> #Celebration Nov. 20, 2018 marks the @Space_Station's 20th
 //    anniversary🌌! Our orbiting laboratory makes technology and
 //    research breakthroughs beyond    Earth🌎. Unpack its architecture
@@ -42,18 +46,15 @@ console.log( doc.out() );
 ### sentence.out()
 <code class="signature">doc.sentences().itemAt( 0 ).out( its.propertyName) → { string<sub>default</sub> }</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
-const doc = nlp.readDoc( text );
-const sentence = doc.sentences().itemAt( 1 )
-console.log( `${sentence.index()}:`, sentence.out() );
-// -> 1: Our orbiting laboratory makes technology and research
-//    breakthroughs beyond   Earth🌎.</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const sentence = doc.sentences().itemAt( 1 )
+console.log( `${ sentence.index() }:`, sentence.out() );
+// -> 1: Our orbiting laboratory makes technology and research breakthroughs
+//       beyond    Earth🌎.</code></pre>
 
 ### entity.out()
 <code class="signature">doc.entities().itemAt( 0 ).out(its.propertyName) → {string<sub>default</sub>}</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const entity = doc.entities().itemAt( 3 );
+<pre class="prettyprint source lang-javascript"><code>const entity = doc.entities().itemAt( 3 );
 console.log( entity.out( its.value ) ); // Returns: string
 // -> 20th
 
@@ -66,15 +67,7 @@ console.log( entity.out( its.type ) ); // Returns: string
 ### customEntity.out()
 <code class="signature">doc.customEntities().itemAt( 0 ).out( its.propertyName ) -> { string<sub>default</sub>}</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const patterns = [
-  { name: 'wordEmoji', patterns: [ '[NOUN|PROPN] [EMOJI]' ] },
-  { name: 'hashtagEmoji', patterns: [ '[HASHTAG] [EMOJI]' ] }
-];
-nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
-
-// Collection of custom entities
+<pre class="prettyprint source lang-javascript"><code>// Note that the custom entities were learnt before running readDoc above
 customEntities = doc.customEntities().out( its.detail );
 console.log( customEntities );
 // -> [ { value: 'anniversary🌌', type: 'wordEmoji' },
@@ -90,15 +83,13 @@ console.log( customEntity.out( its.detail ) ); // Returns: object
 // -> { value: 'Earth🌎', type: 'wordEmoji' }
 
 console.log( customEntity.out( its.type ) ); // Returns: string
-// -> wordEmoji
-</code></pre>
+// -> wordEmoji</code></pre>
 
 ### token.out()
 <code class="signature">doc.tokens().itemAt( 0 ).out( its.propertyName) → {string<sub>default</sub>}</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const token = doc.tokens().itemAt( 31 );
-console.log(`Token: ${token.out()}, Type: "${token.out(its.type)}"`);
+<pre class="prettyprint source lang-javascript"><code>const token = doc.tokens().itemAt( 31 );
+console.log( `Token: ${ token.out() }, Type: "${ token.out( its.type ) }"` );
 // -> Token: #SpaceStation20th, Type: "hashtag"</code></pre>
 
 ## collection.out()
@@ -117,66 +108,63 @@ You can find a [complete list of reducers](/wink-nlp/its-as-helper.html#codeasco
 __Examples:__
 Let’s explore the `out()` method for collections with the following example text:
 
-<pre class="prettyprint source lang-javascript"><code>const text = `The Godfather premiered on March 15, 1972 and was released on March 24, 1972. It is the first installment in The Godfather trilogy. The story of the movie spans from 1945 to 1955.`;</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const text = 'The Godfather premiered on March 15, 1972 and was released on March 24, 1972. It is the first installment in The Godfather trilogy. The story of the movie spans from 1945 to 1955.';
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );</code></pre>
 
 ### sentences().out()
 <code class="signature">doc.sentences().out(its.propertyName, as.reducedValue) → {string[ ]<sub>default</sub>}</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
-const doc = nlp.readDoc( text );
-console.log( doc.sentences().out() );
-//-> ['The Godfather premiered on March 15, 1972 and was released on March 24, 1972.',
-//    'It is the first installment in The Godfather trilogy.',
-//    'The story of the movie spans from 1945 to 1955.' ]</code></pre>
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.sentences().out() );
+// -> [ 'The Godfather premiered on March 15, 1972 and was released on
+//       March 24, 1972.',
+//      'It is the first installment in The Godfather trilogy.',
+//      'The story of the movie spans from 1945 to 1955.' ]</code></pre>
 
 ### entities.out()
 <code class="signature">doc.entities().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code>
 
 The default, string array returned by <code>its.value</code> contains only the text of the entity. However, the <code>its.detail</code> property returns an object array with the entity text and type together. For example:
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and example text goes here
-const doc = nlp.readDoc( text );
-const entities=doc.entities().out(its.value, as.array);//->Returns: string[]
-console.log( entities );
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.entities().out( its.value, as.array ) );
 // -> [ 'March 15, 1972',
 //      'March 24, 1972',
 //      'first',
 //      'from 1945 to 1955' ]
 
-const entities=doc.entities().out(its.detail, as.array);//->Returns: object[]
-console.log( entities );
+console.log( doc.entities().out( its.detail, as.array ) );
 // -> [ { value: 'March 15, 1972', type: 'DATE' },
 //      { value: 'March 24, 1972', type: 'DATE' },
 //      { value: 'first', type: 'ORDINAL' },
 //      { value: 'from 1945 to 1955', type: 'DURATION' } ]
 
-const entities=doc.entities().out(its.type, as.array);//->Returns: string[]
-console.log( entities );
+console.log( doc.entities().out( its.type, as.array ) );
 // -> [ 'DATE', 'DATE', 'ORDINAL', 'DURATION' ]</code></pre>
 
 ### customEntities().out()
 <code class="signature">doc.customEntities().out( its.propertyName, as.reducedValue ) -> { string[]<sub>default</sub>}</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const patterns = [
-  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
-                 ];
-nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
-console.log( doc.customEntities().out() );
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.customEntities().out( its.value, as.array ) );
 // -> [ 'premiered on March 15, 1972',
 //      'released on March 24, 1972',
 //      'spans from 1945 to 1955' ]
-</code></pre>
+
+console.log( doc.customEntities().out( its.detail, as.array ) );
+// -> [ { value: 'premiered on March 15, 1972', type: 'event' },
+//      { value: 'released on March 24, 1972', type: 'event' },
+//      { value: 'spans from 1945 to 1955', type: 'event' } ]
+
+console.log( doc.customEntities().out( its.type, as.array ) );
+// -> [ 'event', 'event', 'event' ]</code></pre>
 
 ### tokens().out()
 <code class="signature">doc.tokens().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
-const doc = nlp.readDoc( text );
-const t = doc.tokens();
-console.log( t.out() ); // default
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.tokens().out() ); // default
 // -> [ 'The', 'Godfather', 'premiered',...'1945', 'to', '1955', '.' ]
 
-console.log( t.out( its.type ) );//get the token types
+console.log( doc.tokens().out( its.type ) ); // get the token types
 // -> [ 'word', 'word', 'word',...'number', 'word', 'number', 'punctuation' ]</code></pre>

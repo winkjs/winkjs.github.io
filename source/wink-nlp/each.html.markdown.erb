@@ -12,18 +12,21 @@ It works like the JavaScript `forEach()` method.
 This method returns nothing. However, you can use the `out()` method in the callback function to get an output in a JavaScript data type. See the examples below:
 
 __Examples:__
-<pre class="prettyprint source lang-javascript"><code>// Input text
-const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const text = '#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯';
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[|ADP] [EMOJI|EMOTICON]' ] },
+  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
+  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );</code></pre>
 
 ## sentences().each()
 <code class="signature">doc.sentences().each( callback ) → { void }</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-doc.sentences()
-   .each( ( sentence, index ) => { // each sentence and its index
-              console.log( `${index}:`, sentence.out() );
-         } );
+<pre class="prettyprint source lang-javascript"><code>doc.sentences().each( ( sentence, index ) => {
+  console.log( `${index}:`, sentence.out() );
+} );
 // -> 0: #Breaking: Can’t get over this #Oscars selfie from
 //       @TheEllenShow🤩!
 //    1: Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share
@@ -32,12 +35,9 @@ doc.sentences()
 ## entities().each()
 <code class="signature">doc.entities().each( callback ) → { void }</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-doc.entities()
-   .each( ( entity, index ) => { // each entity and its index
-              console.log( `${index}:`, entity.out() );
-        } );
+<pre class="prettyprint source lang-javascript"><code>doc.entities().each( ( entity, index ) => {
+  console.log( `${index}:`, entity.out() );
+} );
 // -> 0: #Breaking
 //    1: #Oscars
 //    2: @TheEllenShow
@@ -51,32 +51,19 @@ doc.entities()
 ## customEntities().each()
 <code class="signature">doc.customEntities().each( callback ) -> { void }</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const patterns = [
-  { name: 'wordEmoji', patterns: [ '[|ADP] [EMOJI|EMOTICON]' ] },
-  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
-  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
-];
-nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
-doc.customEntities()
-  .each( ( customEntity, index ) => {
-    console.log( `${ index }:`, customEntity.out() );
-  } );
+<pre class="prettyprint source lang-javascript"><code>doc.customEntities().each( ( customEntity, index ) => {
+  console.log( `${ index }:`, customEntity.out() );
+} );
 // -> 0: @TheEllenShow🤩
 //    1: out:)
-//    2: r2d2@gmail.com💯
-</code></pre>
+//    2: r2d2@gmail.com💯</code></pre>
 
 ## tokens().each()
 <code class="signature">doc.tokens().each( callback ) → { void }</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-doc.tokens()
-   .each( ( token, index ) => { // each token and its index
-      console.log( `${index}:`, token.out() );
-   } );
+<pre class="prettyprint source lang-javascript"><code>doc.tokens().each( ( token, index ) => {
+  console.log( `${index}:`, token.out() );
+} );
 // -> 0: #Breaking
 //    1: :
 //    2: Ca

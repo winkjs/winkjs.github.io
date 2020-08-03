@@ -12,23 +12,22 @@ You can chain it further with other winkNLP APIs like `each()`, `length()`, `fil
 
 __Example:__
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here>
-const text = `AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com! The U.S.A is my birth place. I was born on 06.12.1996. I climbed Mt. Everest.`;
+<pre class="prettyprint source lang-javascript"><code>const text = 'AI Inc. is focussing on AI. I work for AI Inc. My mail is r2d2@yahoo.com! The U.S.A is my birth place. I was born on 06.12.1996. I climbed Mt. Everest.';
 const doc = nlp.readDoc( text );
 const sentences = doc.sentences().out();
 console.log( sentences );
 // -> [ 'AI Inc. is focussing on AI.',
 //      'I work for AI Inc.',
-//      'My mail is\nr2d2@yahoo.com!',
-//      'The U.S.A is my birth place.',
+//      'My mail is r2d2@yahoo.com!',
+//      'U.S.A is my birth place.',
 //      'I was born on 06.12.1996.',
-//      'I climbed\nMt. Everest.' ]
+//      'I climbed Mt. Everest.' ]
 
 // Tweet
 const text = '3rd TIME watching That70sShow:D @Netflix http://tiny.cc/fijqkz';
 const doc = nlp.readDoc( text );
 console.log( doc.sentences().out() );
-// -> ['3rd TIME watching That70sShow:D @Netflix http://tiny.cc/fijqkz']
+// -> [ '3rd TIME watching That70sShow:D @Netflix http://tiny.cc/fijqkz' ]
 
 // Single sentence
 const text = 'Mr. Z owns AI Inc. and he climbed Mt. Everest.';

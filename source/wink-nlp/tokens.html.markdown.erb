@@ -12,14 +12,12 @@ If the input text is a single word, then the collection of tokens will be return
 You can chain it further with other winkNLP APIs like `each()`, `length()`, `filter()`, etc. However, to get the output in a JavaScript data type, you need to follow this API with `out()`.
 
 __Example:__
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
-const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;
+<pre class="prettyprint source lang-javascript"><code>const text = '#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com by 11:59 pm!';
 const patterns = [
   { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
   { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
 ];
 nlp.learnCustomEntities( patterns );
-
 const doc = nlp.readDoc( text );
 
 // Tokens in winkNLP doc
@@ -31,16 +29,17 @@ console.log( tokens.out( its.type ) ); // get the token types
 // -> [ 'hashtag', 'punctuation', 'word',...'word', 'punctuation' ]
 
 // Tokens in a sentence item
-const sentence = doc.sentences().itemAt( 0 );//->#Breaking:Can’t get..@TheEllenShow🤩
+const sentence = doc.sentences().itemAt( 0 ); // -> #Breaking: Can’t get..@TheEllenShow🤩!
 console.log( 'Tokens in Sentence No.: 1' );
 console.log( sentence.tokens().out() );
-// -> [ '#Breaking', ':', 'Ca', 'n’t',...'@TheEllenShow', '🤩', '!' ]
+// -> Tokens in Sentence No.: 1
+//     [ '#Breaking', ':', 'Ca', 'n’t',...'@TheEllenShow', '🤩', '!' ]
 
 // Tokens in an entity item
-const entity = doc.entities().itemAt( 9 ); // -> 11:59 pm
-console.log( 'Tokens in Entity No.: 10' );
+const entity = doc.entities().itemAt( 8 ); // -> 11:59 pm
+console.log( 'Tokens in Entity No.: 9' );
 console.log( entity.tokens().out() );
-// -> Tokens in Entity No.: 10
+// -> Tokens in Entity No.: 9
 //    [ '11:59', 'pm' ]
 
 // Tokens in a custom entity
