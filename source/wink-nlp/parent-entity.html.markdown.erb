@@ -9,15 +9,11 @@ This method returns the parent `entity` (if any) of a `token` item, as only a `t
 
 The `entity` is returned in a winkNLP format and can either be chained with other winkNLP methods or followed by `out()` to get the entity as a string.
 
-<div class="docs-tip docs-tip--green">
-  winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between " , " and "1972" in the following example.
-</div>
-
 __Example:__
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
-const text = `The Godfather premiered on March 15, 1972. It was     released on March 24, 1972.`;
+<pre class="prettyprint source lang-javascript"><code>const text = 'The Godfather premiered on March 15, 1972. It was released on March 24, 1972.';
 const doc = nlp.readDoc( text );
+
 const token = doc.tokens().itemAt( 7 ); // -> 1972
 const parentEntity = token.parentEntity();
-console.log(`Token: ${token.out()}, Parent entity: "${parentEntity.out()}"`);
+console.log(`Token: ${ token.out() }, Parent entity: "${ parentEntity.out() }"`);
 // -> Token: 1972, Parent entity: "March 15, 1972"</code></pre>

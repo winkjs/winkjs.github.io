@@ -7,42 +7,36 @@ title: parentSentence
 
 This method returns the parent sentence of an entity, custom entity and token item. The `sentence` is returned in a winkNLP format and can either be chained with other winkNLP APIs or it can be followed by `out()` to get the sentence as a string.
 
-<div class="docs-tip docs-tip--green">
-  winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between "was" and "released" in the following examples.
-</div>
-
 __Examples:__
-<pre class="prettyprint source lang-javascript"><code>// Input text
-const text = `The Godfather premiered on March 15, 1972. It was     released on March 24, 1972.`;</code></pre>
-
-## entity.parentSentence()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-doc.entities()
-   .each( ( e ) => {
-     console.log( `Entity: ${e.out()}, Parent Sentence: ${e.parentSentence().out()}` );
-   } );
-// -> Entity: March 15, 1972, Parent Sentence: The Godfather premiered on March 15, 1972.
-//    Entity: March 24, 1972, Parent Sentence: It was     released on March 24, 1972.</code></pre>
-
-## customEntity.parentSentence()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+<pre class="prettyprint source lang-javascript"><code>const text = 'The Godfather premiered on March 15, 1972. It was released on March 24, 1972.';
 const patterns = [
-  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+ { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
 ];
 nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
+const doc = nlp.readDoc( text );</code></pre>
 
-doc.customEntities().each( ( c ) => {
-  console.log( `Custom Entity: ${ c.out() }, Parent Sentence: ${ c.parentSentence().out() }` );
+## entity.parentSentence()
+<pre class="prettyprint source lang-javascript"><code>doc.entities()
+  .each( ( e ) => {
+    console.log( `Entity: ${ e.out() } \n Parent Sentence: ${ e.parentSentence().out() }` );
 } );
-// -> Custom Entity: premiered on March 15, 1972, Parent Sentence: The Godfather premiered on March 15, 1972.
-//    Custom Entity: released on March 24, 1972, Parent Sentence: It was     released on March 24, 1972.</code></pre>
+// -> Entity: March 15, 1972
+//    Parent Sentence: The Godfather premiered on March 15, 1972.
+//    Entity: March 24, 1972
+//    Parent Sentence: It was released on March 24, 1972.</code></pre>
+
+## customEntity.parentSentence()
+<pre class="prettyprint source lang-javascript"><code>doc.customEntities()
+  .each( ( c ) => {
+    console.log( `Custom Entity: ${ c.out() } \n Parent Sentence: ${ c.parentSentence().out() }` );
+  } );
+// -> Custom Entity: premiered on March 15, 1972
+//    Parent Sentence: The Godfather premiered on March 15, 1972.
+//    Custom Entity: released on March 24, 1972
+//    Parent Sentence: It was released on March 24, 1972.</code></pre>
 
 ## token.parentSentence()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const token = doc.tokens().itemAt( 9 ); // -> It
-const parentSentence = token.parentSentence().out();
-console.log( parentSentence );
-// -> It was     released on March 24, 1972.</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const token = doc.tokens().itemAt( 9 ); // -> It
+const tParentSentence = token.parentSentence().out();
+console.log( tParentSentence );
+// -> It was released on March 24, 1972.</code></pre>

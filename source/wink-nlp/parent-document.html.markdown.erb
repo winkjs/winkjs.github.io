@@ -7,50 +7,39 @@ title: parentDocument
 
 This method returns the parent document of a sentence, entity, custom entity and token item. The document is returned in a winkNLP format and can either be chained with other winkNLP methods or it can be followed by `out()` to get the doc as a string.
 
-<div class="docs-tip docs-tip--green">
-  winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between "was" and "released" in the following examples.
-</div>
-
 __Example:__
-<pre class="prettyprint source lang-javascript"><code>// Input text
-const text = `The Godfather premiered on March 15, 1972. It was     released on March 24, 1972.`;</code></pre>
-
-## sentence.parentDocument()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const sentence = doc.sentences().itemAt(1);//->It was released on March 24, 1972.
-const parentDoc = sentence.parentDocument().out();
-console.log( parentDoc );
-// -> The Godfather premiered on March 15, 1972. It was     released
-//    on March 24, 1972.</code></pre>
-
-## entity.parentDocument()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const entity = doc.entities().itemAt( 0 ); // -> March 15, 1972
-const parentDoc = entity.parentDocument().out();
-console.log( parentDoc );
-// -> The Godfather premiered on March 15, 1972. It was     released
-//    on March 24, 1972.</code></pre>
-
-## customEntity.parentDocument()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+<pre class="prettyprint source lang-javascript"><code>const text = 'The Godfather premiered on March 15, 1972. It was released on March 24, 1972.';
 const patterns = [
   { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
 ];
 nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
+const doc = nlp.readDoc( text );</code></pre>
 
-const customEntity = doc.customEntities().itemAt( 1 );
+## sentence.parentDocument()
+<pre class="prettyprint source lang-javascript"><code>// It was released on March 24, 1972.
+const sentence = doc.sentences().itemAt( 1 );
+const sParentDoc = sentence.parentDocument().out();
+console.log( sParentDoc );
+// -> The Godfather premiered on March 15, 1972. It was released on
+//    March 24, 1972.</code></pre>
+
+## entity.parentDocument()
+<pre class="prettyprint source lang-javascript"><code>const entity = doc.entities().itemAt( 0 ); // -> March 15, 1972
+const eParentDoc = entity.parentDocument().out();
+console.log( eParentDoc );
+// -> The Godfather premiered on March 15, 1972. It was released on
+//    March 24, 1972.</code></pre>
+
+## customEntity.parentDocument()
+<pre class="prettyprint source lang-javascript"><code>const customEntity = doc.customEntities().itemAt( 1 );
 const cParentDoc = customEntity.parentDocument().out();
 console.log( cParentDoc );
-// -> The Godfather premiered on March 15, 1972. It was     released on March 24, 1972.</code></pre>
+// -> The Godfather premiered on March 15, 1972. It was released on
+//    March 24, 1972.</code></pre>
 
 ## token.parentDocument()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const token = doc.tokens().itemAt( 9 ); // -> It
-const parentDoc = token.parentDocument().out();
-console.log( parentDoc );
-// -> The Godfather premiered on March 15, 1972. It was     released
-//    on March 24, 1972.</code></pre>
+<pre class="prettyprint source lang-javascript"><code>const token = doc.tokens().itemAt( 9 ); // -> It
+const tParentDoc = token.parentDocument().out();
+console.log( tParentDoc );
+// -> The Godfather premiered on March 15, 1972. It was released on
+//    March 24, 1972.</code></pre>

@@ -8,15 +8,16 @@ title: index
 This method returns the index of an `item` in a `collection`. It outputs a number, and hence, it does not need to be followed by `out()`.
 
 __Example:__
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
-const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;
+<pre class="prettyprint source lang-javascript"><code>const text = '#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯';
 const doc = nlp.readDoc( text );
+
 doc.entities()
-   .each( ( entity ) => {
-   // Extract type of entity using .out() with “its.type” as input parameter.
-     if (entity.out(its.type) === 'HASHTAG')
-       console.log(`${entity.index()}: ${entity.out()}`);
-   } );
+  .each( ( entity ) => {
+    // Extract type of entity using .out() with “its.type” as input parameter.
+    if( entity.out( its.type ) === 'HASHTAG' ) {
+      console.log( `${ entity.index() }: ${ entity.out() }` );
+    }
+  } );
 // -> 0: #Breaking
 //    1: #Oscars
 //    6: #Share</code></pre>

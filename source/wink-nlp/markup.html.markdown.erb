@@ -21,95 +21,89 @@ parameter for out().
 
 __Examples:__
 
-<pre class="prettyprint source lang-javascript"><code>// Input text
-const text = `The Godfather premiered on March 15, 1972. It was released on March 24, 1972.`;</code></pre>
-
-## sentence.markup()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const sentence = doc.sentences().itemAt( 0 );
-sentence.markup();
-console.log( sentence.out( its.markedUpText ) );
-// Returns marked-up text in sentence item, as a string
-// -> &lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt;
-
-console.log( doc.out( its.markedUpText ) );
-// Returns marked-up text in document, as a string
-// -> &lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt; It was released on March 24, 1972.
-
-console.log( doc.sentences().out( its.markedUpText ) );
-// Returns marked-up text in collection of sentences, as string array
-// -> [ '&lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt;',
-//      'It was released on March 24, 1972.']</code></pre>
-
-## entity.markup()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-doc.entities()
-        .each((entity) => {
-          // Extract type of entity using .out() with “its.type”
-          // as input parameter.
-          if (entity.out(its.type) === 'DATE')
-            entity.markup();
-        } );
-console.log( doc.out( its.markedUpText ) );
-// Returns marked-up text in document, as a string
-// The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;. It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.
-
-console.log( doc.sentences().out( its.markedUpText ) );
-// Returns marked-up text in collection of sentences, as string array
-// [ 'The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;.',
-//   'It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.']
-
-console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
-// Returns marked-up text in sentence item, as a string
-// It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.</code></pre>
-
-## customEntity.markup()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+<pre class="prettyprint source lang-javascript"><code>const text = 'The Godfather premiered on March 15, 1972. It was released on March 24, 1972.';
 const patterns = [
   { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
 ];
-nlp.learnCustomEntities( patterns );
+nlp.learnCustomEntities( patterns );</code></pre>
 
-const doc = nlp.readDoc( text );
+## sentence.markup()
+<pre class="prettyprint source lang-javascript"><code>const sentence = doc.sentences().itemAt( 0 );
+sentence.markup();
 
-const customEntity = doc.customEntities().itemAt( 1 );
+// marked-up text in document
+console.log( doc.out( its.markedUpText ) );
+// -> &lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt; It was released
+//    on March 24, 1972.
+
+// marked-up text in collection of sentences
+console.log( doc.sentences().out( its.markedUpText ) );
+// -> [ '&lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt;',
+//      'It was released on March 24, 1972.' ]
+
+// marked-up text in sentence item
+console.log( sentence.out( its.markedUpText ) );
+// -> &lt;mark&gt;The Godfather premiered on March 15, 1972.&lt;/mark&gt;</code></pre>
+
+## entity.markup()
+<pre class="prettyprint source lang-javascript"><code>doc.entities()
+  .each( ( entity ) => {
+    // Extract type of entity using .out() with “its.type” as input parameter.
+    if( entity.out( its.type ) === 'DATE' ) {
+      entity.markup();
+    }
+} );
+
+// marked-up text in document
+console.log( doc.out( its.markedUpText ) );
+// -> The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;. It was released
+//    on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.
+
+// marked-up text in collection of sentences
+console.log( doc.sentences().out( its.markedUpText ) );
+// -> [ 'The Godfather premiered on &lt;mark&gt;March 15, 1972&lt;/mark&gt;.',
+//      'It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.']
+
+// marked-up text in sentence item
+console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
+// -> It was released on &lt;mark&gt;March 24, 1972&lt;/mark&gt;.</code></pre>
+
+## customEntity.markup()
+<pre class="prettyprint source lang-javascript"><code>const customEntity = doc.customEntities().itemAt( 1 );
 customEntity.markup();
 
-// Returns marked-up text in document
+// marked-up text in document
 console.log( doc.out( its.markedUpText ) );
 // -> The Godfather premiered on March 15, 1972. It was &lt;mark&gt;released on March 24, 1972&lt;/mark&gt;.
 
-// Returns marked-up text in collection of sentences
+// marked-up text in collection of sentences
 console.log( doc.sentences().out( its.markedUpText ) );
 // -> [ 'The Godfather premiered on March 15, 1972.',
 //      'It was &lt;mark&gt;released on March 24, 1972&lt;/mark&gt;.' ]
 
-// Returns marked-up text in sentence item
+// marked-up text in sentence item
 console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
 // -> It was &lt;mark&gt;released on March 24, 1972&lt;/mark&gt;.</code></pre>
 
 ## token.markup()
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-doc.tokens()
-        .each((token) => {
-          // Extract type of entity using .out() with “its.type”
-          // as input parameter.
-          if (token.out(its.type) === 'number')
-            token.markup();
-        } );
-console.log(doc.out( its.markedUpText ) );
-// Returns marked-up text in document, as a string
-// The Godfather premiered on March &lt;mark&gt;15&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;. It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.
+<pre class="prettyprint source lang-javascript"><code>doc.tokens()
+  .each( ( token ) => {
+    // Extract type of entity using .out() with “its.type” as input parameter.
+    if( token.out( its.type ) === 'number' ) {
+      token.markup();
+    }
+} );
 
-console.log(doc.sentences().out( its.markedUpText ) );
-// Returns marked-up text in collection of sentences, as string array
-// [ 'The Godfather premiered on March &lt;mark&gt;15&lt;/mark&gt;,
-//    &lt;mark&gt;1972&lt;/mark&gt;.',
-//   'It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.']
+// marked-up text in document
+console.log( doc.out( its.markedUpText ) );
+// -> The Godfather premiered on March &lt;mark&gt;15&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;. It
+//    was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.
 
-console.log(doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
-// Returns marked-up text in sentence item, as a string
-// It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.</code></pre>
+//marked-up text in collection of sentences
+console.log( doc.sentences().out( its.markedUpText ) );
+// -> [ 'The Godfather premiered on March &lt;mark&gt;15&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.',
+//      'It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.' ]
+
+// marked-up text in sentence item
+console.log( doc.sentences().itemAt( 1 ).out( its.markedUpText ) );
+// -> It was released on March &lt;mark&gt;24&lt;/mark&gt;, &lt;mark&gt;1972&lt;/mark&gt;.</code></pre>

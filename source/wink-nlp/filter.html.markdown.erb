@@ -15,45 +15,38 @@ The filtered out, new collection can be further chained with other methods like 
 
 __Examples:__
 
-<pre class="prettyprint source lang-javascript"><code>// Input text
-const text = `#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯`;</code></pre>
-
-## entities.filter()
-<code class="signature">doc.entities().filter( callback ) → { collection }</code>
-
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const hashtags = doc.entities()
-                  .filter( (e) => (e.out( its.type ) === 'HASHTAG') )
-                  .out();
-console.log( hashtags );
-// -> [ '#Breaking', '#Oscars', '#Share' ]</code></pre>
-
-## customEntities().filter()
-<code class="signature">doc.customEntities().filter( callback ) -> { collection }</code>
-
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
+<pre class="prettyprint source lang-javascript"><code>const text = '#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯';
 const patterns = [
   { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
   { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
   { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
 ];
 nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
-const mentionEmoji = doc.customEntities()
+const doc = nlp.readDoc( text );</code></pre>
+
+## entities.filter()
+<code class="signature">doc.entities().filter( callback ) → { collection }</code>
+
+<pre class="prettyprint source lang-javascript"><code>const hashtags = doc.entities()
+  .filter( ( e ) => ( e.out( its.type ) === 'HASHTAG') )
+  .out();
+console.log( hashtags );
+// -> [ '#Breaking', '#Oscars', '#Share' ]</code></pre>
+
+## customEntities().filter()
+<code class="signature">doc.customEntities().filter( callback ) -> { collection }</code>
+
+<pre class="prettyprint source lang-javascript"><code>const mentionEmoji = doc.customEntities()
   .filter( ( c ) => ( c.out( its.type ) === 'mentionEmoji' ) )
-  .out()
+  .out();
 console.log( mentionEmoji );
-// -> [ '@TheEllenShow🤩' ]
-</code></pre>
+// -> [ '@TheEllenShow🤩' ]</code></pre>
 
 ## tokens().filter()
 <code class="signature">doc.tokens().filter( callback ) → { collection }</code>
 
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code and input text goes here
-const doc = nlp.readDoc( text );
-const punctuations = doc.tokens()
-                      .filter((t)=>(t.out(its.type)==='punctuation'))
-                      .out();
+<pre class="prettyprint source lang-javascript"><code>const punctuations = doc.tokens()
+  .filter( ( t ) => ( t.out( its.type ) === 'punctuation' ) )
+  .out();
 console.log( punctuations );
 // -> [ ':', '!' ]</code></pre>
