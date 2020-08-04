@@ -18,27 +18,27 @@ There are many ways to read the input text:
 
 The input text could be a word, a phrase, a sentence or more than one sentence.
 
-Note: Include the following Boilerplate code in all examples!
+Note: Include the following Boilerplate code in all examples.
 
+__Boilerplate code:__
 <pre class="prettyprint source lang-javascript"><code>// Load "wink-nlp" package.
 const winkNLP = require('wink-nlp');
 // Load english language model — light version.
 const model = require('wink-eng-lite-model');
 // Load properties of ".out()" API
 const its = require('wink-nlp/src/its.js');
-const its = require('wink-nlp/src/as.js');
+const as = require('wink-nlp/src/as.js');
 // Instantiate winkNLP.
 const nlp = winkNLP(model);
 </code></pre>
 
 __Example:__
-<pre class="prettyprint source lang-javascript"><code>// Boilerplate code goes here
-// Read text from variable
-const text = `I work for AI Inc.`;
+<pre class="prettyprint source lang-javascript"><code>// Read text from variable
+const text = 'I work for AI Inc.';
 const doc = nlp.readDoc(text);
 
 // Read text as string
-const doc = nlp.readDoc(`I work for AI Inc.`);
+const doc = nlp.readDoc('I work for AI Inc.');
 
 // Read text from file
 const fs = require('fs');

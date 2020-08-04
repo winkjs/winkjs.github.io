@@ -13,17 +13,17 @@ The method `out( its.value )` returns a _string_ when it is applied to a `docume
 For example, `token.out( its.abbrevFlag )` returns a `boolean` value, whereas `tokens().out( its.abbrevFlag )` returns a `boolean` array. This array holds the return value of each `token.out( its.abbrevFlag )` for the tokens collection.
 
 __Examples:__
-<pre class="prettyprint source lang-javascript"><code>const text = `I work for AI Inc.`;
+<pre class="prettyprint source lang-javascript"><code>const text = 'I work for AI Inc.';
 const doc = nlp.readDoc( text );
 // Check abbreviation flag for a token item
-const t1 = doc.tokens()
-              .itemAt( 0 ) // -> I
+const t1 = doc.tokens().itemAt( 0 ) // -> I
 console.log( t1.out(its.abbrevFlag) );
 // -> false
-const t2 = doc.tokens()
-              .itemAt( 4 ) // -> Inc.
+
+const t2 = doc.tokens().itemAt( 4 ) // -> Inc.
 console.log( t2.out(its.abbrevFlag) );
 // -> true
+
 // Check abbreviation flag for a token collection
 console.log(doc.tokens().out(its.abbrevFlag));
 // -> [ false, false, false, false, true ]</code></pre>
