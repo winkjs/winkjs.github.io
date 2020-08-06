@@ -6,7 +6,7 @@ title: readDoc
 
 <code class="signature">readDoc(text) → { winkNLP doc }</code>
 
-This is the core API in winkNLP that transforms the input text string into a winkNLP doc, which is made of tokens along with sentences and entities. It is the centerpiece of your code.
+This is the core API in winkNLP that transforms the input text string into a winkNLP doc, which is made of tokens along with sentences and entities. It is the centerpiece of your code. Make sure you have an <a href="getting-started.html">instantiated winkNLP</a> before running `readDoc`.
 
 `readDoc()` accepts any text or variable in a JavaScript string format as its parameter.
 
@@ -17,20 +17,6 @@ There are many ways to read the input text:
 - Directly add text as a parameter to `readDoc()` API
 
 The input text could be a word, a phrase, a sentence or more than one sentence.
-
-Note: Include the following Boilerplate code in all examples.
-
-__Boilerplate code:__
-<pre class="prettyprint source lang-javascript"><code>// Load "wink-nlp" package.
-const winkNLP = require('wink-nlp');
-// Load english language model — light version.
-const model = require('wink-eng-lite-model');
-// Load properties of ".out()" API
-const its = require('wink-nlp/src/its.js');
-const as = require('wink-nlp/src/as.js');
-// Instantiate winkNLP.
-const nlp = winkNLP(model);
-</code></pre>
 
 __Example:__
 <pre class="prettyprint source lang-javascript"><code>// Read text from variable

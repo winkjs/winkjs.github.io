@@ -16,6 +16,16 @@ const doc = nlp.readDoc( text );</code></pre>
 //    $1.13 billion for the three months to
 //    December, from $639million of previous year.</code></pre>
 
+The `out()` method has two optional arguments — <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code>. These optional arguments are useful in information extraction:
+<ol>
+  <li>A token, entity, sentence or document has several contextual properties that are accessible via <code>its.<strong>propertyName</strong></code> such as <code>its.stopWordFlag</code>, <code>its.shape</code> and <code>its.vector</code>.</li>
+  <li>The collection of tokens and entities can be reduced to <code>as.freqTable</code>, <code>as.bow</code> (bag of words), or <code>as.bigrams</code> etc. with <code>as.<strong>reducedValue</strong></code>.</li>
+</ol>
+
+<div class="docs-tip docs-tip--blue">
+  <strong>Convention:</strong> The <strong>bold</strong> part in a code fragment needs to be substituted with actual value according to the requirement. For example as observed above, the <code><strong>propertyName</strong></code> in <code>its.<strong>propertyName</strong></code> can have a value such as <code>stopWordFlag</code>, <code>shape</code> or <code>vector</code>.
+</div>
+
 ## item.out()
 
 While working with an item, any of its properties can be extracted by passing <code>its.<strong>propertyName</strong></code> parameter to the `item.out()` method. For example `doc.tokens().itemAt(0).out(its.shape)` would return `Xxx` — the shape of zeroth token, "Its". Similarly `doc.tokens().itemAt(0).out(its.case)` would return `titleCase`.

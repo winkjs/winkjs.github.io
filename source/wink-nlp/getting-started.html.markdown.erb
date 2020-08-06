@@ -4,66 +4,49 @@ title: Getting started
 
 # Getting started
 
-Let's start with "Hello, World!" in winkNLP:
+Let's start with "Hello, World!" in winkNLP. First we'll install the `wink-nlp` package. Next, we'll use that package to install the `wink-eng-lite-model`:
 
-<pre class="prettyprint source lang-javascript"><code>var text = 'Hello   World!';
-var doc = nlp.readDoc(text);
-console.log(doc.out());
-// -> Hello   World!</code></pre>
+<pre class="prettyprint source"><code>npm install wink-nlp --save
+node -e "require( 'wink-nlp/models/install' )" wink-eng-lite-model</code></pre>
 
-The `readDoc()` method of winkNLP transforms the input text string into a winkNLP document. It is the centerpiece of your code. The document provides a rich set of chainable API methods for easy navigation through it's sentences, entities and/or tokens. This simplifies information processing and extraction from a document.
+We start our code by loading the `wink-nlp` package, some helpers, and the language model. Then we instantiate winkNLP using the language model:
 
-The `out()` method always returns JavaScript’s built-in datatypes — most often arrays of Strings or objects. `doc.out()` is context dependent, for example, it produces a string in the code above but when applied on tokens, it outputs an array of strings:
+<pre class="prettyprint source lang-javascript"><code>// Load wink-nlp package  & helpers.
+const winkNLP = require( 'wink-nlp' );
+// Load "its" helper to extract item properties.
+const its = require( 'wink-nlp/src/its.js' );
+// Load "as" reducer helper to reduce a collection.
+const as = require( 'wink-nlp/src/as.js' );
+// Load english language model — light version.
+const model = require( 'wink-eng-lite-model' );
+// Instantiate winkNLP.
+const nlp = winkNLP( model );</code></pre>
 
-<pre class="prettyprint source lang-javascript"><code>console.log( doc.tokens().out() );
-// -> [ 'Hello', 'World', '!' ]</code></pre>
+Next, we use the `readDoc()` method of winkNLP. It transforms the input text string into a winkNLP document. It is the centerpiece of your code. The document provides a rich set of chainable API methods for easy navigation through it's sentences, entities and/or tokens. This simplifies information processing and extraction from a document.
+
+<pre class="prettyprint source lang-javascript"><code>const text = 'Hello   World🌎! How are you?';
+const doc = nlp.readDoc( text );
+
+console.log( doc.out() );
+// -> Hello   World🌎! How are you?
+
+console.log( doc.tokens().out( its.type, as.freqTable ) );
+// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]</code></pre>
 
 <div class="docs-tip docs-tip--green">
 winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between "Hello" and "World" in the first example.
 </div>
 
-## Boilerplate Code
-We start by requiring the `wink-nlp` package and the language model. Then we instantiate winkNLP using the language model:
+The `out()` method always returns JavaScript’s built-in datatypes — most often arrays of Strings or objects. `doc.out()` is context dependent, for example, it produces a string when used on `doc`, but when applied on sentences, entities, or tokens, it outputs an array of strings:
 
-<pre class="prettyprint source lang-javascript"><code>// Load wink-nlp package.
-var winkNLP = require('wink-nlp');
-// Load english language model — light version.
-var model = require('wink-eng-lite-model');
-// Instantiate winkNLP.
-var nlp = winkNLP(model);</code></pre>
+<pre class="prettyprint source lang-javascript"><code>console.log( doc.sentences().out() );
+// -> [ 'Hello   World🌎!', 'How are you?' ]
 
-The above is an absolute minimal boilerplate code. It works when the `out()` method is used without its optional arguments as seen in the "Hello, World!" example above.
+console.log( doc.entities().out( its.detail ) );
+// -> [ { value: '🌎', type: 'EMOJI' } ]
 
-<div class="docs-tip docs-tip--blue">
-<strong>Convention:</strong> All code examples do not include the boilerplate code explicitly. In order to run any example, one must include the required boilerplate code on the top.
-</div>
-
-The `out()` method has two optional arguments — <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code>. Their use requires additional boilerplate code as outlined below:
-
-<pre class="prettyprint source lang-javascript"><code>// Load wink-nlp package.
-const winkNLP = require('wink-nlp');
-// Load "its" helper to extract token properties
-const its = require( 'wink-nlp/src/its.js' );
-// Load "as" reducer helper to reduce a collection.
-const as = require( 'wink-nlp/src/as.js' );
-// Load english language model — light version.
-const model = require('wink-eng-lite-model');
-// Instantiate winkNLP.
-const nlp = winkNLP(model);</code></pre>
-
-<div class="docs-tip docs-tip--green">
-These optional arguments are useful in information extraction:
-<ol>
-  <li>A token, entity, sentence or document has several contextual properties that are accessible via <code>its.<strong>propertyName</strong></code> such as <code>its.stopWordFlag</code>, <code>its.shape</code> and <code>its.vector</code>.</li>
-  <li>The collection of tokens and entities can be reduced to <code>as.freqTable</code>, <code>as.bow</code> (bag of words), or <code>as.bigrams</code> etc. with <code>as.<strong>reducedValue</strong></code>.</li>
-</ol>
-</div>
-
-<p>&nbsp;</p>
-
-<div class="docs-tip docs-tip--blue">
-  <strong>Convention:</strong> The <strong>bold</strong> part in a code fragment needs to be substituted with actual value according to the requirement. For example as observed above, the <code><strong>propertyName</strong></code> in <code>its.<strong>propertyName</strong></code> can have a value such as <code>stopWordFlag</code>, <code>shape</code> or <code>vector</code>.
-</div>
+console.log( doc.tokens().out() );
+// -> [ 'Hello', 'World', '🌎', '!', 'How', 'are', 'you', '?' ]</code></pre>
 
 Let's explore the wink-nlp document in the [next section](document.html).
 
