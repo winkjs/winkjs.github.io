@@ -1,7 +1,7 @@
 # winkNLP
 
 ## Developer friendly NLP ✨
-[<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](http://winkjs.org/)
+[<img align="right" src="https://decisively.github.io/wink-logos/logo-title.png" width="100px" >](https://winkjs.org/)
 
 winkNLP is a JavaScript library for Natural Language Processing (NLP). Designed specifically to make development of NLP solutions **easier** and **faster**, winkNLP is optimized for the right balance of performance and accuracy.  The package can handle large amount of raw text at speeds over **500,000 tokens/second**. And with a test coverage of ~100%, winkNLP is a tool for building production grade systems with confidence.
 
@@ -25,37 +25,46 @@ Use [npm](https://www.npmjs.com/package/wink-nlp) install:
 
 <pre class="prettyprint source"><code>npm install wink-nlp --save</code></pre>
 
-In order to use winkNLP after its installation, you also need to install a language model. The following command installs the latest version of default language model — the light weight English language model called `wink-eng-lite-model`.
+In order to use winkNLP after its installation, you also need to install a language model. The following command installs the latest version of default language model — the light weight English language model called [wink-eng-lite-model](https://github.com/winkjs/wink-eng-lite-model).
 
 <pre class="prettyprint source"><code>node -e "require( 'wink-nlp/models/install' )"</code></pre>
 
 Any required model can be installed by specifying its name as the last parameter in the above command. For example:
+
 <pre class="prettyprint source"><code>node -e "require( 'wink-nlp/models/install' )" wink-eng-lite-model</code></pre>
 
 ## Getting Started
 The "Hello World!" in winkNLP is given below. As the next step, we recommend a dive into [winkNLP's concepts](https://winkjs.org/wink-nlp/getting-started.html).
 
-<pre class="prettyprint source"><code>// Boilerplate Code.
-// Load wink-nlp package.
-var winkNLP = require( 'wink-nlp' );
+<pre class="prettyprint source"><code>// Load wink-nlp package  & helpers.
+const winkNLP = require( 'wink-nlp' );
 // Load "its" helper to extract item properties.
 const its = require( 'wink-nlp/src/its.js' );
+// Load "as" reducer helper to reduce a collection.
+const as = require( 'wink-nlp/src/as.js' );
 // Load english language model — light version.
-var model = require( 'wink-eng-lite-model' );
+const model = require( 'wink-eng-lite-model' );
 // Instantiate winkNLP.
-var nlp = winkNLP( model );
+const nlp = winkNLP( model );
 
 // NLP Code.
-var text = 'Hello   World🌎! How are you?';
-var doc = nlp.readDoc( text );
+const text = 'Hello   World🌎! How are you?';
+const doc = nlp.readDoc( text );
+
 console.log( doc.out() );
 // -> Hello   World🌎! How are you?
+
 console.log( doc.sentences().out() );
 // -> [ 'Hello   World🌎!', 'How are you?' ]
+
 console.log( doc.entities().out( its.detail ) );
 // -> [ { value: '🌎', type: 'EMOJI' } ]
+
 console.log( doc.tokens().out() );
-// -> [ 'Hello', 'World', '🌎', '!', 'How', 'are', 'you', '?' ]</code></pre>
+// -> [ 'Hello', 'World', '🌎', '!', 'How', 'are', 'you', '?' ]
+
+console.log( doc.tokens().out( its.type, as.freqTable ) );
+// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]</code></pre>
 
 
 ## Documentation
