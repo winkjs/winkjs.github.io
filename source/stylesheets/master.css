@@ -207,7 +207,6 @@ main .row {
 main h2 {
 	margin: 0;
 	margin-bottom: 15px;
-  margin-top: -100px;
 	padding: 0;
 	color: #222;
 }
@@ -255,16 +254,10 @@ code.javascript {
   padding: 0;
   margin: 0;
   opacity: 0.1;
+  float: right;
   margin-top: -100px;
+  margin-bottom: -80px;
   pointer-events: none;
-}
-
-.bg-img--left {
-  margin-left: -200px;
-}
-
-.bg-img--right {
-  margin-left: 200px;
 }
 
 footer {
