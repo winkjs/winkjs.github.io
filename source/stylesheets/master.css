@@ -359,6 +359,15 @@ a.btn-default[role="button"]:hover {
   outline: none;
 }
 
+.about-stats {
+  margin: 80px 0 !important;
+  text-align: center;
+}
+
+.about-stats img {
+  width: 80px;
+}
+
 
 .signup input[type="submit"] {
   color: #6c307d;
