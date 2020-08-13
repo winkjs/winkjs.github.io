@@ -20,58 +20,48 @@
   <div id="particles-js"></div>
 </header>
 
-<div class="feat">
-<div class="container">
-  <div class="col-md-12">
-    <p class="subhero">Open Source packages for NLP, ML and Statistics in Node JS to build production grade solutions</p>
-  </div>
-</div>
-</div>
-
 <main class="container">
 
   <div class="highlight-section">
     <div class="col-md-6">
-      <pre><code class="javascript">var t = require( 'wink-tokenizer' )();
-  var hinglish = 'द्रविड़ ने टेस्ट में ३६ शतक जमाए, उनमें 21 विदेशी playground पर हैं।';
-  var french = 'Mieux vaut prévenir que
-  guérir:-)';
-  t.tokenize( hinglish );
-  t.tokenize( french );
-  </code></pre>
+<pre><code class="javascript">doc.tokens().filter(t => {
+  return (
+    t.out(its.type) === 'word' &&
+    !t.out(its.stopWordFlag)
+  );
+}).out();
+// -> [ 'intuitive', 'API', 'lets',
+// 'started', 'quick', 'results', 'looking' ]</code></pre>
     </div>
-    <div class="col-md-6 highlight" data-aos="fade-up">
-      <h2>Natural Language Processing</h2>
-      <p>Easily
-        <a href="https://npm.runkit.com/wink-nlp-utils">break paragraphs into sentences</a>,
-        <a href="https://npm.runkit.com/wink-tokenizer">tokenize</a> them,
-        <a href="https://npm.runkit.com/wink-pos-tagger">POS tag</a>
-        each token and even
-        <a href="https://npm.runkit.com/wink-ner">detect named entities</a> or
-        <a href="https://npm.runkit.com/wink-sentiment">analyze sentiments</a>.
-        Some even support multiple languages.</p>
+    <div class="col-md-6 highlight">
+      <h2>Easy to use API</h2>
+      <p>
+        An intuitive API lets you get started quick and get the results you’re
+        looking for. Use familiar functions like
+        <a href="https://winkjs.org/wink-nlp/each.html">each</a>
+        and <a href="https://winkjs.org/wink-nlp/filter.html">filter</a>, or
+        <a href="https://winkjs.org/wink-nlp/out.html">output</a>
+        to native JavaScript data types.</p>
     </div>
   </div>
   <div class="clearfix"></div>
 
   <div class="highlight-section">
     <div class="col-md-6 highlight" data-aos="fade-up">
-      <h2>Machine Learning</h2>
+      <h2>All the NLP you’ll need</h2>
       <p>
-        Simplify intent detection for chatbots, classification of text or image, or prediction of continuous values such as price, turn-around-time using our
-        <a href="https://npm.runkit.com/wink-naive-bayes-text-classifier">Naive Bayes Classifier</a>,
-        <a href="https://npm.runkit.com/wink-regression-tree">Regression Tree</a>, or
-        <a href="https://npm.runkit.com/wink-perceptron">Multi-class Averaged Perceptron</a>.
+        Powerful NLP functions and helpers to get you directly what you need.
+        Whether its
+        <a href="https://winkjs.org/wink-nlp/part-of-speech.html">POS tags</a>
+        , sentiment analysis, or getting a list of frequent words, it’s all
+        <a href="https://winkjs.org/wink-nlp/its-as-helper.html">right here</a>!
       </p>
     </div>
     <div class="col-md-6 flip-order">
-      <pre><code class="javascript">const data = require( 'iris-data.json' );
-  var p = require( 'wink-perceptron' )();
-  p.defineConfig( {
-    shuffleData: true,
-    maxIterations: 6
-  } );
-  p.learn( data );</code></pre>
+      <pre><code class="javascript">doc.tokens().out(its.pos);
+doc.tokens().out(its.normal, as.freqTable );
+doc.sentences().out(its.sentiment);
+</code></pre>
     </div>
   </div>
 
@@ -79,24 +69,39 @@
 
   <div class="highlight-section">
     <div class="col-md-6">
-      <pre><code class="javascript">var stats = require( 'wink-statistics' );
-    var regression = stats.streaming.simpleLinearRegression();
-    regression.compute( 10, 80 );
-    regression.compute( 15, 75 );
-    regression.compute( 16, 65 ); // more data…
-    regression.result();</code></pre>
+      <pre><code class="javascript">const winkNLP = require('wink-nlp');
+// Load light english language model.
+const model = require('wink-eng-lite-model');
+const nlp = winkNLP(model);</code></pre>
     </div>
     <div class="col-md-6 highlight" data-aos="fade-up">
-      <h2>Statistics</h2>
+      <h2>Multiple Models</h2>
       <p>
-        Perform fast and numerically stable statistical analysis using
-        <a href="https://npm.runkit.com/wink-statistics">wink-statistics</a>.
-        It even handles real-time stream of data and incrementally compute the required statistic.
+        We have a
+        <a href="https://github.com/winkjs/wink-eng-lite-model">light model for English</a>
+        (under 3MB) with many more on the way! Looking for something domain
+        specific, or for a particular language? We’re currently open for
+        consulting projects, feel free to
+        <a href="mailto:contactus@graype.in">contactus@graype.in</a>!
       </p>
     </div>
   </div>
 
 </main>
+
+<div class="feat">
+<div class="container">
+  <div class="col-md-12">
+    <p class="subhero">
+      Open Source packages for
+      <a href="/packages.html">NLP</a>,
+      <a href="/packages.html#ml">ML</a> and
+      <a href="/packages.html#stats">Statistics</a>
+      in Node JS to build production grade solutions
+    </p>
+  </div>
+</div>
+</div>
 
 <%= partial "signup" %>
 

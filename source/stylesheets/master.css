@@ -178,13 +178,14 @@ header p.hero em {
 .feat .subhero {
   padding: 120px;
   line-height: 1.5;
-  background: linear-gradient(180deg, rgba(100,54,121,1) 0%, rgba(120,62,147,1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-transform: none;
+  color: #703C89;
   font-size: 3.7rem;
   font-weight: lighter;
   margin: 0 auto;
+}
+
+.feat .subhero a {
+  text-decoration: underline;
 }
 
 .featimg {
