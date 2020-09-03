@@ -13,8 +13,8 @@
       </p>
       <p>The right balance of performance and accuracy in Node.js</p>
       <br><br>
-      <a href="https://www.npmjs.com/package/wink-nlp">Download</a>
-      <a href="/wink-nlp/getting-started.html">Get started</a>
+      <a href="https://www.npmjs.com/package/wink-nlp" class="cta">Download</a>
+      <a href="/wink-nlp/getting-started.html" class="cta">Get started</a>
     </div>
   </div>
   <div id="particles-js"></div>
@@ -22,71 +22,112 @@
 
 <main class="container">
 
-  <div class="highlight-section">
-    <div class="col-md-6">
-<pre><code class="javascript">doc.tokens().filter(t => {
-  return (
-    t.out(its.type) === 'word' &&
-    !t.out(its.stopWordFlag)
-  );
-}).out();
-// -> [ 'intuitive', 'API', 'lets',
-// 'started', 'quick', 'results', 'looking' ]</code></pre>
-    </div>
-    <div class="col-md-6 highlight">
-      <h2>Easy to use API</h2>
-      <p>
-        An intuitive API lets you get started quick and get the results you’re
-        looking for. Use familiar functions like
-        <a href="https://winkjs.org/wink-nlp/each.html">each</a>
-        and <a href="https://winkjs.org/wink-nlp/filter.html">filter</a>, or
-        <a href="https://winkjs.org/wink-nlp/out.html">output</a>
-        to native JavaScript data types.</p>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="subhero">
+        Build amazing applications quickly
+      </p>
     </div>
   </div>
-  <div class="clearfix"></div>
 
   <div class="highlight-section">
-    <div class="col-md-6 highlight" data-aos="fade-up">
+    <div class="col-md-6 highlight">
+      <h2>Multiple Models</h2>
+      <p>
+        We have a
+        <a href="https://github.com/winkjs/wink-eng-lite-model">light model for English</a>
+        with many more on the way! Looking for something domain
+        specific, or for a particular language? Feel free to
+        <a href="mailto:contactus@graype.in">get in touch</a>!
+      </p>
+
+      <br><br><br><br><br><br>
       <h2>All the NLP you’ll need</h2>
       <p>
         Powerful NLP functions and helpers to get you directly what you need.
         Whether its
         <a href="https://winkjs.org/wink-nlp/part-of-speech.html">POS tags</a>
-        , sentiment analysis, or getting a list of frequent words, it’s all
-        <a href="https://winkjs.org/wink-nlp/its-as-helper.html">right here</a>!
+        , sentiment analysis, <a href="http://localhost:4567/wink-nlp/custom-entities.html">custom entities</a>, or getting a list of frequent words, it’s
+        <a href="https://winkjs.org/wink-nlp/its-as-helper.html">all right here</a>!
+      </p>
+
+      <br><br><br><br><br><br>
+      <h2>Easy to use API</h2>
+      <p>
+        An intuitive API lets you get started quick and get the results you’re
+        looking for.
+        <ul>
+          <li>Quickly access the document's <code>entities</code>, <code>sentences</code> and <code>tokens</code>.</li>
+          <li>Use familiar functions like
+          <a href="https://winkjs.org/wink-nlp/each.html"><code>each</code></a>
+          and <a href="https://winkjs.org/wink-nlp/filter.html"><code>filter</code></a>, or
+          <a href="https://winkjs.org/wink-nlp/out.html"><code>output</code></a>
+          to native JavaScript data types.</li>
+          <li>Built-in visualization support with <a href="http://localhost:4567/wink-nlp/visualizing-markup.html"><code>markup</code></a>.</li>
+        </ul>
       </p>
     </div>
     <div class="col-md-6 flip-order">
-      <pre><code class="javascript">doc.tokens().out(its.pos);
-doc.tokens().out(its.normal, as.freqTable );
-doc.sentences().out(its.sentiment);
+      <pre><code class="javascript">const winkNLP = require('wink-nlp');
+const its = require('wink-nlp/src/its.js');
+const as = require('wink-nlp/src/as.js');
+const model = require('wink-eng-lite-model');
+const nlp = winkNLP(model);
+
+
+
+
+
+const doc = nlp.readDoc(text);
+// This runs all core NLP tasks like
+// tokenization, sentence boundary
+// detection, negation handling, sentiment
+// analysis, part-of-speech tagging, and
+// named and custom entitiy extraction.
+
+
+
+
+
+var timeline = [];
+doc
+  .entities()
+  .filter( e => e.out( its.type ) === 'DATE')
+  .each( e => {
+    timeline.push({
+      sentence: e
+        .parentSentence()
+        .out( its.markedUpText ),
+      date: e.out(),
+      unixTime: new Date(e.out()).getTime()
+    })
+  });
+
+timeline.sort( (a, b) => {
+  return a.unixTime - b.unixTime
+});
 </code></pre>
     </div>
   </div>
+</main>
 
-  <div class="clearfix"></div>
-
-  <div class="highlight-section">
-    <div class="col-md-6">
-      <pre><code class="javascript">const winkNLP = require('wink-nlp');
-// Load light english language model.
-const model = require('wink-eng-lite-model');
-const nlp = winkNLP(model);</code></pre>
-    </div>
-    <div class="col-md-6 highlight" data-aos="fade-up">
-      <h2>Multiple Models</h2>
-      <p>
-        We have a
-        <a href="https://github.com/winkjs/wink-eng-lite-model">light model for English</a>
-        (under 3MB) with many more on the way! Looking for something domain
-        specific, or for a particular language? We’re currently open for
-        consulting projects, feel free to
-        <a href="mailto:contactus@graype.in">contactus@graype.in</a>!
-      </p>
-    </div>
+<main class="container-fluid timeline-output">
+  <div class="container">
+    <h2>Text to Timeline</h2>
+    <p>
+      The above code takes text input and generates a timeline.
+      <br>
+      The following is
+      from the <a href="https://en.wikipedia.org/wiki/NASA">NASA Wikipedia Article</a>.
+    </p>
+    <br><br>
+    <a href="https://winkjs.org/showcase-timeline/" class="cta">See Demo</a>
+    <a href="/wink-nlp/getting-started.html" class="cta">Get started</a>
   </div>
+  <a href="https://winkjs.org/showcase-timeline/"><img src="/images/timeline.png" alt="sample of a timeline output"></a>
+</main>
 
+<main class="container">
   <div class="row about-stats">
     <div class="col-md-4">
       <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#speed--accuracy">

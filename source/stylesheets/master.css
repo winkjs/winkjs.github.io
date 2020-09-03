@@ -102,7 +102,7 @@ header p.hero em {
   font-family: 'winkjs';
 }
 
-.masthead a {
+a.cta {
   background: #6C307D;
   background: rgb(108,48,125);
   background: linear-gradient(90deg, rgba(108,48,125,1) 0%, rgba(96,42,111,1) 100%);
@@ -114,7 +114,7 @@ header p.hero em {
   margin-right: 20px;
 }
 
-.masthead a:hover {
+a.cta:hover {
   box-shadow: 0 0 10px #6C307D;
   text-decoration: none;
 }
@@ -171,12 +171,12 @@ header p.hero em {
 	margin: 50px 0;
 }
 
-.feat {
-  text-align: center;
+.feat .subhero {
+    padding: 120px;
 }
 
-.feat .subhero {
-  padding: 120px;
+.subhero {
+  text-align: center;
   line-height: 1.5;
   color: #703C89;
   font-size: 3.7rem;
@@ -184,7 +184,7 @@ header p.hero em {
   margin: 0 auto;
 }
 
-.feat .subhero a {
+.subhero a {
   text-decoration: underline;
 }
 
@@ -228,6 +228,17 @@ main p {
   overflow: visible;
   margin-top: 100px;
   display: flex;
+}
+
+.highlight-section li {
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 12px;
+}
+
+.highlight-section li code {
+  background: white;
+  color: #6C307D;
 }
 
 .highlight {
@@ -369,6 +380,14 @@ a.btn-default[role="button"]:hover {
   width: 80px;
 }
 
+
+.timeline-output {
+  background-color: rgba(108, 48, 125, 0.1);
+}
+
+.timeline-output img {
+  width: 100%;
+}
 
 .signup input[type="submit"] {
   color: #6c307d;
