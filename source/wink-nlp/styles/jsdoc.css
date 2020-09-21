@@ -192,16 +192,23 @@ section {
   font-weight: lighter;
 }
 
-nav {
+.side-nav-container {
   display: block;
   position: sticky;
   top: 80px;
   width: 300px;
   background: #fff;
-  overflow: auto;
+  overflow: hidden;
   height: calc(100vh - 130px);
   padding: 20px 0;
   padding-left: 11px;
+}
+
+.side-nav {
+  height: calc(100vh - 130px);
+  padding-right: 100px;
+  margin-right: -100px;
+  overflow-y: auto;
 }
 
 nav #nav-search{
