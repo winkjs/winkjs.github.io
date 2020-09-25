@@ -771,6 +771,7 @@ html[data-search-mode] .level-hide {
   nav.is-open {
     opacity: 1;
     top: 65px;
+    overflow-y: auto;
   }
 
   .navicon-button {
