@@ -200,7 +200,7 @@ section {
   background: #fff;
   overflow: hidden;
   height: calc(100vh - 130px);
-  padding: 20px 0;
+  padding: 0;
   padding-left: 11px;
 }
 
