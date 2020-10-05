@@ -76,7 +76,7 @@ h1.page-title {
 
 h2 {
   font-size: 24px;
-  margin: 2em 0 .3em;
+  margin: 4em 0 .3em;
 }
 
 h3 {
@@ -157,7 +157,7 @@ iframe code {
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   margin-top: 64px;
 }
@@ -168,7 +168,7 @@ iframe code {
 
 #main {
   min-width: 360px;
-  max-width: 660px;
+  max-width: 760px;
 }
 
 header {
@@ -196,7 +196,7 @@ section {
   display: block;
   position: sticky;
   top: 80px;
-  width: 300px;
+  width: 420px;
   background: #fff;
   overflow: hidden;
   height: calc(100vh - 130px);
@@ -403,6 +403,8 @@ footer {
 .prettyprint {
   font-size: 14px;
   overflow: auto;
+  margin-top: 20px;
+  margin-bottom: 40px;
   margin-left: -30px;
   margin-right: -30px;
   border-radius: 10px;
