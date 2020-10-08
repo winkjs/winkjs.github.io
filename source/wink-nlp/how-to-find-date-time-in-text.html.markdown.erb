@@ -12,7 +12,7 @@ const its = require( 'wink-nlp/src/its.js' );
 const model = require( 'wink-eng-lite-model' );
 const nlp = winkNLP( model );
 
-const text = `The released happened on 21 August 2020 at 4:32 pm`;
+const text = `The release happened on 21 August 2020 at 4:32 pm`;
 var doc = nlp.readDoc(text);
 
 doc.entities().filter( e => {
