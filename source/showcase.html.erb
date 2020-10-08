@@ -7,6 +7,15 @@ title: Showcase and Demos
       <h2 class="col-md-12">Showcase</h2>
       <div class="col-md-4">
         <%= partial( :showcase, :locals => {
+          :name => "Wikipedia Timeline",
+          :url => "/showcase-timeline/",
+          :description => "Named entity extraction and timeline generation from a Wikipedia article using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='/wink-nlp/how-to-find-date-time-in-text.html'>how to extract date and time from text</a> guide.",
+          :image => "showcase-timeline.jpg"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
           :name => "Sentimental",
           :url => "/showcase-sentiment/",
           :description => "Visualize how <a href='https://github.com/winkjs/wink-sentiment'>wink-sentiment</a> interprets words, phrases and even emojis. Read the <a href='/blog/sentimental-ai.html'>blog post</a> to find out more.",

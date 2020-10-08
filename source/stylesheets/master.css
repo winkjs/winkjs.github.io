@@ -56,6 +56,7 @@ a:hover {
 
 .showcase-block img {
   width: 99%;
+  box-shadow: 0 0 4px #ddd;
 }
 
 .showcase-block p {
