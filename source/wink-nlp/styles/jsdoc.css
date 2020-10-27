@@ -164,6 +164,7 @@ iframe code {
 
 .main-container {
   width: 100%;
+  margin: 0 40px;
 }
 
 #main {
