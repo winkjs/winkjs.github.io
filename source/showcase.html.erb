@@ -7,6 +7,15 @@ title: Showcase and Demos
       <h2 class="col-md-12">Showcase</h2>
       <div class="col-md-4">
         <%= partial( :showcase, :locals => {
+          :name => "Wizard",
+          :url => "/showcase-wiz/",
+          :description => "POS tagging, entitiy recognition, sentiment analysis and more using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='/wink-nlp/getting-started.html'>guide</a> on getting started.",
+          :image => "showcase-wiz.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
           :name => "Hashtag Sentiment",
           :url => "/showcase-hashtag/",
           :description => "Sentiment analysis of tweets of a hashtags on Twitter using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='/wink-nlp/how-to-sentiment-analysis-javascript.html'>how to sentiment analysis</a> guide.",
