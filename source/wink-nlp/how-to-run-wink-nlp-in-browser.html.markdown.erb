@@ -1,0 +1,40 @@
+---
+title: How run winkNLP in the browser?
+---
+
+# How to run winkNLP in the browser
+
+While winkNLP was initially made to run in NodeJS, it can just as easily be used in the browser. To do this, we need to use the web version of the English lite model — [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model). We'll also need a tool that can bundle all the required modules, something like [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). For the purpose of this tutorial we'll use Browserify. First, lets install the required packages:
+
+<div class="docs-tip docs-tip--yellow">
+  We'll be installing Broswerify globally, refer to its <a href="https://github.com/browserify/browserify#getting-started">documentation</a> for more details.
+</div>
+
+<pre class="prettyprint source"><code>npm install wink-nlp --save
+npm install wink-eng-lite-web-model --save
+npm install -g browserify</code></pre>
+
+Next, we'll write our JavaScript as we normally would. Here, I am making a new file called `token-counter.js` and requiring winkNLP, some helpers, and the web model:
+
+<pre class="prettyprint source lang-javascript"><code>const winkNLP = require( 'wink-nlp' );
+const its = require( 'wink-nlp/src/its.js' );
+const as = require( 'wink-nlp/src/as.js' );
+const model = require( 'wink-eng-lite-web-model' );
+const nlp = winkNLP( model )
+
+const text = 'Hello   World🌎! How are you?';
+const doc = nlp.readDoc( text );
+
+console.log( doc.out() );
+console.log( doc.tokens().out( its.type, as.freqTable ) );
+// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]</code></pre>
+
+Now, we'll use Broswerify to bundle all the required modules into a single file:
+
+<pre class="prettyprint source"><code>browserify token-counter.js -o bundle.js</code></pre>
+
+This will create a new file called `bundle.js` which you can include in your HTML as you would any other:
+
+<pre class="prettyprint source lang-html"><code>&lt;script src="bundle.js" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
+
+It is important to note that this is a fully-featured English language model. Make sure to use `gzip` when you serve it on the web. This will reduce its size to  under 1MB (from the uncompressed 3.5MB). Also, setting an appropriate cache header will ensure that the client doesn't have to download it multiple times.
