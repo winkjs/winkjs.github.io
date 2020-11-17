@@ -22,12 +22,11 @@ const as = require( 'wink-nlp/src/as.js' );
 const model = require( 'wink-eng-lite-web-model' );
 const nlp = winkNLP( model )
 
-const text = 'Hello   World🌎! How are you?';
+const text = `Its quarterly profits jumped 76% to $1.13 billion for the three months to December, from $639million of previous year.`;
 const doc = nlp.readDoc( text );
 
-console.log( doc.out() );
-console.log( doc.tokens().out( its.type, as.freqTable ) );
-// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]</code></pre>
+doc.entities().each((e) => e.markup());
+document.getElementById("result").innerHTML = doc.out(its.markedUpText);</code></pre>
 
 Now, we'll use Broswerify to bundle all the required modules into a single file:
 
@@ -35,6 +34,14 @@ Now, we'll use Broswerify to bundle all the required modules into a single file:
 
 This will create a new file called `bundle.js` which you can include in your HTML as you would any other:
 
-<pre class="prettyprint source lang-html"><code>&lt;script src="bundle.js" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
+<pre class="prettyprint source lang-html"><code>&lt;script src="bundle.js" charset="utf-8"&gt;&lt;/script&gt;
+&lt;div id="result"&gt;&lt;/div&gt;</code></pre>
 
+This will create the following output:
+<blockquote>
+  Its quarterly profits jumped <mark>76%</mark> to <mark>$1.13 billion</mark> for the <mark>three months</mark> to <mark>December</mark>, from <mark>$639million</mark> of <mark>previous year</mark>.
+</blockquote>
+
+
+## Performance considerations
 It is important to note that this is a fully-featured English language model. Make sure to use `gzip` when you serve it on the web. This will reduce its size to  under 1MB (from the uncompressed 3.5MB). Also, setting an appropriate cache header will ensure that the client doesn't have to download it multiple times.
