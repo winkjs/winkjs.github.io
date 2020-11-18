@@ -14,7 +14,7 @@ While winkNLP was initially made to run in NodeJS, it can just as easily be used
 npm install wink-eng-lite-web-model --save
 npm install -g browserify</code></pre>
 
-Next, we'll write our JavaScript as we normally would. Here, I am making a new file called `token-counter.js` and requiring winkNLP, some helpers, and the web model:
+Next, we'll write our JavaScript as we normally would. Here, we'll make a new file called `token-counter.js` and require winkNLP, some helpers, and the web model:
 
 <pre class="prettyprint source lang-javascript"><code>const winkNLP = require( 'wink-nlp' );
 const its = require( 'wink-nlp/src/its.js' );
@@ -34,8 +34,8 @@ Now, we'll use Broswerify to bundle all the required modules into a single file:
 
 This will create a new file called `bundle.js` which you can include in your HTML as you would any other:
 
-<pre class="prettyprint source lang-html"><code>&lt;script src="bundle.js" charset="utf-8"&gt;&lt;/script&gt;
-&lt;div id="result"&gt;&lt;/div&gt;</code></pre>
+<pre class="prettyprint source lang-html"><code>&lt;div id="result"&gt;&lt;/div&gt;
+&lt;script src="bundle.js" charset="utf-8"&gt;&lt;/script&gt;</code></pre>
 
 This will create the following output:
 <blockquote>
