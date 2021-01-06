@@ -1,0 +1,37 @@
+---
+title: How split text into sentences?
+---
+
+# How to split text into sentences?
+
+To split any text into sentences using [winkNLP](https://winkjs.org/wink-nlp), read the text using [`readDoc`](/wink-nlp/read-doc.html). Then use the [`sentences`](/wink-nlp/sentences.html) method to get a collection of sentences from the text. Follow this with the [`out`](/wink-nlp/out.html) method to get this collection as a JavaScript array. This is how you can split a text into sentences:
+
+<pre class="prettyprint source lang-javascript"><code>// Load wink-nlp package  & helpers.
+const winkNLP = require( 'wink-nlp' );
+// Load "its" helper to extract item properties.
+const its = require( 'wink-nlp/src/its.js' );
+// Load english language model — light version.
+const model = require( 'wink-eng-lite-model' );
+// Instantiate winkNLP.
+const nlp = winkNLP( model );
+
+// Input text
+const text = 'AI Inc. is focussing on AI. It is based in the U.S.A. It was started on 06.12.2007.';
+// Read text
+const doc = nlp.readDoc( text );
+// Extract sentences from the data
+const sentences = doc.sentences().out();
+console.log( sentences );</code></pre>
+
+This returns an array of sentences:
+
+<pre class="prettyprint source lang-javascript"><code>[
+  'AI Inc. is focussing on AI.',
+  'It is based in the U.S.A.',
+  'It was started on 06.12.2007.'
+]
+</code></pre>
+
+If no sentence-break is found in the input text, the output is the complete text as an array with a single member.
+
+A sentence is usually split at a full-stop, question mark or exclamation mark. Even in the presence of abbreviations, honorifics, etc., winkNLP attempts to intelligently identify the sentence boundary.
