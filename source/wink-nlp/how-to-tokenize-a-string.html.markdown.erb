@@ -1,0 +1,33 @@
+---
+title: How to tokenize a string?
+---
+
+# How to tokenize a string?
+
+To tokenize a string using [winkNLP](https://winkjs.org/wink-nlp), read the text using [`readDoc`](/wink-nlp/read-doc.html). Then use the [`tokens`](/wink-nlp/tokens.html) method to extract a collection of tokens from the string. Follow this with the [`out`](/wink-nlp/out.html) method to get this collection as a JavaScript array. This is how you can tokenize a string:
+
+<pre class="prettyprint source lang-javascript"><code>// Load wink-nlp package  & helpers.
+const winkNLP = require( 'wink-nlp' );
+// Load "its" helper to extract item properties.
+const its = require( 'wink-nlp/src/its.js' );
+// Load english language model — light version.
+const model = require( 'wink-eng-lite-model' );
+// Instantiate winkNLP.
+const nlp = winkNLP( model );
+
+// Input string
+const text = '#Breaking:D Can’t get over this #Oscars selfie from @TheEllenShow🤩https://pic.twitter.com/C9U5NOtGap';
+// Read text
+const doc = nlp.readDoc( text );
+// Tokenize the string
+const tokens = doc.tokens();
+console.log( tokens.out() );</code></pre>
+
+This returns an array of tokens:
+
+<pre class="prettyprint source lang-javascript"><code>[
+  '#Breaking', ':D', 'Ca', 'n’t', 'get', 'over', 'this', '#Oscars', 'selfie','from', '@TheEllenShow',
+  '🤩', 'https://pic.twitter.com/C9U5NOtGap'
+]</code></pre>
+
+winkNLP has a lossless tokenizer which preserves and reproduces the original text. The tokenizer intelligently handles hyphenation, contractions and abbreviations. It also detects token types like ‘word’, ‘number’, ‘punctuation’, ‘symbol’, etc.
