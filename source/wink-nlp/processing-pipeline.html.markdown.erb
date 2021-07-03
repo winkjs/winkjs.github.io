@@ -4,7 +4,7 @@ title: Processing Pipeline
 
 # Processing Pipeline
 
-The `.readDoc()` API, when used with the default instance of `winkNLP`, splits the text into tokens, entities, and sentences. It also determines a range of their properties. These are accessible via the `.out()` API on the basis of the input parameter — <code>its.<strong>property</strong></code>. Some examples of properties are `value`, `stopWordFlag`, `pos`, and `lemma`:
+The `.readDoc()` method, when used with the default instance of winkNLP, splits the text into tokens, entities, and sentences. It also determines a range of their properties. These are accessible via the `.out()` method on the basis of the input parameter — <code>its.<strong>property</strong></code>. Some examples of properties are `value`, `stopWordFlag`, `pos`, and `lemma`:
 
 
 <pre class="prettyprint source lang-javascript"><code>const text = 'cats are cool';
@@ -19,7 +19,7 @@ console.log( doc.tokens().out( its.lemma ) );
 // -> ["cat", "be", "cool"]</code></pre>
 
 
-The `.readDoc()` API processes the input text in many stages. All the stages together form a processing pipeline or a pipe. The first stage is __tokenization__, which is mandatory. The later stages such as sentence boundary detection or pos tagging are optional. The optional stages are user configurable. The following figure & table illustrates the pipe:
+`.readDoc()` API processes the input text in many stages. All the stages together form a processing pipeline also referred as pipe. The first stage is __tokenization__, which is mandatory. The later stages such as sentence boundary detection (SBD) or part-of-speech tagging (POS) are optional. The optional stages are user configurable. The following figure and table illustrates the pipe:
 
 
 Common its.__properties__ that become available at each stage are also highlighted. For more details please refer to sections on [item and its properties](https://winkjs.org/wink-nlp/item.html) and [its & as helpers](https://winkjs.org/wink-nlp/its-as-helper.html).
@@ -80,16 +80,17 @@ It also accepts an additional parameter — `pipe` that controls the processing 
 
 <pre class="prettyprint source lang-javascript"><code>const nlp = winkNLP( model, [ 'sbd', 'pos' ] );</code></pre>
 
-The interplay between stages and properties is outlined below:
-1. While the sequence of stages in a pipe is not important as `winkNLP` handles it automatically, it is recommended to always provide names in the correct logical sequence.
-1. Without `sbd`, the entire text is treated as a single sentence.
-1. `sentiment` is dependent on `negation`; without negation, the accuracy of sentiment score may drop.
-1. Without `pos`, `its.lemma` accuracy drops drastically.
-1. Without `ner`, the count of named entities will always be zero i.e. `doc.entities().length()` will return a zero.
-1. Without `cer`, the count of custom entities will always be zero i.e. `doc.customEntities().length()` will return a zero.
-
-
 <div class="docs-tip docs-tip--yellow">
+  The interplay between stages and properties is outlined below:
+  <ol>
+    <li>While the sequence of stages in a pipe is not important as `winkNLP` handles it automatically, it is recommended to always provide names in the correct logical sequence.</li>
+    <li>Without `sbd`, the entire text is treated as a single sentence.</li>
+    <li>`sentiment` is dependent on `negation`; without negation, the accuracy of sentiment score may drop.</li>
+    <li>Without `pos`, `its.lemma` accuracy drops drastically.</li>
+    <li>Without `ner`, the count of named entities will always be zero i.e. `doc.entities().length()` will return a zero.</li>
+    <li>Without `cer`, the count of custom entities will always be zero i.e. `doc.customEntities().length()` will return a zero.</li>
+  </ol>
+
   Running only required stages can give a performance advantage. For example only "tokenization" runs at the speed of 2.1 million tokens per second. And "tokenization+sbd" delivers speed of about 1.5 million tokens per second. Contrast it with the speed of 0.5 million tokens per second, when all the stages are active.
 </div>
 
