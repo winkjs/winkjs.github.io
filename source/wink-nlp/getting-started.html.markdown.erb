@@ -26,6 +26,10 @@ const model = require( 'wink-eng-lite-model' );
 // Instantiate winkNLP.
 const nlp = winkNLP( model );</code></pre>
 
+<div class="docs-tip docs-tip--yellow" style="margin-top: -1rem;">
+   It is also possible to acquire "its" and "as" helpers directly from `nlp` from version 1.5.0 onwards. These are acquired using `const its = nlp.its` and `const as = nlp.as`.
+</div>
+
 Next, we use the `readDoc()` method of winkNLP. It transforms the input text string into a winkNLP document. It is the centerpiece of your code. The document provides a rich set of chainable API methods for easy navigation through it's sentences, entities and/or tokens. This simplifies information processing and extraction from a document.
 
 <pre class="prettyprint source lang-javascript"><code>const text = 'Hello   World🌎! How are you?';
