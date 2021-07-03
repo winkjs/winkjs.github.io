@@ -5,22 +5,157 @@ title: BM25 Vectorizer
 # BM25Vectorizer()
 <code class="signature">BM25Vectorizer( configuration ) → { methods }</code>
 
-This method returns the number of items in a collection. The output is in a JavaScript number data type. And hence, it cannot be followed by `out()`.
+BM25 is a major improvement over the classical TF-IDF based algorithms. BM is the abbreviation for best match. The weights for a specific term (i.e. token) is computed using the BM25 algorithm. There are three configurable parameters viz. k1, b, and k. Their default values are respectively 1.2, 0.75, and 1. Note, k1 controls TF saturation; b controls degree of normalization, and k manages IDF. The default configuration usually works well for most of the situations.
 
-It works like the JavaScript `Array.length()` method.
+<pre class="prettyprint source"><code>// Require wink-nlp, model and its helper.
+const model = require('wink-eng-lite-web-model');
+const nlp = require('wink-nlp' )(model);
+const its = nlp.its;
+// Require the BM25 Vectorizer.
+const BM25Vectorizer = require('wink-nlp/utilities/bm25-vectorizer');
+// Instantiate a vectorizer with the default configuration — no input config
+// parameter indicates use default.
+const bm25 = BM25Vectorizer();</code></pre>
 
-__Example:__
-<pre class="prettyprint source lang-javascript"><code>const text = '#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯';
-const patterns = [
-  { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
-  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
-  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
-];
-nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
+The above creates an instance of the BM25 vectorizer that exposes the following APIs:
 
-// length()
-console.log( doc.sentences().length() ); // -> 2
-console.log( doc.entities().length() ); // -> 9
-console.log( doc.customEntities().length() ); // -> 3
-console.log( doc.tokens().length() ); // -> 26</code></pre>
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Purpose</th>
+  </tr>
+
+  <tr>
+    <td><code>learn(tokens)</code></td>
+    <td>Learns the BM25 token weights from the input document's tokens. It is called iteratively for every input document. The learning process is automatically marked as completed on the first call to the <code>.out()</code> method.</td>
+  </tr>
+
+  <tr>
+    <td><code>doc(n)</code></td>
+    <td>Allows access to the n<sub>th</sub> document after learning is completed.</td>
+  </tr>
+
+  <tr>
+    <td><code>out(its.helper)</code></td>
+    <td>Produces a variety of outputs based on the input <code>its.helper</code>; some examples are <code>its.idf</code>, and <code>its.bow</code>. It is also available at <code>.doc()</code> level.</td>
+  </tr>
+
+  <tr>
+    <td><code>vectorOf(tokens)</code></td>
+    <td>Produces the vector of input tokens based on the learnings.</td>
+  </tr>
+</table>
+
+The example below and the subsequent section on helpers illustrates the API usage in detail.
+
+<pre class="prettyprint source"><code>// Sample corpus.
+const corpus = ['Bach', 'J Bach', 'Johann S Bach', 'Johann Sebastian Bach'];
+// Train the vectorizer on each document, using its tokens. The tokens are
+// extracted using the .out() api of wink NLP.
+corpus.forEach((doc) =>  bm25.learn(nlp.readDoc(doc).tokens().out(its.normal)));
+
+// Returns the vector of the new document, "Johann Bach symphony", which is
+// first tokenized using winkNLP.
+bm25.vectorOf(nlp.readDoc('Johann Bach symphony').tokens().out(its.normal));
+// -> [0.092717254, 0, 0.609969519, 0, 0]</code></pre>
+
+<div class="docs-tip docs-tip--yellow">
+  In certain cases, it may be beneficial to use <code>its.stem</code> or <code>its.lemma</code> instead of <code>its.normal</code> — as used in the above example.
+</div>
+
+## BM25Vectorizer's `its` helpers
+
+These helpers help the `.out()` method of BM25Vectorizer to produce a range of different outputs as outlined below. While they are similar to winkNLP helpers, but should not be treated as interchangeable; these apply to BM25Vecotrizer exclusively.
+
+<div class="docs-tip docs-tip--yellow">
+  WinkNLP computes all the weights (or scores) such as tf, bow and idf in accordance with BM25 methodology and therefore should not be confused with the standard TF-IDF scores.
+</div>
+
+### `its.bow`
+
+Helps in generating the bag-of-words model of the document specified in doc():
+
+<pre class="prettyprint source"><code>// Returns the bow of the 1st document i.e. 'J Bach':
+bm25.doc(1).out(its.bow);
+// -> {j:1.261304842, bach:0.110377683}</code></pre>
+
+__Applies to__: `vectorizer.doc(n).out()`
+
+
+### `its.docBOWArray`
+Helps in producing an array containing the bag-of-words model for every document in the corpus:
+
+<pre class="prettyprint source"><code>// Returns an array containing bow of every document in the corpus:
+bm25.out(its.docBOWArray);
+// -> [
+//      {bach: 0.136348903}
+//      {j: 1.261304842, bach: 0.110377683}
+//      {johann: 0.609969519, s: 1.059496068, bach: 0.092717254}
+//      {johann: 0.609969519, sebastian: 1.059496068, bach: 0.092717254}
+//    ]</code></pre>
+
+__Applies to__: `vectorizer.out()`
+
+
+### `its.docTermMatrix`
+Aids in generating the document term matrix for the corpus:
+
+<pre class="prettyprint source"><code>// Returns a 2-dimensional array, where  rows correspond to documents in
+// the corpus and columns correspond to terms i.e. the tokens.
+bm25.out(its.docTermMatrix);
+// -> [
+//      [0.136348903, 0, 0, 0, 0]
+//      [0.110377683, 1.261304842, 0, 0, 0]
+//      [0.092717254, 0, 0.609969519, 1.059496068, 0]
+//      [0.092717254, 0, 0.609969519, 0, 1.059496068]
+//    ]</code></pre>
+
+__Applies to__: `vectorizer.out()`
+
+__See also__: `its.terms`
+
+
+### `its.idf`
+Helps in producing inverse document frequency for each token in the corpus:
+
+<pre class="prettyprint source"><code>// Returns an array of token & its idf pairs.
+bm25.out(its.idf);
+// -> [
+//      ["j", 1.203972804]
+//      ["s", 1.203972804]
+//      ["sebastian", 1.203972804]
+//      ["johann", 0.693147181]
+//      ["bach", 0.105360516]
+//.   ]</code></pre>
+
+__Applies to__: `vectorizer.out()`
+
+
+### `its.terms`
+Assists in generating an array of all the unique terms in the corpus. These are always sorted alphabetically. Note, the document term matrix contains the weight for each document in the same order in which terms appear here.
+
+<pre class="prettyprint source"><code>// Returns an array of unique tokens in the corpus, sorted by alphabetic order.
+bm25.out(its.terms);
+// -> ['bach', 'j', 'johann', 's', 'sebastian']</code></pre>
+
+__Applies to__: `vectorizer.out()`
+
+
+### `its.tf`
+Helps in producing term frequencies in the form of (token, its frequency) pairs array for the document referenced in doc(n).
+
+<pre class="prettyprint source"><code>// Returns an array of token & its tf pairs for the first document.
+bm25.doc(1).out(its.tf);
+// -> [["j", 1.261304842], ["bach", 0.110377683]]</code></pre>
+
+__Applies to__: `vectorizer.doc(n).out()`
+
+
+### `its.vector`
+Aids in producing the vector of term frequencies of a document.
+
+<pre class="prettyprint source"><code>// Returns a vector of for the first document.
+bm25.doc(1).out(its.tf);
+// -> [0.110377683, 1.261304842, 0, 0, 0]</code></pre>
+
+__Applies to__: `vectorizer.doc(n).out()`
