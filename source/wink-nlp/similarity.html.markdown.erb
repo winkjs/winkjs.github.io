@@ -5,22 +5,41 @@ title: Similarity
 # similarity
 <code class="signature">similarity → { object }</code>
 
-This method returns the number of items in a collection. The output is in a JavaScript number data type. And hence, it cannot be followed by `out()`.
+This utility has multiple text similarity detection methods — cosine for bag of words, tversky and Otsuka-Ochiai for set. The bag-of-words model of a document can be obtained using `as.bow` and set can be derived using `as.set`. For example:
 
-It works like the JavaScript `Array.length()` method.
+<pre class="prettyprint source"><code>// Obtain the bow of a document.
+bow1 = doc1.tokens().out(its.value, as.bow);
+// Obtain the set of a document.
+set1 = doc1.tokens().out(its.value, as.set);</code></pre>
 
-__Example:__
-<pre class="prettyprint source lang-javascript"><code>const text = '#Breaking: Can’t get over this #Oscars selfie from @TheEllenShow🤩! Go check it out:)https://pic.twitter.com/C9U5NOtGap #Share your best selfie@r2d2@gmail.com💯';
-const patterns = [
-  { name: 'wordEmoji', patterns: [ '[|NOUN|PROPN|ADP] [EMOJI|EMOTICON]' ] },
-  { name: 'emailEmoji', patterns: [ '[EMAIL] [EMOJI|EMOTICON]' ] },
-  { name: 'mentionEmoji', patterns: [ '[MENTION] [EMOJI|EMOTICON]' ] }
-];
-nlp.learnCustomEntities( patterns );
-const doc = nlp.readDoc( text );
+It is also possible to pre-process the text prior to comparison using winkNLP's methods. For example stop words or punctuations can be removed using the .filter() method before obtaining a bow or set.
 
-// length()
-console.log( doc.sentences().length() ); // -> 2
-console.log( doc.entities().length() ); // -> 9
-console.log( doc.customEntities().length() ); // -> 3
-console.log( doc.tokens().length() ); // -> 26</code></pre>
+Require this utility using the following statement:
+
+<pre class="prettyprint source"><code>const similarity = require('wink-nlp/utilities/similarity.js');</code></pre>
+
+The variable — similarity exposes following methods:
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td><code>similarity.bow.cosine(bowA, bowB)</code></td>
+    <td>Measures similarity between the two BoWs using cosine similarity.</td>
+  </tr>
+
+  <tr>
+    <td><code>similarity.set.tversky(setA, setB`<br/> `[, alpha, beta])</code></td>
+    <td>Measures similarity between the two sets using Tversky method. The default values for both alpha & beta is 0.5. You can get Jaccard similarity or Sørensen-Dice by using appropriate values for alpha & beta.</td>
+  </tr>
+
+  <tr>
+    <td><code>similarity.set.oo(setA, setB)</code></td>
+    <td>Measures Otsuka-Ochiai similarity between the two sets; this is equivalent to cosine similarity with a binarized BoW.</td>
+  </tr>
+</table>
+
+All methods return a value between **0** and **1**.
