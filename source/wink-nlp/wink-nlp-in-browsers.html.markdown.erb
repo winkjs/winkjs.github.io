@@ -1,10 +1,10 @@
 ---
-title: How to run winkNLP in the browser?
+title: WinkNLP in browsers?
 ---
 
 # How to run winkNLP in the browser
 
-While winkNLP was initially made to run in NodeJS, it can just as easily be used in the browser. To do this, we need to use the web version of the English lite model — [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model). We'll also need a tool that can bundle all the required modules, something like [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). For the purpose of this tutorial we'll use Browserify. First, lets install the required packages:
+WinkNLP is designed to work on Node.js and web browsers both. Apart from building a server side solution using Node.js, you can build a pure browser side NLP app with equal ease. To do this, we need to use the web version of the English lite model — [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model). We'll also need a tool that can bundle all the required modules, something like [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). For the purpose of this tutorial we'll use Browserify. First, lets install the required packages:
 
 <div class="docs-tip docs-tip--yellow">
   We'll be installing Broswerify globally, refer to its <a href="https://github.com/browserify/browserify#getting-started">documentation</a> for more details.
@@ -17,10 +17,11 @@ npm install -g browserify</code></pre>
 Next, we'll write our JavaScript as we normally would. Here, we'll make a new file called `token-counter.js` and require winkNLP, some helpers, and the web model:
 
 <pre class="prettyprint source lang-javascript"><code>const winkNLP = require( 'wink-nlp' );
-const its = require( 'wink-nlp/src/its.js' );
-const as = require( 'wink-nlp/src/as.js' );
 const model = require( 'wink-eng-lite-web-model' );
 const nlp = winkNLP( model )
+// Acquire "its" and "as" helpers from nlp.
+const its = nlp.its;
+const as = nlp.as;
 
 const text = `Its quarterly profits jumped 76% to $1.13 billion for the three months to December, from $639million of previous year.`;
 const doc = nlp.readDoc( text );
