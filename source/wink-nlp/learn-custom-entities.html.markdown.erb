@@ -154,7 +154,7 @@ During detection phase, match is performed in the following sequence:
   </tr>
   <tr>
     <td><code>useEntitiy</code></td>
-    <td><code>true</code></td>
+    <td><code>true</code> (default)</td>
     <td>
       Matches the pattern using named entities found in the Document. The annotation of system entities will be dependent on the language model being used.
       <p>If named entities are not matched then, token value is matched.</p>
@@ -163,7 +163,7 @@ During detection phase, match is performed in the following sequence:
   </tr>
   <tr>
     <td></td>
-    <td><code>false</code> (default)</td>
+    <td><code>false</code></td>
     <td>
       If set to <code>false</code>, it will ignore the named entities in the document and treat them as a literal value of words to be matched.
     </td>
