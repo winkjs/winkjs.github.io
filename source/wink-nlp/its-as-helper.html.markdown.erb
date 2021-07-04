@@ -84,7 +84,7 @@ console.log(doc.tokens().out(its.abbrevFlag));
   <tr>
     <td><code>its.lemma</code></td>
     <td>
-      <a href="https://github.com/winkjs/wink-nlp/issues/6">Coming soon</a>
+      Lemma of the word based on its pos tag.
     </td>
     <td>—</td>
     <td>—</td>
@@ -125,7 +125,7 @@ console.log(doc.tokens().out(its.abbrevFlag));
   </tr>
 
   <tr>
-    <td><code>its.preceedingSpaces</code></td>
+    <td><code>its.precedingSpaces</code></td>
     <td>Whitespaces before a token in string format</td>
     <td>Token</td>
     <td><code>string</code></td>
@@ -138,6 +138,15 @@ console.log(doc.tokens().out(its.abbrevFlag));
     </td>
     <td>Token</td>
     <td><code>string</code></td>
+  </tr>
+
+  <tr>
+    <td><code>its.readabilityStats</code></td>
+    <td>
+      Flesch Reading Ease Score (fres), list complex words and their count, reading time in mins & seconds, sentiment score and more.
+    </td>
+    <td>Document</td>
+    <td><code>object</code></td>
   </tr>
 
   <tr>
@@ -166,7 +175,7 @@ console.log(doc.tokens().out(its.abbrevFlag));
   <tr>
     <td><code>its.stem</code></td>
     <td>
-      <a href="https://github.com/winkjs/wink-nlp/issues/7">Coming soon</a>
+      Stem of the word according to the Porter Stemmer Algorithm version 2.
     </td>
     <td>—</td>
     <td>—</td>
@@ -255,6 +264,12 @@ The bold part of the argument, i.e., <code><strong>reducedValue</strong></code>,
     <td>A frequency table in descending order</td>
     <td>Sentence, Entities, Tokens</td>
     <td><code>2D number[]</code></td>
+  </tr>
+  <tr>
+    <td><code>as.set</code></td>
+    <td>Collection reduced to a JavaScript set</td>
+    <td>Entities, Tokens</td>
+    <td><code>set{}</code></td>
   </tr>
   <tr>
     <td><code>as.unique</code></td>
