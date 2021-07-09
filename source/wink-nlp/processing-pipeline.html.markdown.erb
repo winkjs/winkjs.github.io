@@ -21,6 +21,7 @@ console.log( doc.tokens().out( its.lemma ) );
 
 `.readDoc()` API processes the input text in many stages. All the stages together form a processing pipeline also referred as pipe. The first stage is __tokenization__, which is mandatory. The later stages such as sentence boundary detection (SBD) or part-of-speech tagging (POS) are optional. The optional stages are user configurable. The following figure and table illustrates the pipe:
 
+<img src="/images/wink-nlp-processing-pipeline.png" alt="Diagram showing the processing pipeline of winkNLP">
 
 Common its.__properties__ that become available at each stage are also highlighted. For more details please refer to sections on [item and its properties](https://winkjs.org/wink-nlp/item.html) and [its & as helpers](https://winkjs.org/wink-nlp/its-as-helper.html).
 
