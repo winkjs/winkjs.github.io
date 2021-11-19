@@ -5,7 +5,13 @@ title: BM25 Vectorizer
 # BM25Vectorizer()
 <code class="signature">BM25Vectorizer( configuration ) → { methods }</code>
 
-BM25 is a major improvement over the classical TF-IDF based algorithms. BM is the abbreviation for best match. The weights for a specific term (i.e. token) is computed using the BM25 algorithm. There are three configurable parameters viz. k1, b, and k. Their default values are respectively 1.2, 0.75, and 1. Note, k1 controls TF saturation; b controls degree of normalization, and k manages IDF. The default configuration usually works well for most of the situations.
+BM25 is a major improvement over the classical TF-IDF based algorithms. The weights for a specific term (i.e. token) is computed using the BM25 algorithm. Three parameters control the computation of weights in this algorithm:
+
+1. `k1` controls how quickly TF saturates; lower values lead to faster saturation.
+1. `b` controls normalization based on document length; setting `b = 1` will perform full document-length normalisation, while `b = 0` will switch normalisation off.
+1. `k` manages IDF's saturation.
+
+The `configuration` argument is an object that defines `k1`, `b`, `k` and `norm`. The `norm` defines the [vector norm](https://mathworld.wolfram.com/VectorNorm.html); the supported norms are `none`, `l1`, or `l2`. The default values of `k1`, `b`, `k` and `norm` are **1.2**, **0.75**, **1** and **none** respectively. Note, the default configuration usually works well for most of the situations. You can overide any or all default values using the configuration argument.
 
 <pre class="prettyprint source"><code>// Require wink-nlp, model and its helper.
 const model = require('wink-eng-lite-web-model');
@@ -37,12 +43,22 @@ The above creates an instance of the BM25 vectorizer that exposes the following 
 
   <tr>
     <td><code>out(its.helper)</code></td>
-    <td>Produces a variety of outputs based on the input <code>its.helper</code>; some examples are <code>its.idf</code>, and <code>its.bow</code>. It is also available at <code>.doc()</code> level.</td>
+    <td>Produces a variety of outputs based on the input <code>its.helper</code>; some examples are <code>its.idf</code>, and <code>its.bow</code>. <br/><br/>It is also available at <code>.doc()</code> level.</td>
   </tr>
 
   <tr>
     <td><code>vectorOf(tokens)</code></td>
     <td>Produces the vector of input tokens based on the learnings.</td>
+  </tr>
+
+  <tr>
+    <td><code>config()</code></td>
+    <td>Returns the current configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code>loadModel(json)</code></td>
+    <td>Loads a previously saved model <code>json</code>. Model JSON for saving can be generated via <code>.out( its.modelJSON )</code> api call. Once a model is successfully loaded, further learning is not permitted.</td>
   </tr>
 </table>
 
@@ -60,29 +76,33 @@ bm25.vectorOf(nlp.readDoc('Johann Bach symphony').tokens().out(its.normal));
 // -> [0.092717254, 0, 0.609969519, 0, 0]</code></pre>
 
 <div class="docs-tip docs-tip--yellow">
-  In certain cases, it may be beneficial to use <code>its.stem</code> or <code>its.lemma</code> instead of <code>its.normal</code> — as used in the above example.
+  In certain cases, it may be useful to use <code>its.stem</code> or <code>its.lemma</code> instead of <code>its.normal</code> — as used in the above example.
 </div>
 
 ## BM25Vectorizer's `its` helpers
 
-These helpers help the `.out()` method of BM25Vectorizer to produce a range of different outputs as outlined below. While they are similar to winkNLP helpers, but should not be treated as interchangeable; these apply to BM25Vecotrizer exclusively.
+These helpers help the `.out()` method of BM25Vectorizer to produce a range of different outputs as outlined below. While they are similar to winkNLP helpers, but should not be treated as interchangeable; these apply to BM25Vecotrizer only.
 
 <div class="docs-tip docs-tip--yellow">
-  WinkNLP computes all the weights (or scores) such as tf, bow and idf in accordance with BM25 methodology and therefore should not be confused with the standard TF-IDF scores.
+  WinkNLP computes all the weights (or scores) such as tf, bow and idf as per the BM25 algorithm and should not be confused with the standard TF-IDF scores.
 </div>
 
 ### `its.bow`
 
-Helps in generating the bag-of-words model of the document specified in doc():
+__Applies to__: `vectorizer.doc(n).out()`
+
+Helps in generating the bag-of-words model of the document passed in doc():
 
 <pre class="prettyprint source"><code>// Returns the bow of the 1st document i.e. 'J Bach':
 bm25.doc(1).out(its.bow);
 // -> {j:1.261304842, bach:0.110377683}</code></pre>
 
-__Applies to__: `vectorizer.doc(n).out()`
 
 
 ### `its.docBOWArray`
+
+__Applies to__: `vectorizer.out()`
+
 Helps in producing an array containing the bag-of-words model for every document in the corpus:
 
 <pre class="prettyprint source"><code>// Returns an array containing bow of every document in the corpus:
@@ -94,10 +114,12 @@ bm25.out(its.docBOWArray);
 //      {johann: 0.609969519, sebastian: 1.059496068, bach: 0.092717254}
 //    ]</code></pre>
 
-__Applies to__: `vectorizer.out()`
 
 
 ### `its.docTermMatrix`
+
+__Applies to__: `vectorizer.out()`
+
 Aids in generating the document term matrix for the corpus:
 
 <pre class="prettyprint source"><code>// Returns a 2-dimensional array, where  rows correspond to documents in
@@ -110,12 +132,14 @@ bm25.out(its.docTermMatrix);
 //      [0.092717254, 0, 0.609969519, 0, 1.059496068]
 //    ]</code></pre>
 
-__Applies to__: `vectorizer.out()`
-
 __See also__: `its.terms`
 
 
+
 ### `its.idf`
+
+__Applies to__: `vectorizer.out()`
+
 Helps in producing inverse document frequency for each token in the corpus:
 
 <pre class="prettyprint source"><code>// Returns an array of token & its idf pairs.
@@ -128,34 +152,50 @@ bm25.out(its.idf);
 //      ["bach", 0.105360516]
 //.   ]</code></pre>
 
+
+
+### `its.modelJSON`
+
 __Applies to__: `vectorizer.out()`
+
+Aids in producing JSON of BM25Vecotrizer's model, which can be saved and reused later without relearning from corpus. Saved model can be loaded using `.loadModel()` api.
+
+<pre class="prettyprint source"><code>// Returns the model in JSON format.
+bm25.out(its.modelJSON);
+// -> &lt;the model's json&gt;</code></pre>
+
 
 
 ### `its.terms`
+
+__Applies to__: `vectorizer.out()`
+
 Assists in generating an array of all the unique terms in the corpus. These are always sorted alphabetically. Note, the document term matrix contains the weight for each document in the same order in which terms appear here.
 
 <pre class="prettyprint source"><code>// Returns an array of unique tokens in the corpus, sorted by alphabetic order.
 bm25.out(its.terms);
 // -> ['bach', 'j', 'johann', 's', 'sebastian']</code></pre>
 
-__Applies to__: `vectorizer.out()`
 
 
 ### `its.tf`
+
+__Applies to__: `vectorizer.doc(n).out()`
+
 Helps in producing term frequencies in the form of (token, its frequency) pairs array for the document referenced in doc(n).
 
 <pre class="prettyprint source"><code>// Returns an array of token & its tf pairs for the first document.
 bm25.doc(1).out(its.tf);
 // -> [["j", 1.261304842], ["bach", 0.110377683]]</code></pre>
 
-__Applies to__: `vectorizer.doc(n).out()`
 
 
 ### `its.vector`
+
+__Applies to__: `vectorizer.doc(n).out()`
+
 Aids in producing the vector of term frequencies of a document.
 
 <pre class="prettyprint source"><code>// Returns a vector of for the first document.
 bm25.doc(1).out(its.tf);
 // -> [0.110377683, 1.261304842, 0, 0, 0]</code></pre>
-
-__Applies to__: `vectorizer.doc(n).out()`
