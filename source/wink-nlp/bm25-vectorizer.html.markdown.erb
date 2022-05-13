@@ -47,8 +47,13 @@ The above creates an instance of the BM25 vectorizer that exposes the following 
   </tr>
 
   <tr>
+    <td><code>bowOf(tokens, processOOV=false)</code></td>
+    <td>Produces the bag-of-words of input tokens based on the learnings; it ignores OOV tokens by default unless the <code>processOOV</code> parameter is true. For cosine similarity computation, it is recommended to set this flag as true.</td>
+  </tr>
+
+  <tr>
     <td><code>vectorOf(tokens)</code></td>
-    <td>Produces the vector of input tokens based on the learnings.</td>
+    <td>Produces the vector of input tokens based on the learnings; OOV tokens are ignored.</td>
   </tr>
 
   <tr>
