@@ -36,30 +36,33 @@ Use [npm](https://www.npmjs.com/package/wink-nlp) install:
 
 <pre class="prettyprint source"><code>npm install wink-nlp --save</code></pre>
 
-In order to use winkNLP after its installation, you also need to install a language model. The following command installs the latest version of default language model — the light weight English language model called [wink-eng-lite-model](https://github.com/winkjs/wink-eng-lite-model).
+In order to use winkNLP after its installation, you also need to install a language model according to the node version used. The following table outlines the version specific installation command:
 
-<pre class="prettyprint source"><code>node -e "require( 'wink-nlp/models/install' )"</code></pre>
+| Node.js Version |Installation |
+| --- | --- |
+| 16 or 18 | `npm install wink-eng-lite-web-model --save` |
+| 14 or 12 | `node -e "require('wink-nlp/models/install')"` |
 
-Any required model can be installed by specifying its name as the last parameter in the above command. For example:
+The [wink-eng-lite-web-model](https://github.com/winkjs/wink-eng-lite-web-model) is designed to work with Node.js version 16 or 18. It can also work on browsers as described in the next section.
 
-<pre class="prettyprint source"><code>node -e "require( 'wink-nlp/models/install' )" wink-eng-lite-model</code></pre>
+The second command installs the [wink-eng-lite-model](https://github.com/winkjs/wink-eng-lite-model), which works with Node.js version 14 or 12. 
 
 ### How to install for Web Browser
-If you’re using winkNLP in the browser use the [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model) instead. Learn about its installation and usage in our [guide to using winkNLP in the browser](https://winkjs.org/wink-nlp/wink-nlp-in-browsers.html).
+If you’re using winkNLP in the browser use the [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model). Learn about its installation and usage in our [guide to using winkNLP in the browser](https://winkjs.org/wink-nlp/wink-nlp-in-browsers.html). Explore **[winkNLP recipes](https://observablehq.com/collection/@winkjs/winknlp-recipes)** on [Observable](https://observablehq.com/) for live browser based examples.
 
 ## Getting Started
 The "Hello World!" in winkNLP is given below:
 
-<pre class="prettyprint source"><code>// Load wink-nlp package  & helpers.
+<pre class="prettyprint source"><code>// Load wink-nlp package.
 const winkNLP = require( 'wink-nlp' );
-// Load "its" helper to extract item properties.
-const its = require( 'wink-nlp/src/its.js' );
-// Load "as" reducer helper to reduce a collection.
-const as = require( 'wink-nlp/src/as.js' );
-// Load english language model — light version.
-const model = require( 'wink-eng-lite-model' );
+// Load english language model.
+const model = require( 'wink-eng-lite-web-model' );
 // Instantiate winkNLP.
 const nlp = winkNLP( model );
+// Obtain "its" helper to extract item properties.
+const its = nlp.its;
+// Obtain "as" reducer helper to reduce a collection.
+const as = nlp.as;
 
 // NLP Code.
 const text = 'Hello   World🌎! How are you?';
@@ -97,7 +100,7 @@ Links entities such as famous persons, locations or objects to the relevant Wiki
 ## Speed & Accuracy
 The [winkNLP](https://winkjs.org/wink-nlp/) processes raw text at **~525,000 tokens per second** with its default language model — [wink-eng-lite-model](https://github.com/winkjs/wink-eng-lite-model), when [benchmarked](https://github.com/bestiejs/benchmark.js) using "Ch 13 of Ulysses by James Joyce" on a 2.2 GHz Intel Core i7 machine with 16GB RAM. The processing included the entire NLP pipeline — tokenization, sentence boundary detection, negation handling, sentiment analysis, part-of-speech tagging, and named entity extraction. This speed is way ahead of the prevailing speed benchmarks.
 
-The benchmark was conducted on [Node.js versions 14.8.0, and 12.18.3](https://nodejs.org/en/about/releases/).
+The benchmark was conducted on [Node.js versions 14.8.0, and 12.18.3](https://nodejs.org/en/about/releases/). It delivered similar/better performance on Node.js versions 16/18.
 
 The [winkNLP](https://winkjs.org/wink-nlp/) delivers similar performance on browsers; its performance on a specific machine/browser combination can be measured using the Observable notebook — [How to measure winkNLP's speed on browsers?](https://observablehq.com/@winkjs/how-to-measure-winknlps-speed-on-browsers?collection=@winkjs/winknlp-recipes).
 
@@ -117,18 +120,20 @@ Wink NLP delivers this performance with the minimal load on RAM. For example, it
 ## Need Help?
 
 ### Usage query 👩🏽‍💻
-Please ask at [Stack Overflow](https://stackoverflow.com/) or discuss it at [Wink JS Gitter Lobby](https://gitter.im/winkjs/Lobby).
+Please ask at [Stack Overflow](https://stackoverflow.com/) or discuss at [Wink JS GitHub Discussions](https://github.com/winkjs/wink-nlp/discussions) or chat with us at [Wink JS Gitter Lobby](https://gitter.im/winkjs/Lobby).
 
 ### Bug report 🐛
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-nlp/issues) or consider fixing it and sending a PR.
 
 ### New feature ✨
-Looking for a new feature, request it via a new [issue](https://github.com/winkjs/wink-nlp/issues) or consider becoming a [contributor](https://github.com/winkjs/wink-nlp/blob/master/CONTRIBUTING.md).
+Looking for a new feature, request it via the [new features & ideas](https://github.com/winkjs/wink-nlp/discussions/categories/new-features-ideas) discussion forum  or consider becoming a [contributor](https://github.com/winkjs/wink-nlp/blob/master/CONTRIBUTING.md).
+
 
 ## About wink
 [Wink](https://winkjs.org/) is a family of open source packages for **Natural Language Processing**, **Machine Learning**, and **Statistical Analysis** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
 
 ## Copyright & License
-**Wink NLP** is copyright 2017-21 [GRAYPE Systems Private Limited](https://graype.in/).
+
+**Wink NLP** is copyright 2017-22 [GRAYPE Systems Private Limited](https://graype.in/).
 
 It is licensed under the terms of the MIT License.
