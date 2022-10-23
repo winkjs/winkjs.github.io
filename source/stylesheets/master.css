@@ -50,6 +50,10 @@ a:hover {
   font-size: 1.5rem;
 }
 
+.showcase-block h2 {
+  font-size: 1.5rem;
+}
+
 .showcase-block {
   margin-top: 3rem;
 }
@@ -60,6 +64,7 @@ a:hover {
 }
 
 .showcase-block p {
+  display: none;
   margin-top: 1rem;
 }
 

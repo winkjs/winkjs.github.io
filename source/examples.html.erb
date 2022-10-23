@@ -5,6 +5,118 @@ title: Examples and Demos
 <div id="showcase-list">
     <div class="container">
       <h2 class="col-md-12">Examples</h2>
+
+      <div class="col-md-4">
+      <%= partial( :showcase, :locals => {
+        :name => "Wikipedia Timeline",
+        :url => "/showcase-timeline/",
+        :description => "Named entity extraction and timeline generation from a Wikipedia article using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='https://observablehq.com/@winkjs/how-to-find-date-and-time-in-text?collection=@winkjs/winknlp-recipes'>how to find date and time in text</a> guide.",
+        :image => "showcase-timeline.jpg"
+      }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Context aware word cloud",
+          :url => "https://observablehq.com/@winkjs/how-to-create-a-context-aware-word-cloud",
+          :description => "",
+          :image => "showcase-cloud.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Visualize key sentences in a document",
+          :url => "https://observablehq.com/@winkjs/how-to-visualize-key-sentences-in-a-document",
+          :description => "",
+          :image => "showcase-key-sentences.png"
+        }) %>
+      </div>
+
+      <div class="clearfix">
+        <br><br><br><br>&nbsp;
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Naive wikification tool",
+          :url => "https://observablehq.com/@winkjs/how-to-build-a-naive-wikification-tool",
+          :description => "",
+          :image => "showcase-wikified-text.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Wikification with relevant images",
+          :url => "https://observablehq.com/@winkjs/wikification-part-ii-how-to-add-an-image-grid",
+          :description => "",
+          :image => "showcase-wikified-img.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Stemming & lemmatization",
+          :url => "https://observablehq.com/@winkjs/how-to-do-stemming-and-lemmatization",
+          :description => "",
+          :image => "showcase-stem.png"
+        }) %>
+      </div>
+
+      <div class="clearfix">
+        <br><br><br><br>&nbsp;
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Measure winkNLP performance on any browser",
+          :url => "https://observablehq.com/@winkjs/how-to-measure-winknlps-speed-on-browsers",
+          :description => "",
+          :image => "showcase-perf.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Visual sentiment analysis",
+          :url => "https://observablehq.com/@winkjs/how-to-perform-sentiment-analysis",
+          :description => "",
+          :image => "showcase-sentiment.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Visualize tokens in a document",
+          :url => "https://observablehq.com/@winkjs/how-to-tokenize-text",
+          :description => "",
+          :image => "showcase-tokens.png"
+        }) %>
+      </div>
+
+      <div class="clearfix">
+        <br><br><br><br>&nbsp;
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Visualize sentences in a document",
+          :url => "https://observablehq.com/@winkjs/how-to-split-text-into-sentences",
+          :description => "",
+          :image => "showcase-sentences.png"
+        }) %>
+      </div>
+
+      <div class="col-md-4">
+        <%= partial( :showcase, :locals => {
+          :name => "Visualize date & time in a document",
+          :url => "https://observablehq.com/@winkjs/how-to-find-date-and-time-in-text",
+          :description => "",
+          :image => "showcase-datetime.png"
+        }) %>
+      </div>
+
       <div class="col-md-4">
         <%= partial( :showcase, :locals => {
           :name => "Wizard",
@@ -12,6 +124,10 @@ title: Examples and Demos
           :description => "POS tagging, entitiy recognition, sentiment analysis and more using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='/wink-nlp/getting-started.html'>guide</a> on getting started.",
           :image => "showcase-wiz.png"
         }) %>
+      </div>
+
+      <div class="clearfix">
+        <br><br><br><br>&nbsp;
       </div>
 
       <div class="col-md-4">
@@ -23,18 +139,9 @@ title: Examples and Demos
         }) %>
       </div>
 
-      <div class="col-md-4">
-        <%= partial( :showcase, :locals => {
-          :name => "Wikipedia Timeline",
-          :url => "/showcase-timeline/",
-          :description => "Named entity extraction and timeline generation from a Wikipedia article using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='https://observablehq.com/@winkjs/how-to-find-date-and-time-in-text?collection=@winkjs/winknlp-recipes'>how to find date and time in text</a> guide.",
-          :image => "showcase-timeline.jpg"
-        }) %>
-      </div>
-
-      <div class="clearfix">
+      <!--<div class="clearfix">
         <br><br><br><br>&nbsp;
-      </div>
+      </div>-->
 
       <div class="col-md-4">
         <%= partial( :showcase, :locals => {
