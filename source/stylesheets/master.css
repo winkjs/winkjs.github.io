@@ -194,6 +194,11 @@ a.cta:hover {
   text-decoration: underline;
 }
 
+.subhero.smallhero {
+  font-size: 2rem;
+  padding: 20px;
+}
+
 .featimg {
   display: block;
   margin: 40px auto;
@@ -216,6 +221,10 @@ main h2 {
 	margin-bottom: 15px;
 	padding: 0;
 	color: #222;
+}
+
+.emphasis {
+  font-weight: bold;
 }
 
 main p {
