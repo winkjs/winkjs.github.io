@@ -47,6 +47,10 @@ nlp.learnCustomEntities( patterns );</code></pre>
 
 This returns: _'fluffy'_, _'playful'_.
 
+<div class="docs-tip docs-tip--green">
+Mark allows marking w.r.t. the last element of the pattern. For example if a pattern matches <b><code>a fluffy cat</code></b> then <code>mark: [-2, -1]</code> will extract <b><code>fluffy cat</code></b> — especially useful when the match length is unknown.
+</div>
+
 ### Shorthand patterns
 Let us say we wish to extract noun phrases from the following text:
 
