@@ -10,6 +10,7 @@ It is built ground up with a lean code base that has [no external dependency](ht
 WinkNLP with full [Typescript support](https://github.com/winkjs/wink-nlp/blob/master/types/index.d.ts), runs on Node.js and browsers.
 
 ## Build amazing apps quickly
+
 | [Wikipedia article timeline](https://observablehq.com/@winkjs/how-to-visualize-timeline-of-a-wiki-article) | [Context aware word cloud](https://observablehq.com/@winkjs/how-to-create-a-context-aware-word-cloud) | [Key sentences detection](https://observablehq.com/@winkjs/how-to-visualize-key-sentences-in-a-document) |
 | --- | --- | --- |
 | [<img src="https://user-images.githubusercontent.com/29990/202497363-19c30578-8146-4f36-9c4b-4de613610837.png">](https://observablehq.com/@winkjs/how-to-visualize-timeline-of-a-wiki-article)| [<img src="https://user-images.githubusercontent.com/29990/202506181-1a926ee0-788f-4aa1-aeac-a097f09fe747.png">](https://observablehq.com/@winkjs/how-to-create-a-context-aware-word-cloud)|[<img src="https://user-images.githubusercontent.com/29990/202506490-7f999d12-8319-4969-b92b-0649559ffbe6.png">](https://observablehq.com/@winkjs/how-to-visualize-key-sentences-in-a-document)|
@@ -37,7 +38,7 @@ WinkNLP has a [comprehensive natural language processing (NLP) pipeline](https:/
 <tr><td>💼 Host of <a href="https://winkjs.org/wink-nlp/its-as-helper.html">utilities & tools</a></td><td>BM25 vectorizer; Several similarity methods – Cosine, Tversky, Sørensen-Dice, Otsuka-Ochiai; Helpers to get bag of words, frequency table, lemma/stem, stop word removal and many more.</td></tr>
 </table>
 
-> WinkJS also has packages like [Naive Bayes classifier](https://github.com/winkjs/wink-naive-bayes-text-classifier), [multi-class averaged perceptron](https://github.com/winkjs/wink-perceptron) and [popular token and string distance methods](https://github.com/winkjs/wink-distance), which complement winkNLP.
+WinkJS also has packages like [Naive Bayes classifier](https://github.com/winkjs/wink-naive-bayes-text-classifier), [multi-class averaged perceptron](https://github.com/winkjs/wink-perceptron) and [popular token and string distance methods](https://github.com/winkjs/wink-distance), which complement winkNLP.
 
 ## Documentation
 - [Concepts](https://winkjs.org/wink-nlp/getting-started.html) — everything you need to know to get started.
@@ -50,9 +51,7 @@ WinkNLP has a [comprehensive natural language processing (NLP) pipeline](https:/
 
 Use [npm](https://www.npmjs.com/package/wink-nlp) install:
 
-```shell
-npm install wink-nlp --save
-```
+<pre class="prettyprint source"><code>npm install wink-nlp --save</code></pre>
 
 In order to use winkNLP after its installation, you also need to install a language model according to the node version used. The table below outlines the version specific installation command:
 
@@ -69,13 +68,11 @@ The second command installs the [wink-eng-lite-model](https://github.com/winkjs/
 
 Enable [`esModuleInterop`](https://www.typescriptlang.org/tsconfig#esModuleInterop) and [`allowSyntheticDefaultImports`](https://www.typescriptlang.org/tsconfig#allowSyntheticDefaultImports) in the `tsconfig.json` file:
 
-```
-"compilerOptions": {
+<pre class="prettyprint source"><code>"compilerOptions": {
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     ...
-}
-```
+}</code></pre>
 
 ### How to install for Web Browser
 If you’re using winkNLP in the browser use the [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model). Learn about its installation and usage in our [guide to using winkNLP in the browser](https://winkjs.org/wink-nlp/wink-nlp-in-browsers.html). Explore **[winkNLP recipes](https://observablehq.com/collection/@winkjs/winknlp-recipes)** on [Observable](https://observablehq.com/) for live browser based examples.
@@ -83,8 +80,7 @@ If you’re using winkNLP in the browser use the [wink-eng-lite-web-model](https
 ### Get started
 Here is the "Hello World!" of winkNLP:
 
-```javascript
-// Load wink-nlp package.
+<pre class="prettyprint source"><code>// Load wink-nlp package.
 const winkNLP = require( 'wink-nlp' );
 // Load english language model.
 const model = require( 'wink-eng-lite-web-model' );
@@ -112,8 +108,8 @@ console.log( doc.tokens().out() );
 // -> [ 'Hello', 'World', '🌎', '!', 'How', 'are', 'you', '?' ]
  
 console.log( doc.tokens().out( its.type, as.freqTable ) );
-// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]
-```
+// -> [ [ 'word', 5 ], [ 'punctuation', 2 ], [ 'emoji', 1 ] ]</code></pre>
+
 Experiment with winkNLP on [RunKit](https://npm.runkit.com/wink-nlp).
 
 ## Speed & Accuracy
