@@ -150,6 +150,13 @@ console.log(doc.tokens().out(its.abbrevFlag));
   </tr>
 
   <tr>
+    <td><code>its.sentenceWiseImportance</code></td>
+    <td>Sentence wise importance for all the sentences in the document in the form of an array of objects. Each object follows <code>{index: number, importance: number}</code> format, where <code>index</code> refers to 0-based sentence’s index and importance is a number between <code>0</code> (lowest importance) and <code>1</code> (highest importance).</td>
+    <td>Document</td>
+    <td><code>object[]</code></td>
+  </tr>
+
+  <tr>
     <td><code>its.sentiment</code></td>
     <td>Sentiment score with a value between -1 and +1</td>
     <td>Document, Sentence</td>
