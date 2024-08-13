@@ -1,0 +1,165 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>Item and its properties : winkNLP - NLP in Node.js</title> <link rel=icon type="image/png" href="/favicon.png"> <script src="/wink-nlp/scripts/prettify/prettify.js"></script> <script src="/wink-nlp/scripts/prettify/lang-css.js"></script> <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> <link rel=stylesheet href="/wink-nlp/styles/prettify.css"> <link rel=stylesheet href="/wink-nlp/styles/jsdoc.css"> <meta name=viewport content="width=device-width, initial-scale=1.0"> </head> <body> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script> <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47082559-2');
+  </script> <script src="https://use.typekit.net/cwc1qce.js"></script> <script>
+    ((window.gitter = {}).chat = {}).options = {
+      room: 'winkjs/Lobby'
+    };
+    window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+    }
+  </script> <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> <script>try{Typekit.load({ async: true });}catch(e){}</script> <style media=screen>
+    .navbar {
+      border-top: 4px solid #6C307D;
+      box-sizing: border-box;
+      height: 64px;
+      background-color: #222;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar-header {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .navbar-header a img {
+      height: 24px;
+    }
+
+    .navbar a {
+      color: #fff;
+      line-height: 60px;
+      margin-left: 0;
+    }
+
+    .navbar a.navbar-brand {
+      margin-left: 20px;
+      display: block;
+      min-width: 40px;
+    }
+
+    .navbar-right {
+      margin: 0;
+      line-height: 50px;
+      list-style: none;
+    }
+
+    .navbar-right li {
+      float: left;
+      margin-right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    /* Override docdash */
+    #main {
+      margin-top: 30px;
+    }
+
+    /* Gitter */
+    .gitter-open-chat-button {
+      background: #6C307D;
+      display: none;
+    }
+
+    .gitter-open-chat-button:hover {
+      opacity: 0.8;
+      background: #6C307D;
+    }
+
+    .gitter-chat-embed {
+      top: 64px;
+    }
+
+    .leave-feedback-button {
+      right: 175px;
+      background: #6C307D;
+      color: #fff;
+      z-index: 100;
+      position: fixed;
+      bottom: 0;
+      padding: 1em 3em;
+      border: 0;
+      border-top-left-radius: .5em;
+      border-top-right-radius: .5em;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+      transition: all .3s ease;
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 720px) {
+    .leave-feedback-button{ display: none !important; }
+  }
+  </style> <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if ( window.location.hash ) {
+        openMember();
+        window.setTimeout( function () {
+          window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
+        }, 0)
+      }
+
+      document.getElementById('toc-button').addEventListener('click', function () {
+        if (document.getElementById('side-nav').className === '') {
+          document.getElementById('side-nav').className = 'is-open';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/close.svg');
+        } else {
+          document.getElementById('side-nav').className = '';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/menu.svg');
+        }
+      })
+    });
+
+    window.addEventListener( 'hashchange', function (e) {
+      e.stopPropagation();
+      openMember();
+    } );
+
+    function openMember() {
+      var id = window.location.hash.substr(1),
+      toggler = document.getElementById( id ),
+      offset = toggler.getBoundingClientRect().top,
+      y = window.scrollY + offset - 62 - 10;
+      window.scrollTo(0, y);
+    }
+  </script> <header> <div class=navbar> <div class=navbar-header> <a href="https://winkjs.org/" title=wink class=navbar-brand> <img src="https://winkjs.org/images/logo.svg"> <span>wink</span> </a> </div> <div class=sausage-links> <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id=main-nav> <li><a href="https://winkjs.org/wink-nlp/getting-started.html" class="">Tutorial</a></li> <li><a href="https://winkjs.org/examples.html" class="">Examples</a></li> <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li> <li><a href="http://github.com/winkjs">Github</a></li> <li><a href="https://winkjs.org/about.html" class="">About</a></li> </ul> </div> </div> </header> <div id=toc-button> <img src="./images/ui/menu.svg" alt="" id=toc-button-img> </div> <div class=content-container> <div class=main-container> <div id=main> <section> <article> <h1 id=item-and-its-properties>Item and its properties</h1> <p>There are three item types — <strong>token</strong>, <strong>entity</strong>, and <strong>sentence</strong>. Items are always accessed via the collection that contains them. Like collections, item also exposes a set of API methods including the <code>out()</code> method. Every type of item has its own set of properties. You can access the required property by providing <code>its.<strong>propertyName</strong></code> parameter to the <code>item.out()</code> method. For example, <code>doc.tokens().itemAt(1).out( its.type )</code> returns the type of first token in the document.</p> <div class=docs-tip> Note all properties are read-only. </div> <h2 id=api-methods>API Methods</h2> <p>Let’s explore the API methods with the same example text:</p> <pre class="prettyprint source lang-javascript"><code>var text = `The Godfather premiered on March 15, 1972. It was released on March 24, 1972. It is the first installment in The Godfather trilogy. The story of the movie spans from 1945 to 1955. About 90 percent of the film was shot in New York City. The movie was made on a budget of $7.2 million. And it has a running time of 177 minutes.`;
+
+const doc = nlp.readDoc( text );</code></pre> <p>An item exposes API methods to:</p> <ul> <li>access its parent document, sentence and named entity (if any),</li> <li>find its index,</li> <li>output its value or available properties, and</li> <li>markup the item for text visualization.</li> </ul> <table> <tr> <th>Method</th> <th>Purpose</th> </tr> <tr> <td><code>index()</code></td> <td>Find the index of an item in the collection; for example <code>entity2.index()</code> will return numeric value — <code>2</code>.</td> </tr> <tr> <td><code>markup()</code></td> <td>Easily create beautiful visualizations using information extracted from the document. More about it in the section on “Using markup”.</td> </tr> <tr> <td><code>out()</code></td> <td>Obtain the value or properties of the item. By default, it returns the value property of an item; for example <code>token1.out()</code> will return string value — <code>'Godfather'</code>.</td> </tr> <tr> <td><code>parentDocument()</code></td> <td>Access the parent document of an item.</td> </tr> <tr> <td><code>parentEntity()</code></td> <td> Access the parent entity (if any) of a <strong>token</strong> item; as only a token may have a parent entity. <br/> If there is no parent entity, it returns undefined. </td> </tr> <tr> <td><code>parentSentence()</code></td> <td>Access the parent sentence of a <strong>token</strong> item or <strong>entity</strong> item.</td> </tr> </table> <h2 id=items-properties>Item’s Properties</h2> <p>Properties are specific to the item type except in the case of <strong>value</strong> and <strong>normal</strong>, which are uniformly available across each item type. Here is a glimpse of a few properties under each item type:</p> <ul> <li>Token — <strong>type</strong>, <strong>stopWordFlag</strong> and <strong>normal</strong>.</li> <li>Entity — <strong>type</strong> and <strong>span</strong>.</li> <li>Sentence — <strong>span</strong> and <strong>sentiment</strong>.</li> </ul> <div class="docs-tip docs-tip--green"> The document, which is not an item exactly, also has properties like <strong>sentiment</strong> and <strong>markedUpText</strong>. </div> <p>A variety of NLP tasks can be performed by using these API methods and item properties. For example, we can easily extract all the sentences that have reference to an event i.e. it contains a date:</p> <pre class="prettyprint source lang-javascript"><code>doc.entities()
+        .each((e) =&gt; {
+          // Extract type of entity using .out() with “its.value”
+          // as input parameter.
+          if (e.out(its.type) === '#DATE')
+            console.log(e.parentSentence().out());
+        } );
+// -&gt; 'The Godfather premiered on March 15, 1972.'
+// -&gt; 'It was released on March 24, 1972.' </code></pre> <div class="docs-tip docs-tip--yellow" style="margin-top: -1rem;"> Some of the properties are language dependent such as <code>it.stem</code>. For details refer to <a href="language-models.html">language models</a> </div> <div class=l-horizontal> <a href="collection.html" class=bottom-nav-link> <span class=bottom-nav-link__title>Previous</span> Collection </a> <a href="leveraging-out.html" class="bottom-nav-link next-nav-link"> <span class=bottom-nav-link__title>Next</span> Leveraging .out() </a> </div> </article> </section> </div> </div> <div class=side-nav-container> <nav id=side-nav class=side-nav> <h2><a href="/wink-nlp/">Overview</a></h2> <h2><a href="https://github.com/winkjs/wink-nlp">Github</a></h2> <h2><a target=_blank href="https://observablehq.com/@winkjs/">How to's</a></h2> <h3>Concepts</h3> <ul> <li><a href="getting-started.html">Getting started</a></li> <li><a href="processing-pipeline.html">Processing pipeline</a></li> <li><a href="document.html">Document</a></li> <li><a href="collection.html">Collection</a></li> <li><a href="item.html">Item & its properties</a></li> <li><a href="leveraging-out.html">Leveraging .out()</a></li> <li><a href="visualizing-markup.html">Visualizing using markup</a></li> <li><a href="custom-entities.html">Custom Entities</a></li> <li><a href="wink-nlp-in-browsers.html">WinkNLP in browsers</a></li> </ul> <h3>Utilities</h3> <ul> <li><a href="its-as-helper.html">its & as helper</a></li> <li><a href="similarity.html">Similarity</a></li> <li><a href="bm25-vectorizer.html">BM25 Vectorizer</a></li> <li><a href="language-models.html">Language models</a></li> <li><a href="part-of-speech.html">Part-of-Speech tags</a></li> </ul> <h3>API</h3> <ul> <li><a href="read-doc.html">readDoc</a></li> <li><a href="learn-custom-entities.html">learnCustomEntities</a></li> <li><a href="sentences.html">sentences</a></li> <li><a href="entities.html">entities</a></li> <li><a href="custom-entities-method.html">customEntities</a></li> <li><a href="tokens.html">tokens</a></li> <li><a href="out.html">out</a></li> <li><a href="each.html">each</a></li> <li><a href="length.html">length</a></li> <li><a href="item-at.html">itemAt</a></li> <li><a href="filter.html">filter</a></li> <li><a href="markup.html">markup</a></li> <li><a href="index-method.html">index</a></li> <li><a href="parent-document.html">parentDocument</a></li> <li><a href="parent-sentence.html">parentSentence</a></li> <li><a href="parent-entity.html">parentEntity</a></li> <li><a href="parent-custom-entity.html">parentCustomEntity</a></li> </ul> </nav> </div> </div> <br class=clear> <footer> <p> &copy; <a href="http://graype.in">graype systems</a> pvt. ltd. </p> </footer> <script>prettyPrint();</script> <script src="scripts/linenumber.js"></script> <script src="https://embed.runkit.com"></script> <script>
+    var els = document.getElementsByClassName("runkit");
+
+    Array.prototype.forEach.call(els, function(el) {
+      // Do stuff here
+      var source = el.innerHTML;
+      el.innerHTML = '';
+      var n = RunKit.createNotebook( {
+        element: el,
+        source: source
+      } );
+    });
+  </script> <a href="https://docs.google.com/forms/d/e/1FAIpQLScormuaSPmnZ_jD2hqNXlfoj_vKDw-LKZ1rE69MCi9kaBGvGw/viewform?entry.754933393=/wink-nlp/item.html" target=_blank class=leave-feedback-button style="display: block;">Leave feedback</a> </body> </html>

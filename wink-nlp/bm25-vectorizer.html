@@ -1,0 +1,205 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>BM25 Vectorizer : winkNLP - NLP in Node.js</title> <link rel=icon type="image/png" href="/favicon.png"> <script src="/wink-nlp/scripts/prettify/prettify.js"></script> <script src="/wink-nlp/scripts/prettify/lang-css.js"></script> <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> <link rel=stylesheet href="/wink-nlp/styles/prettify.css"> <link rel=stylesheet href="/wink-nlp/styles/jsdoc.css"> <meta name=viewport content="width=device-width, initial-scale=1.0"> </head> <body> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script> <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47082559-2');
+  </script> <script src="https://use.typekit.net/cwc1qce.js"></script> <script>
+    ((window.gitter = {}).chat = {}).options = {
+      room: 'winkjs/Lobby'
+    };
+    window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+    }
+  </script> <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> <script>try{Typekit.load({ async: true });}catch(e){}</script> <style media=screen>
+    .navbar {
+      border-top: 4px solid #6C307D;
+      box-sizing: border-box;
+      height: 64px;
+      background-color: #222;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar-header {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .navbar-header a img {
+      height: 24px;
+    }
+
+    .navbar a {
+      color: #fff;
+      line-height: 60px;
+      margin-left: 0;
+    }
+
+    .navbar a.navbar-brand {
+      margin-left: 20px;
+      display: block;
+      min-width: 40px;
+    }
+
+    .navbar-right {
+      margin: 0;
+      line-height: 50px;
+      list-style: none;
+    }
+
+    .navbar-right li {
+      float: left;
+      margin-right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    /* Override docdash */
+    #main {
+      margin-top: 30px;
+    }
+
+    /* Gitter */
+    .gitter-open-chat-button {
+      background: #6C307D;
+      display: none;
+    }
+
+    .gitter-open-chat-button:hover {
+      opacity: 0.8;
+      background: #6C307D;
+    }
+
+    .gitter-chat-embed {
+      top: 64px;
+    }
+
+    .leave-feedback-button {
+      right: 175px;
+      background: #6C307D;
+      color: #fff;
+      z-index: 100;
+      position: fixed;
+      bottom: 0;
+      padding: 1em 3em;
+      border: 0;
+      border-top-left-radius: .5em;
+      border-top-right-radius: .5em;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+      transition: all .3s ease;
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 720px) {
+    .leave-feedback-button{ display: none !important; }
+  }
+  </style> <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if ( window.location.hash ) {
+        openMember();
+        window.setTimeout( function () {
+          window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
+        }, 0)
+      }
+
+      document.getElementById('toc-button').addEventListener('click', function () {
+        if (document.getElementById('side-nav').className === '') {
+          document.getElementById('side-nav').className = 'is-open';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/close.svg');
+        } else {
+          document.getElementById('side-nav').className = '';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/menu.svg');
+        }
+      })
+    });
+
+    window.addEventListener( 'hashchange', function (e) {
+      e.stopPropagation();
+      openMember();
+    } );
+
+    function openMember() {
+      var id = window.location.hash.substr(1),
+      toggler = document.getElementById( id ),
+      offset = toggler.getBoundingClientRect().top,
+      y = window.scrollY + offset - 62 - 10;
+      window.scrollTo(0, y);
+    }
+  </script> <header> <div class=navbar> <div class=navbar-header> <a href="https://winkjs.org/" title=wink class=navbar-brand> <img src="https://winkjs.org/images/logo.svg"> <span>wink</span> </a> </div> <div class=sausage-links> <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id=main-nav> <li><a href="https://winkjs.org/wink-nlp/getting-started.html" class="">Tutorial</a></li> <li><a href="https://winkjs.org/examples.html" class="">Examples</a></li> <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li> <li><a href="http://github.com/winkjs">Github</a></li> <li><a href="https://winkjs.org/about.html" class="">About</a></li> </ul> </div> </div> </header> <div id=toc-button> <img src="./images/ui/menu.svg" alt="" id=toc-button-img> </div> <div class=content-container> <div class=main-container> <div id=main> <section> <article> <h1 id=bm25vectorizer>BM25Vectorizer()</h1> <p><code class=signature>BM25Vectorizer( configuration ) → { methods }</code></p> <p>BM25 is a major improvement over the classical TF-IDF based algorithms. The weights for a specific term (i.e. token) is computed using the BM25 algorithm. Three parameters control the computation of weights in this algorithm:</p> <ol> <li><code>k1</code> controls how quickly TF saturates; lower values lead to faster saturation.</li> <li><code>b</code> controls normalization based on document length; setting <code>b = 1</code> will perform full document-length normalisation, while <code>b = 0</code> will switch normalisation off.</li> <li><code>k</code> manages IDF's saturation.</li> </ol> <p>The <code>configuration</code> argument is an object that defines <code>k1</code>, <code>b</code>, <code>k</code> and <code>norm</code>. The <code>norm</code> defines the <a href="https://mathworld.wolfram.com/VectorNorm.html">vector norm</a>; the supported norms are <code>none</code>, <code>l1</code>, or <code>l2</code>. The default values of <code>k1</code>, <code>b</code>, <code>k</code> and <code>norm</code> are <strong>1.2</strong>, <strong>0.75</strong>, <strong>1</strong> and <strong>none</strong> respectively. Note, the default configuration usually works well for most of the situations. You can overide any or all default values using the configuration argument.</p> <pre class="prettyprint source"><code>// Require wink-nlp, model and its helper.
+const model = require('wink-eng-lite-web-model');
+const nlp = require('wink-nlp' )(model);
+const its = nlp.its;
+// Require the BM25 Vectorizer.
+const BM25Vectorizer = require('wink-nlp/utilities/bm25-vectorizer');
+// Instantiate a vectorizer with the default configuration — no input config
+// parameter indicates use default.
+const bm25 = BM25Vectorizer();</code></pre> <p>The above creates an instance of the BM25 vectorizer that exposes the following APIs:</p> <table> <tr> <th>Method</th> <th>Purpose</th> </tr> <tr> <td><code>learn(tokens)</code></td> <td>Learns the BM25 token weights from the input document's tokens. It is called iteratively for every input document. The learning process is automatically marked as completed on the first call to the <code>.out()</code> method.</td> </tr> <tr> <td><code>doc(n)</code></td> <td>Allows access to the n<sub>th</sub> document after learning is completed.</td> </tr> <tr> <td><code>out(its.helper)</code></td> <td>Produces a variety of outputs based on the input <code>its.helper</code>; some examples are <code>its.idf</code>, and <code>its.bow</code>. <br/><br/>It is also available at <code>.doc()</code> level.</td> </tr> <tr> <td><code>bowOf(tokens, processOOV=false)</code></td> <td>Produces the bag-of-words of input tokens based on the learnings; it ignores OOV tokens by default unless the <code>processOOV</code> parameter is true. For cosine similarity computation, it is recommended to set this flag as true.</td> </tr> <tr> <td><code>vectorOf(tokens)</code></td> <td>Produces the vector of input tokens based on the learnings; OOV tokens are ignored.</td> </tr> <tr> <td><code>config()</code></td> <td>Returns the current configuration.</td> </tr> <tr> <td><code>loadModel(json)</code></td> <td>Loads a previously saved model <code>json</code>. Model JSON for saving can be generated via <code>.out( its.modelJSON )</code> api call. Once a model is successfully loaded, further learning is not permitted.</td> </tr> </table> <p>The example below and the subsequent section on helpers illustrates the API usage in detail.</p> <pre class="prettyprint source"><code>// Sample corpus.
+const corpus = ['Bach', 'J Bach', 'Johann S Bach', 'Johann Sebastian Bach'];
+// Train the vectorizer on each document, using its tokens. The tokens are
+// extracted using the .out() api of wink NLP.
+corpus.forEach((doc) =&gt;  bm25.learn(nlp.readDoc(doc).tokens().out(its.normal)));
+
+// Returns the vector of the new document, "Johann Bach symphony", which is
+// first tokenized using winkNLP.
+bm25.vectorOf(nlp.readDoc('Johann Bach symphony').tokens().out(its.normal));
+// -&gt; [0.092717254, 0, 0.609969519, 0, 0]</code></pre> <div class="docs-tip docs-tip--yellow"> In certain cases, it may be useful to use <code>its.stem</code> or <code>its.lemma</code> instead of <code>its.normal</code> — as used in the above example. </div> <h2 id=bm25vectorizers-its-helpers>BM25Vectorizer's <code>its</code> helpers</h2> <p>These helpers help the <code>.out()</code> method of BM25Vectorizer to produce a range of different outputs as outlined below. While they are similar to winkNLP helpers, but should not be treated as interchangeable; these apply to BM25Vecotrizer only.</p> <div class="docs-tip docs-tip--yellow"> WinkNLP computes all the weights (or scores) such as tf, bow and idf as per the BM25 algorithm and should not be confused with the standard TF-IDF scores. </div> <h3 id=itsbow><code>its.bow</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.doc(n).out()</code></p> <p>Helps in generating the bag-of-words model of the document passed in doc():</p> <pre class="prettyprint source"><code>// Returns the bow of the 1st document i.e. 'J Bach':
+bm25.doc(1).out(its.bow);
+// -&gt; {j:1.261304842, bach:0.110377683}</code></pre> <h3 id=itsdocbowarray><code>its.docBOWArray</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.out()</code></p> <p>Helps in producing an array containing the bag-of-words model for every document in the corpus:</p> <pre class="prettyprint source"><code>// Returns an array containing bow of every document in the corpus:
+bm25.out(its.docBOWArray);
+// -&gt; [
+//      {bach: 0.136348903}
+//      {j: 1.261304842, bach: 0.110377683}
+//      {johann: 0.609969519, s: 1.059496068, bach: 0.092717254}
+//      {johann: 0.609969519, sebastian: 1.059496068, bach: 0.092717254}
+//    ]</code></pre> <h3 id=itsdoctermmatrix><code>its.docTermMatrix</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.out()</code></p> <p>Aids in generating the document term matrix for the corpus:</p> <pre class="prettyprint source"><code>// Returns a 2-dimensional array, where  rows correspond to documents in
+// the corpus and columns correspond to terms i.e. the tokens.
+bm25.out(its.docTermMatrix);
+// -&gt; [
+//      [0.136348903, 0, 0, 0, 0]
+//      [0.110377683, 1.261304842, 0, 0, 0]
+//      [0.092717254, 0, 0.609969519, 1.059496068, 0]
+//      [0.092717254, 0, 0.609969519, 0, 1.059496068]
+//    ]</code></pre> <p><strong>See also</strong>: <code>its.terms</code></p> <h3 id=itsidf><code>its.idf</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.out()</code></p> <p>Helps in producing inverse document frequency for each token in the corpus:</p> <pre class="prettyprint source"><code>// Returns an array of token &amp; its idf pairs.
+bm25.out(its.idf);
+// -&gt; [
+//      ["j", 1.203972804]
+//      ["s", 1.203972804]
+//      ["sebastian", 1.203972804]
+//      ["johann", 0.693147181]
+//      ["bach", 0.105360516]
+//.   ]</code></pre> <h3 id=itsmodeljson><code>its.modelJSON</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.out()</code></p> <p>Aids in producing JSON of BM25Vecotrizer's model, which can be saved and reused later without relearning from corpus. Saved model can be loaded using <code>.loadModel()</code> api.</p> <pre class="prettyprint source"><code>// Returns the model in JSON format.
+bm25.out(its.modelJSON);
+// -&gt; &lt;the model's json&gt;</code></pre> <h3 id=itsterms><code>its.terms</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.out()</code></p> <p>Assists in generating an array of all the unique terms in the corpus. These are always sorted alphabetically. Note, the document term matrix contains the weight for each document in the same order in which terms appear here.</p> <pre class="prettyprint source"><code>// Returns an array of unique tokens in the corpus, sorted by alphabetic order.
+bm25.out(its.terms);
+// -&gt; ['bach', 'j', 'johann', 's', 'sebastian']</code></pre> <h3 id=itstf><code>its.tf</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.doc(n).out()</code></p> <p>Helps in producing term frequencies in the form of (token, its frequency) pairs array for the document referenced in doc(n).</p> <pre class="prettyprint source"><code>// Returns an array of token &amp; its tf pairs for the first document.
+bm25.doc(1).out(its.tf);
+// -&gt; [["j", 1.261304842], ["bach", 0.110377683]]</code></pre> <h3 id=itsvector><code>its.vector</code></h3> <p><strong>Applies to</strong>: <code>vectorizer.doc(n).out()</code></p> <p>Aids in producing the vector of term frequencies of a document.</p> <pre class="prettyprint source"><code>// Returns a vector of for the first document.
+bm25.doc(1).out(its.tf);
+// -&gt; [0.110377683, 1.261304842, 0, 0, 0]</code></pre> </article> </section> </div> </div> <div class=side-nav-container> <nav id=side-nav class=side-nav> <h2><a href="/wink-nlp/">Overview</a></h2> <h2><a href="https://github.com/winkjs/wink-nlp">Github</a></h2> <h2><a target=_blank href="https://observablehq.com/@winkjs/">How to's</a></h2> <h3>Concepts</h3> <ul> <li><a href="getting-started.html">Getting started</a></li> <li><a href="processing-pipeline.html">Processing pipeline</a></li> <li><a href="document.html">Document</a></li> <li><a href="collection.html">Collection</a></li> <li><a href="item.html">Item & its properties</a></li> <li><a href="leveraging-out.html">Leveraging .out()</a></li> <li><a href="visualizing-markup.html">Visualizing using markup</a></li> <li><a href="custom-entities.html">Custom Entities</a></li> <li><a href="wink-nlp-in-browsers.html">WinkNLP in browsers</a></li> </ul> <h3>Utilities</h3> <ul> <li><a href="its-as-helper.html">its & as helper</a></li> <li><a href="similarity.html">Similarity</a></li> <li><a href="bm25-vectorizer.html">BM25 Vectorizer</a></li> <li><a href="language-models.html">Language models</a></li> <li><a href="part-of-speech.html">Part-of-Speech tags</a></li> </ul> <h3>API</h3> <ul> <li><a href="read-doc.html">readDoc</a></li> <li><a href="learn-custom-entities.html">learnCustomEntities</a></li> <li><a href="sentences.html">sentences</a></li> <li><a href="entities.html">entities</a></li> <li><a href="custom-entities-method.html">customEntities</a></li> <li><a href="tokens.html">tokens</a></li> <li><a href="out.html">out</a></li> <li><a href="each.html">each</a></li> <li><a href="length.html">length</a></li> <li><a href="item-at.html">itemAt</a></li> <li><a href="filter.html">filter</a></li> <li><a href="markup.html">markup</a></li> <li><a href="index-method.html">index</a></li> <li><a href="parent-document.html">parentDocument</a></li> <li><a href="parent-sentence.html">parentSentence</a></li> <li><a href="parent-entity.html">parentEntity</a></li> <li><a href="parent-custom-entity.html">parentCustomEntity</a></li> </ul> </nav> </div> </div> <br class=clear> <footer> <p> &copy; <a href="http://graype.in">graype systems</a> pvt. ltd. </p> </footer> <script>prettyPrint();</script> <script src="scripts/linenumber.js"></script> <script src="https://embed.runkit.com"></script> <script>
+    var els = document.getElementsByClassName("runkit");
+
+    Array.prototype.forEach.call(els, function(el) {
+      // Do stuff here
+      var source = el.innerHTML;
+      el.innerHTML = '';
+      var n = RunKit.createNotebook( {
+        element: el,
+        source: source
+      } );
+    });
+  </script> <a href="https://docs.google.com/forms/d/e/1FAIpQLScormuaSPmnZ_jD2hqNXlfoj_vKDw-LKZ1rE69MCi9kaBGvGw/viewform?entry.754933393=/wink-nlp/bm25-vectorizer.html" target=_blank class=leave-feedback-button style="display: block;">Leave feedback</a> </body> </html>

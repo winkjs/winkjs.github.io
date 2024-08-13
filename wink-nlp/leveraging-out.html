@@ -1,0 +1,193 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>Leveraging out() : winkNLP - NLP in Node.js</title> <link rel=icon type="image/png" href="/favicon.png"> <script src="/wink-nlp/scripts/prettify/prettify.js"></script> <script src="/wink-nlp/scripts/prettify/lang-css.js"></script> <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> <link rel=stylesheet href="/wink-nlp/styles/prettify.css"> <link rel=stylesheet href="/wink-nlp/styles/jsdoc.css"> <meta name=viewport content="width=device-width, initial-scale=1.0"> </head> <body> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script> <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47082559-2');
+  </script> <script src="https://use.typekit.net/cwc1qce.js"></script> <script>
+    ((window.gitter = {}).chat = {}).options = {
+      room: 'winkjs/Lobby'
+    };
+    window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+    }
+  </script> <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> <script>try{Typekit.load({ async: true });}catch(e){}</script> <style media=screen>
+    .navbar {
+      border-top: 4px solid #6C307D;
+      box-sizing: border-box;
+      height: 64px;
+      background-color: #222;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar-header {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .navbar-header a img {
+      height: 24px;
+    }
+
+    .navbar a {
+      color: #fff;
+      line-height: 60px;
+      margin-left: 0;
+    }
+
+    .navbar a.navbar-brand {
+      margin-left: 20px;
+      display: block;
+      min-width: 40px;
+    }
+
+    .navbar-right {
+      margin: 0;
+      line-height: 50px;
+      list-style: none;
+    }
+
+    .navbar-right li {
+      float: left;
+      margin-right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    /* Override docdash */
+    #main {
+      margin-top: 30px;
+    }
+
+    /* Gitter */
+    .gitter-open-chat-button {
+      background: #6C307D;
+      display: none;
+    }
+
+    .gitter-open-chat-button:hover {
+      opacity: 0.8;
+      background: #6C307D;
+    }
+
+    .gitter-chat-embed {
+      top: 64px;
+    }
+
+    .leave-feedback-button {
+      right: 175px;
+      background: #6C307D;
+      color: #fff;
+      z-index: 100;
+      position: fixed;
+      bottom: 0;
+      padding: 1em 3em;
+      border: 0;
+      border-top-left-radius: .5em;
+      border-top-right-radius: .5em;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+      transition: all .3s ease;
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 720px) {
+    .leave-feedback-button{ display: none !important; }
+  }
+  </style> <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if ( window.location.hash ) {
+        openMember();
+        window.setTimeout( function () {
+          window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
+        }, 0)
+      }
+
+      document.getElementById('toc-button').addEventListener('click', function () {
+        if (document.getElementById('side-nav').className === '') {
+          document.getElementById('side-nav').className = 'is-open';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/close.svg');
+        } else {
+          document.getElementById('side-nav').className = '';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/menu.svg');
+        }
+      })
+    });
+
+    window.addEventListener( 'hashchange', function (e) {
+      e.stopPropagation();
+      openMember();
+    } );
+
+    function openMember() {
+      var id = window.location.hash.substr(1),
+      toggler = document.getElementById( id ),
+      offset = toggler.getBoundingClientRect().top,
+      y = window.scrollY + offset - 62 - 10;
+      window.scrollTo(0, y);
+    }
+  </script> <header> <div class=navbar> <div class=navbar-header> <a href="https://winkjs.org/" title=wink class=navbar-brand> <img src="https://winkjs.org/images/logo.svg"> <span>wink</span> </a> </div> <div class=sausage-links> <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id=main-nav> <li><a href="https://winkjs.org/wink-nlp/getting-started.html" class="">Tutorial</a></li> <li><a href="https://winkjs.org/examples.html" class="">Examples</a></li> <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li> <li><a href="http://github.com/winkjs">Github</a></li> <li><a href="https://winkjs.org/about.html" class="">About</a></li> </ul> </div> </div> </header> <div id=toc-button> <img src="./images/ui/menu.svg" alt="" id=toc-button-img> </div> <div class=content-container> <div class=main-container> <div id=main> <section> <article> <h1 id=leveraging-out>Leveraging out()</h1> <p>The <code>out()</code> method produces appropriate JavaScript built-in datatypes depending on the usage. It is available universally at all levels — document, collection, and item. By default i.e without any input parameter, the <code>out()</code> returns a <strong>string</strong> when it is applied to an <strong>item</strong> and an <strong>array of strings</strong> when it is applied to a <strong>collection</strong>. The behaviour of <code>doc.out()</code> is similar to <code>item.out()</code> as shown below:</p> <pre class="prettyprint source lang-javascript"><code>const text = `Its quarterly profits jumped 76% to $1.13 billion for the three months to December, from $639million of previous year.`;
+const doc = nlp.readDoc( text );</code></pre> <p><code>doc.out()</code> reproduces the original text:</p> <pre class="prettyprint source lang-javascript"><code>doc.out()
+// -&gt; Its quarterly profits jumped 76% to
+//    $1.13 billion for the three months to
+//    December, from $639million of previous year.</code></pre> <p>The <code>out()</code> method has two optional arguments — <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code>. These optional arguments are useful in information extraction:</p> <ol> <li>A token, entity, sentence or document has several contextual properties that are accessible via <code>its.<strong>propertyName</strong></code> such as <code>its.stopWordFlag</code>, <code>its.shape</code> and <code>its.vector</code>.</li> <li>The collection of tokens and entities can be reduced to <code>as.freqTable</code>, <code>as.bow</code> (bag of words), or <code>as.bigrams</code> etc. with <code>as.<strong>reducedValue</strong></code>.</li> </ol> <div class="docs-tip docs-tip--blue"> <strong>Convention:</strong> The <strong>bold</strong> part in a code fragment needs to be substituted with actual value according to the requirement. For example as observed above, the <code><strong>propertyName</strong></code> in <code>its.<strong>propertyName</strong></code> can have a value such as <code>stopWordFlag</code>, <code>shape</code> or <code>vector</code>. </div> <h2 id=itemout>item.out()</h2> <p>While working with an item, any of its properties can be extracted by passing <code>its.<strong>propertyName</strong></code> parameter to the <code>item.out()</code> method. For example <code>doc.tokens().itemAt(0).out(its.shape)</code> would return <code>Xxx</code> — the shape of zeroth token, "Its". Similarly <code>doc.tokens().itemAt(0).out(its.case)</code> would return <code>titleCase</code>.</p> <div class="docs-tip docs-tip--yellow"> <code>its</code> is a helper and is required using the following statement:<br/> <code>const its = require( 'wink-nlp/src/its.js' );</code> </div> <p>Each item type has several properties including few that are common across all types. The most prominent one is <code>its.value</code> — the default for the <code>out()</code> method. Another important common property, applicable to latin script languages such as English or French, is <code>its.normal</code>. It is useful for obtaining the lower-cased value. It also has some language specific flavour — for example in english, apart from lower casing the token it also automatically maps the british spellings to its american equivalent if any.</p> <p>A comprehensive list of properties is available in the reference section titled “its helper”. A select few are outlined below:</p> <table> <tr> <th>Type</th> <th>Properties</th> </tr> <tr> <td>Token</td> <td> <ul> <li><code>its.normal</code> — lower-cased value of token; applies to latin script languages such as English or French. When used in english language, it maps the british spelling to its equivalent american spelling, if any.</li> <li><code>its.pos</code> — part-of-speech.</li> <li><code>its.stopWordFlag</code> — true if the token is a stop word.</li> <li><code>its.type</code> — type of token determined during tokenization e.g. <code>word</code>, <code>number</code>, <code>punctuation</code> or <code>symbol</code>.</li> <li><code>its.vector</code> — the word vector of the token.</li> </ul> </td> </tr> <tr> <td>Entity</td> <td> <ul> <li><code>its.type</code> — type of entity determined during named entity recognition e.g. <code>DATE</code>, <code>DURATION</code>, or <code>MONEY</code>.</li> <li><code>its.span</code> — span of entity in terms of indexes of first tokens and the last token of the entity.</li> </ul> </td> </tr> <tr> <td>Sentence</td> <td> <ul> <li><code>its.span</code> — span of sentence in terms of indexes of first tokens and the last token of the entity.</li> <li><code>its.negationFlag</code> — true if the sentence has any negation; for example, “I didn’t like it.” would have negation.</li> <li><code>its.markedUpText</code> — marked up text of the sentence, which has already been marked up using <code>item.markup()</code> API method. Useful in text visualization and highlighting.</li> <li><code>its.sentiment</code> - sentiment score of the sentence. Its value is between -1 and +1.</li> </ul> </td> </tr> <tr> <td>Document</td> <td> <ul> <li><code>its.sentiment</code> — sentiment score of the document. Its value is between -1 and +1.</li> <li><code>its.markedUpText</code> — marked up text of the document, which has already been marked up using <code>item.markup()</code> API method. Useful in text visualization and highlighting.</li> </ul> </td> </tr> </table> <div class="docs-tip docs-tip--yellow"> The <code>item.out()</code> method automatically falls back to the default i.e. its.value whenever the input parameter is invalid or the property does not apply to the item in question. For example <code>doc.out(its.case)</code> would return the same as <code>doc.out()</code>. </div> <p>This is useful in a variety of NLP tasks such as text pre-processing and information extraction. For example, extracting nouns from a sentence gives a rough sense of its context:</p> <pre class="prettyprint source lang-javascript"><code>doc.tokens()
+        .filter(
+          // Exclude nouns inside an entity
+          (t) =&gt; !t.parentEntity() &amp;&amp; t.out(its.pos) === 'NOUN'
+         )
+         .out();
+// -&gt; [ 'profits' ]</code></pre> <p>Let us take another example of text classification or intent detection. These sometimes require replacement of entity values by their types. Such replacements are helpful when each individual entity’s value is less semantically important compared to its type. These are typically required in addition to punctuation and stop word removal. Here is an example that illustrates how all of this can be easily achieved using the <code>out()</code> method:</p> <pre class="prettyprint source lang-javascript"><code>const processedTokens = [];
+const detectedEntities = new Set();
+doc.tokens()
+        .each( (t) =&gt; {
+          const pe = t.parentEntity();
+          if (pe &amp;&amp; !detectedEntities.has(pe.index())) {
+            detectedEntities.add(pe.index());
+            processedTokens.push('#'+pe.out(its.type));
+          } else if (!pe &amp;&amp; !t.out(its.stopWordFlag) &amp;&amp;
+                     (t.out(its.type) === 'word'))
+                   processedTokens.push(t.out(its.normal));
+        });
+console.log( processedTokens );
+// -&gt; [ 'quarterly', 'profits', 'jumped', '#PERCENT', '#MONEY',
+//      '#DURATION', '#DATE', '#MONEY', '#DATE']</code></pre> <h2 id=collectionout>collection.out()</h2> <p>By default, <code>collection.out()</code> method produces an array of strings, where collection can be of either sentences, entities, customEntities or tokens. For example:</p> <pre class="prettyprint source lang-javascript"><code>// Each string in the array is an entity.
+doc.entities().out()
+// -&gt; ['76%', '$1.13 billion', 'three months', 'December',
+//      '$639million', 'previous year']</code></pre> <p>The <code>its.<strong>propertyName</strong></code> parameter in this case acts like a mapper:</p> <pre class="prettyprint source lang-javascript"><code>doc.entities().itemAt(1).tokens().out(its.type);
+// -&gt; [ 'currency', 'number', 'word' ]
+doc.entities().itemAt(1).tokens().out(its.shape);
+// -&gt; [ '$', 'd.dd', 'xxxx' ]</code></pre> <p>Note <code>its.shape</code> trims after any four consecutive identical shape patterns, which is why the shape of “billion” is “xxxx” and not “xxxxxxx”.</p> <p>The <code>collection.out()</code> method also accepts a second parameter — <code>as.<strong>reducedValue</strong></code>. Here “as” is another helper like “its”.</p> <div class="docs-tip docs-tip--yellow"> <code>as</code> is a helper and is required using the following statement:<br/> <code>const as = require( 'wink-nlp/src/as.js' );</code> </div> <p>The <code>as.<strong>reducedValue</strong></code> acts like a reducer and it defaults to as.array. Some of the “as” options are <code>as.bow</code> (bag of words) and <code>as.bigrams</code>. These reducers further simplify a number of common NLP tasks. Here is an example of bag of words creation:</p> <pre class="prettyprint source lang-javascript"><code>const poem = `Rain, rain, go away
+Come again another day!`;
+const doc = nlp.readDoc( poem );
+doc.tokens()
+        .filter(
+          (t) =&gt; !t.out(its.stopWordFlag) &amp;&amp;
+                 (t.out(its.type) === 'word'))
+        .out(its.normal, as.bow);
+// -&gt; { rain: 2, away: 1, come: 1, day: 1 }</code></pre> <p>The <code>out()</code> method plays an important role in winkNLP applications. Here is its summary:</p> <ol> <li> <p>The <code>item.out()</code> method accepts <code>its.<strong>propertyName</strong></code> as a parameter, whose default value is <code>its.value</code>, which is also the fall back if contextually invalid value is passed.</p> </li> <li> <p>The <code>doc.out()</code> method behaves like <code>item.out()</code>.</p> </li> <li> <p>The <code>collection.out()</code> method has two parameters — <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code> — think of them as a mapper and reducer respectively. Their default values are <code>its.value</code> and <code>as.array</code>.</p> </li> </ol> <div class=l-horizontal> <a href="item.html" class=bottom-nav-link> <span class=bottom-nav-link__title>Previous</span> Item &amp; its.properties </a> <a href="visualizing-markup.html" class="bottom-nav-link next-nav-link"> <span class=bottom-nav-link__title>Next</span> Visualizing using markup </a> </div> </article> </section> </div> </div> <div class=side-nav-container> <nav id=side-nav class=side-nav> <h2><a href="/wink-nlp/">Overview</a></h2> <h2><a href="https://github.com/winkjs/wink-nlp">Github</a></h2> <h2><a target=_blank href="https://observablehq.com/@winkjs/">How to's</a></h2> <h3>Concepts</h3> <ul> <li><a href="getting-started.html">Getting started</a></li> <li><a href="processing-pipeline.html">Processing pipeline</a></li> <li><a href="document.html">Document</a></li> <li><a href="collection.html">Collection</a></li> <li><a href="item.html">Item & its properties</a></li> <li><a href="leveraging-out.html">Leveraging .out()</a></li> <li><a href="visualizing-markup.html">Visualizing using markup</a></li> <li><a href="custom-entities.html">Custom Entities</a></li> <li><a href="wink-nlp-in-browsers.html">WinkNLP in browsers</a></li> </ul> <h3>Utilities</h3> <ul> <li><a href="its-as-helper.html">its & as helper</a></li> <li><a href="similarity.html">Similarity</a></li> <li><a href="bm25-vectorizer.html">BM25 Vectorizer</a></li> <li><a href="language-models.html">Language models</a></li> <li><a href="part-of-speech.html">Part-of-Speech tags</a></li> </ul> <h3>API</h3> <ul> <li><a href="read-doc.html">readDoc</a></li> <li><a href="learn-custom-entities.html">learnCustomEntities</a></li> <li><a href="sentences.html">sentences</a></li> <li><a href="entities.html">entities</a></li> <li><a href="custom-entities-method.html">customEntities</a></li> <li><a href="tokens.html">tokens</a></li> <li><a href="out.html">out</a></li> <li><a href="each.html">each</a></li> <li><a href="length.html">length</a></li> <li><a href="item-at.html">itemAt</a></li> <li><a href="filter.html">filter</a></li> <li><a href="markup.html">markup</a></li> <li><a href="index-method.html">index</a></li> <li><a href="parent-document.html">parentDocument</a></li> <li><a href="parent-sentence.html">parentSentence</a></li> <li><a href="parent-entity.html">parentEntity</a></li> <li><a href="parent-custom-entity.html">parentCustomEntity</a></li> </ul> </nav> </div> </div> <br class=clear> <footer> <p> &copy; <a href="http://graype.in">graype systems</a> pvt. ltd. </p> </footer> <script>prettyPrint();</script> <script src="scripts/linenumber.js"></script> <script src="https://embed.runkit.com"></script> <script>
+    var els = document.getElementsByClassName("runkit");
+
+    Array.prototype.forEach.call(els, function(el) {
+      // Do stuff here
+      var source = el.innerHTML;
+      el.innerHTML = '';
+      var n = RunKit.createNotebook( {
+        element: el,
+        source: source
+      } );
+    });
+  </script> <a href="https://docs.google.com/forms/d/e/1FAIpQLScormuaSPmnZ_jD2hqNXlfoj_vKDw-LKZ1rE69MCi9kaBGvGw/viewform?entry.754933393=/wink-nlp/leveraging-out.html" target=_blank class=leave-feedback-button style="display: block;">Leave feedback</a> </body> </html>

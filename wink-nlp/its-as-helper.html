@@ -1,0 +1,168 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>its and as helper : winkNLP - NLP in Node.js</title> <link rel=icon type="image/png" href="/favicon.png"> <script src="/wink-nlp/scripts/prettify/prettify.js"></script> <script src="/wink-nlp/scripts/prettify/lang-css.js"></script> <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> <link rel=stylesheet href="/wink-nlp/styles/prettify.css"> <link rel=stylesheet href="/wink-nlp/styles/jsdoc.css"> <meta name=viewport content="width=device-width, initial-scale=1.0"> </head> <body> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script> <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47082559-2');
+  </script> <script src="https://use.typekit.net/cwc1qce.js"></script> <script>
+    ((window.gitter = {}).chat = {}).options = {
+      room: 'winkjs/Lobby'
+    };
+    window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+    }
+  </script> <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> <script>try{Typekit.load({ async: true });}catch(e){}</script> <style media=screen>
+    .navbar {
+      border-top: 4px solid #6C307D;
+      box-sizing: border-box;
+      height: 64px;
+      background-color: #222;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar-header {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .navbar-header a img {
+      height: 24px;
+    }
+
+    .navbar a {
+      color: #fff;
+      line-height: 60px;
+      margin-left: 0;
+    }
+
+    .navbar a.navbar-brand {
+      margin-left: 20px;
+      display: block;
+      min-width: 40px;
+    }
+
+    .navbar-right {
+      margin: 0;
+      line-height: 50px;
+      list-style: none;
+    }
+
+    .navbar-right li {
+      float: left;
+      margin-right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    /* Override docdash */
+    #main {
+      margin-top: 30px;
+    }
+
+    /* Gitter */
+    .gitter-open-chat-button {
+      background: #6C307D;
+      display: none;
+    }
+
+    .gitter-open-chat-button:hover {
+      opacity: 0.8;
+      background: #6C307D;
+    }
+
+    .gitter-chat-embed {
+      top: 64px;
+    }
+
+    .leave-feedback-button {
+      right: 175px;
+      background: #6C307D;
+      color: #fff;
+      z-index: 100;
+      position: fixed;
+      bottom: 0;
+      padding: 1em 3em;
+      border: 0;
+      border-top-left-radius: .5em;
+      border-top-right-radius: .5em;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+      transition: all .3s ease;
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 720px) {
+    .leave-feedback-button{ display: none !important; }
+  }
+  </style> <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if ( window.location.hash ) {
+        openMember();
+        window.setTimeout( function () {
+          window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
+        }, 0)
+      }
+
+      document.getElementById('toc-button').addEventListener('click', function () {
+        if (document.getElementById('side-nav').className === '') {
+          document.getElementById('side-nav').className = 'is-open';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/close.svg');
+        } else {
+          document.getElementById('side-nav').className = '';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/menu.svg');
+        }
+      })
+    });
+
+    window.addEventListener( 'hashchange', function (e) {
+      e.stopPropagation();
+      openMember();
+    } );
+
+    function openMember() {
+      var id = window.location.hash.substr(1),
+      toggler = document.getElementById( id ),
+      offset = toggler.getBoundingClientRect().top,
+      y = window.scrollY + offset - 62 - 10;
+      window.scrollTo(0, y);
+    }
+  </script> <header> <div class=navbar> <div class=navbar-header> <a href="https://winkjs.org/" title=wink class=navbar-brand> <img src="https://winkjs.org/images/logo.svg"> <span>wink</span> </a> </div> <div class=sausage-links> <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id=main-nav> <li><a href="https://winkjs.org/wink-nlp/getting-started.html" class="">Tutorial</a></li> <li><a href="https://winkjs.org/examples.html" class="">Examples</a></li> <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li> <li><a href="http://github.com/winkjs">Github</a></li> <li><a href="https://winkjs.org/about.html" class="">About</a></li> </ul> </div> </div> </header> <div id=toc-button> <img src="./images/ui/menu.svg" alt="" id=toc-button-img> </div> <div class=content-container> <div class=main-container> <div id=main> <section> <article> <h1 id=codeitscode-helper><code>its</code> helper</h1> <p>The winkNLP document, collection and item have several <strong>contextual</strong> properties that are accessible via <code>its.<strong>propertyName</strong></code>, an argument of the <code>out()</code> method.</p> <p>The bold part of the argument, i.e., <code><strong>propertyName</strong></code>, needs to be substituted with a value from the following table, according to requirement. For example, after substituting the value, the argument can be <code>its.stopWordFlag</code>, <code>its.shape</code>, <code>its.vector</code>, etc. The default value of this argument is <code>its.value</code>.</p> <p>The method <code>out( its.value )</code> returns a <em>string</em> when it is applied to a <code>document</code> or <code>item</code> and an <em>array of strings</em> when it is applied to a <code>collection</code>. The other properties follow the same behaviour.</p> <p>For example, <code>token.out( its.abbrevFlag )</code> returns a <code>boolean</code> value, whereas <code>tokens().out( its.abbrevFlag )</code> returns a <code>boolean</code> array. This array holds the return value of each <code>token.out( its.abbrevFlag )</code> for the tokens collection.</p> <p><strong>Examples:</strong></p> <pre class="prettyprint source lang-javascript"><code>const text = 'I work for AI Inc.';
+const doc = nlp.readDoc( text );
+// Check abbreviation flag for a token item
+const t1 = doc.tokens().itemAt( 0 ) // -&gt; I
+console.log( t1.out(its.abbrevFlag) );
+// -&gt; false
+
+const t2 = doc.tokens().itemAt( 4 ) // -&gt; Inc.
+console.log( t2.out(its.abbrevFlag) );
+// -&gt; true
+
+// Check abbreviation flag for a token collection
+console.log(doc.tokens().out(its.abbrevFlag));
+// -&gt; [ false, false, false, false, true ]</code></pre> <div class=docs-tip> <strong>Convention:</strong> In the following table, if a <code><strong>propertyName</strong></code> applies to any winkNLP <strong>item</strong> type, then it applies to its corresponding collection as well. For example, as the table mentions that <code>its.abbrevFlag</code> applies to a token item, then it also applies to a token collection. </div> <h2 id=propertyname>propertyName</h2> <table> <tr> <th>propertyName</th> <th>Description</th> <th>Applies to</th> <th>Type</th> </tr> <tr> <td><code>its.abbrevFlag</code></td> <td> <code>true</code> if a token is an abbreviation. Common abbreviations like honorifics, unit of measures, education qualifications and more are a part of the lexicon. All initials followed by a period sign are flagged as abbreviations, even if they are not a part of the lexicon. For example, “AI” will not be flagged as an abbreviation, but “A.I.” will be. </td> <td>Token</td> <td><code>boolean</code></td> </tr> <tr> <td><code>its.case</code></td> <td> lowerCase, upperCase, titleCase or other (for digits, symbols, etc.) </td> <td>Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.contractionFlag</code></td> <td> <code>true</code> if a token is a contraction. Here is an example in English: “Can’t stop watching Netflix” Token: Ca, contractionFlag: <code>true</code> Token: n't, contractionFlag: <code>true</code> Token: stop, contractionFlag: <code>false</code> </td> <td>Token</td> <td><code>boolean</code></td> </tr> <tr> <td><code>its.detail</code></td> <td> The value and type of an entity together in an object. For example, {value: 'March 15, 1972', type: 'DATE' } </td> <td>Entity</td> <td><code>object</code></td> </tr> <tr> <td><code>its.lemma</code></td> <td> Lemma of the word based on its pos tag. </td> <td>—</td> <td>—</td> </tr> <tr> <td><code>its.markedUpText</code></td> <td> JavaScript string equivalent of text marked up using the <code>markup()</code> method </td> <td>Document, Sentence</td> <td><code>string</code></td> </tr> <tr> <td><code>its.negationFlag</code></td> <td> <code>true</code> if a token is negated. In English, tokens could be negated by words like not, neither, nor, rarely, scarcely, etc. For example, for the text “I didn’t like it.” , the negationFlag will be <code>true</code> </td> <td>Document, Sentence, Token</td> <td><code>boolean</code></td> </tr> <tr> <td><code>its.normal</code></td> <td> The lower-cased form of a token. In a document, sentence or entity whitespaces are limited to one. This property is applicable to latin script languages such as English or French. When used in english language, it maps the British spelling to its equivalent American spelling, if any. Refer to normalization rules in the language model. </td> <td>Document, Sentence, Entity, Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.pos</code></td> <td><a href="part-of-speech.html">Part-of-speech</a> tag of the token.</td> <td>Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.precedingSpaces</code></td> <td>Whitespaces before a token in string format</td> <td>Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.prefix</code></td> <td> First two characters of a token. For example, the token “time” will have the prefix “ti” </td> <td>Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.readabilityStats</code></td> <td> Flesch Reading Ease Score (fres), list complex words and their count, reading time in mins &amp; seconds, sentiment score and more. </td> <td>Document</td> <td><code>object</code></td> </tr> <tr> <td><code>its.sentenceWiseImportance</code></td> <td>Sentence wise importance for all the sentences in the document in the form of an array of objects. Each object follows <code>{index: number, importance: number}</code> format, where <code>index</code> refers to 0-based sentence’s index and importance is a number between <code>0</code> (lowest importance) and <code>1</code> (highest importance).</td> <td>Document</td> <td><code>object[]</code></td> </tr> <tr> <td><code>its.sentiment</code></td> <td>Sentiment score with a value between -1 and +1</td> <td>Document, Sentence</td> <td><code>number</code></td> </tr> <tr> <td><code>its.shape</code></td> <td> The shape of a token is mapped as follows: Each alphabet in a token is mapped as X or x depending on its case, digits are mapped as d and all other characters are mapped as themselves. The shape code is trimmed after any four consecutive identical shape patterns. An example in English, shape of token “Billion” will be “Xxxxx” and not “Xxxxxxx” </td> <td>Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.span</code></td> <td>Indexes of the first and last token</td> <td>Document, Sentence, Entity</td> <td><code>number[]</code></td> </tr> <tr> <td><code>its.stem</code></td> <td> Stem of the word according to the Porter Stemmer Algorithm version 2. </td> <td>—</td> <td>—</td> </tr> <tr> <td><code>its.stopWordFlag</code></td> <td> <code>true</code> if a token is a stop word. The representative list of stop words are part of the language model. </td> <td>Token</td> <td><code>boolean</code></td> </tr> <tr> <td><code>its.suffix</code></td> <td> Last three characters of a token. For example, the token “time” will have the suffix “ime” </td> <td>Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.type</code></td> <td> The type of entity or token. For a complete list of entity and token types refer to the documentation of the desired language model. </td> <td>Entity, Token</td> <td><code>string</code></td> </tr> <tr> <td><code>its.uniqueId</code></td> <td> The unique ID of a token. For example, “Hello world” will have the following tokens: Token: Hello, Unique ID: 34736 Token: World, Unique ID: 10980 </td> <td>Token</td> <td><code>number</code></td> </tr> <tr> <td><code>its.value</code></td> <td>JavaScript sting equivalent. This is the default property.</td> <td>Document, Sentence, Entity, Token</td> <td><code>string</code></td> </tr> </table> <p><br/></p> <div class="docs-tip docs-tip--yellow" style="margin-top: -1rem;"> Some of the properties are language dependent such as <code>it.stem</code>. For details refer to <a href="language-models.html">language models</a> </div> <h1 id=codeascode-helper><code>as</code> helper</h1> <p>The <code>out()</code> method for a collection has two parameters — <code>its.<stong>propertyName</stong></code> and <code>as.<strong>reducedValue</strong></code>. As the name suggests, a collection can be reduced to frequency table, bag of words, etc via the <code>as.<strong>reducedValue</strong></code> argument.</p> <p>The bold part of the argument, i.e., <code><strong>reducedValue</strong></code>, needs to be substituted with a value from the following table, according to requirement. For example, after substituting the value, the argument can be <code>as.freqTable</code>, <code>as.bigrams</code>, <code>as.array</code>, etc. The default value of this argument is <code>as.array</code>.</p> <h2 id=reducedvalue>reducedValue</h2> <table> <tr> <th>reducedValue</th> <th>Description</th> <th>Applies to</th> <th>Type</th> </tr> <tr> <td><code>as.array</code></td> <td>Collection reduced to JavaScript array This is the default reducer.</td> <td>Sentences, Entities, Tokens</td> <td><code>string[]</code></td> </tr> <tr> <td><code>as.bigrams</code></td> <td>Tokens reduced to Bigrams</td> <td>Tokens</td> <td><code>2D string[]</code></td> </tr> <tr> <td><code>as.bow</code></td> <td>Bag of words of entities, entity types or tokens</td> <td>Entities, Tokens</td> <td><code>object</code></td> </tr> <tr> <td><code>as.freqTable</code></td> <td>A frequency table in descending order</td> <td>Sentence, Entities, Tokens</td> <td><code>2D number[]</code></td> </tr> <tr> <td><code>as.set</code></td> <td>Collection reduced to a JavaScript set</td> <td>Entities, Tokens</td> <td><code>set{}</code></td> </tr> <tr> <td><code>as.unique</code></td> <td>Unique array of entities, entity types or tokens</td> <td>Entities, Tokens</td> <td><code>string[]</code></td> </tr> </table> </article> </section> </div> </div> <div class=side-nav-container> <nav id=side-nav class=side-nav> <h2><a href="/wink-nlp/">Overview</a></h2> <h2><a href="https://github.com/winkjs/wink-nlp">Github</a></h2> <h2><a target=_blank href="https://observablehq.com/@winkjs/">How to's</a></h2> <h3>Concepts</h3> <ul> <li><a href="getting-started.html">Getting started</a></li> <li><a href="processing-pipeline.html">Processing pipeline</a></li> <li><a href="document.html">Document</a></li> <li><a href="collection.html">Collection</a></li> <li><a href="item.html">Item & its properties</a></li> <li><a href="leveraging-out.html">Leveraging .out()</a></li> <li><a href="visualizing-markup.html">Visualizing using markup</a></li> <li><a href="custom-entities.html">Custom Entities</a></li> <li><a href="wink-nlp-in-browsers.html">WinkNLP in browsers</a></li> </ul> <h3>Utilities</h3> <ul> <li><a href="its-as-helper.html">its & as helper</a></li> <li><a href="similarity.html">Similarity</a></li> <li><a href="bm25-vectorizer.html">BM25 Vectorizer</a></li> <li><a href="language-models.html">Language models</a></li> <li><a href="part-of-speech.html">Part-of-Speech tags</a></li> </ul> <h3>API</h3> <ul> <li><a href="read-doc.html">readDoc</a></li> <li><a href="learn-custom-entities.html">learnCustomEntities</a></li> <li><a href="sentences.html">sentences</a></li> <li><a href="entities.html">entities</a></li> <li><a href="custom-entities-method.html">customEntities</a></li> <li><a href="tokens.html">tokens</a></li> <li><a href="out.html">out</a></li> <li><a href="each.html">each</a></li> <li><a href="length.html">length</a></li> <li><a href="item-at.html">itemAt</a></li> <li><a href="filter.html">filter</a></li> <li><a href="markup.html">markup</a></li> <li><a href="index-method.html">index</a></li> <li><a href="parent-document.html">parentDocument</a></li> <li><a href="parent-sentence.html">parentSentence</a></li> <li><a href="parent-entity.html">parentEntity</a></li> <li><a href="parent-custom-entity.html">parentCustomEntity</a></li> </ul> </nav> </div> </div> <br class=clear> <footer> <p> &copy; <a href="http://graype.in">graype systems</a> pvt. ltd. </p> </footer> <script>prettyPrint();</script> <script src="scripts/linenumber.js"></script> <script src="https://embed.runkit.com"></script> <script>
+    var els = document.getElementsByClassName("runkit");
+
+    Array.prototype.forEach.call(els, function(el) {
+      // Do stuff here
+      var source = el.innerHTML;
+      el.innerHTML = '';
+      var n = RunKit.createNotebook( {
+        element: el,
+        source: source
+      } );
+    });
+  </script> <a href="https://docs.google.com/forms/d/e/1FAIpQLScormuaSPmnZ_jD2hqNXlfoj_vKDw-LKZ1rE69MCi9kaBGvGw/viewform?entry.754933393=/wink-nlp/its-as-helper.html" target=_blank class=leave-feedback-button style="display: block;">Leave feedback</a> </body> </html>

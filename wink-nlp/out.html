@@ -1,0 +1,231 @@
+<!DOCTYPE html> <html lang=en> <head> <meta charset=utf-8> <title>out : winkNLP - NLP in Node.js</title> <link rel=icon type="image/png" href="/favicon.png"> <script src="/wink-nlp/scripts/prettify/prettify.js"></script> <script src="/wink-nlp/scripts/prettify/lang-css.js"></script> <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> <link rel=stylesheet href="/wink-nlp/styles/prettify.css"> <link rel=stylesheet href="/wink-nlp/styles/jsdoc.css"> <meta name=viewport content="width=device-width, initial-scale=1.0"> </head> <body> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script> <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-47082559-2');
+  </script> <script src="https://use.typekit.net/cwc1qce.js"></script> <script>
+    ((window.gitter = {}).chat = {}).options = {
+      room: 'winkjs/Lobby'
+    };
+    window.onload = function () {
+      document.querySelector('.gitter-open-chat-button').innerText = 'Need help?'
+      document.querySelector('.gitter-open-chat-button').style.display = 'block';
+    }
+  </script> <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> <script>try{Typekit.load({ async: true });}catch(e){}</script> <style media=screen>
+    .navbar {
+      border-top: 4px solid #6C307D;
+      box-sizing: border-box;
+      height: 64px;
+      background-color: #222;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 1030;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .navbar-header {
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .navbar-header a img {
+      height: 24px;
+    }
+
+    .navbar a {
+      color: #fff;
+      line-height: 60px;
+      margin-left: 0;
+    }
+
+    .navbar a.navbar-brand {
+      margin-left: 20px;
+      display: block;
+      min-width: 40px;
+    }
+
+    .navbar-right {
+      margin: 0;
+      line-height: 50px;
+      list-style: none;
+    }
+
+    .navbar-right li {
+      float: left;
+      margin-right: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    /* Override docdash */
+    #main {
+      margin-top: 30px;
+    }
+
+    /* Gitter */
+    .gitter-open-chat-button {
+      background: #6C307D;
+      display: none;
+    }
+
+    .gitter-open-chat-button:hover {
+      opacity: 0.8;
+      background: #6C307D;
+    }
+
+    .gitter-chat-embed {
+      top: 64px;
+    }
+
+    .leave-feedback-button {
+      right: 175px;
+      background: #6C307D;
+      color: #fff;
+      z-index: 100;
+      position: fixed;
+      bottom: 0;
+      padding: 1em 3em;
+      border: 0;
+      border-top-left-radius: .5em;
+      border-top-right-radius: .5em;
+      font-family: sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      cursor: hand;
+      transition: all .3s ease;
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 720px) {
+    .leave-feedback-button{ display: none !important; }
+  }
+  </style> <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if ( window.location.hash ) {
+        openMember();
+        window.setTimeout( function () {
+          window.scrollTo( 0, (window.pageYOffset || document.documentElement.scrollTop) - 72);
+        }, 0)
+      }
+
+      document.getElementById('toc-button').addEventListener('click', function () {
+        if (document.getElementById('side-nav').className === '') {
+          document.getElementById('side-nav').className = 'is-open';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/close.svg');
+        } else {
+          document.getElementById('side-nav').className = '';
+          document.getElementById('toc-button-img').setAttribute('src','./images/ui/menu.svg');
+        }
+      })
+    });
+
+    window.addEventListener( 'hashchange', function (e) {
+      e.stopPropagation();
+      openMember();
+    } );
+
+    function openMember() {
+      var id = window.location.hash.substr(1),
+      toggler = document.getElementById( id ),
+      offset = toggler.getBoundingClientRect().top,
+      y = window.scrollY + offset - 62 - 10;
+      window.scrollTo(0, y);
+    }
+  </script> <header> <div class=navbar> <div class=navbar-header> <a href="https://winkjs.org/" title=wink class=navbar-brand> <img src="https://winkjs.org/images/logo.svg"> <span>wink</span> </a> </div> <div class=sausage-links> <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id=main-nav> <li><a href="https://winkjs.org/wink-nlp/getting-started.html" class="">Tutorial</a></li> <li><a href="https://winkjs.org/examples.html" class="">Examples</a></li> <li><a href="https://winkjs.org/blog.html" class="">Blog</a></li> <li><a href="http://github.com/winkjs">Github</a></li> <li><a href="https://winkjs.org/about.html" class="">About</a></li> </ul> </div> </div> </header> <div id=toc-button> <img src="./images/ui/menu.svg" alt="" id=toc-button-img> </div> <div class=content-container> <div class=main-container> <div id=main> <section> <article> <h1 id=out>out()</h1> <p>The <code>out()</code> method produces output in JavaScript built-in datatypes intelligently depending on the usage. It is available universally at all levels — document, collection, and item.</p> <div class=docs-tip> No other winkNLP APIs can be chained after the <code>out()</code> method. This method returns the output in JavaScript data types. </div> <h2 id=itemout-and-docout>item.out() and doc.out()</h2> <p><code class=signature>out( its.propertyName<sub>optional</sub> ) → { string<sub>default</sub> }<code></code></code></p> <p>The behaviour of <code>doc.out()</code> and <code>item.out()</code> is similar. The <code>out()</code> method accepts <code>its.<strong>propertyName</strong></code> as one of its parameter. The default parameter is <code>its.value</code>, which returns the winkNLP doc as a string. Some properties like shape, prefix, suffix, PoS tag, etc. can be computed only for token items.</p> <p>You can find a <a href="/wink-nlp/its-as-helper.html">complete list of properties</a> in the reference section.</p> <p><strong>Examples:</strong></p> <p>Let’s explore the <code>out()</code> method for the winkNLP document and items with the following example text:</p> <pre class="prettyprint source lang-javascript"><code>const text = '#Celebration Nov. 20, 2018 marks the @Space_Station\'s 20th anniversary🌌! Our orbiting laboratory makes technology and research breakthroughs beyond    Earth🌎. Unpack its architecture here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀';
+const patterns = [
+  { name: 'wordEmoji', patterns: [ '[NOUN|PROPN] [EMOJI]' ] },
+  { name: 'hashtagEmoji', patterns: [ '[HASHTAG] [EMOJI]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );</code></pre> <h3 id=docout>doc.out()</h3> <p><code class=signature>doc.out( its.propertyName<sub>optional</sub> ) → { string<sub>default</sub> }</code></p> <pre class="prettyprint source lang-javascript"><code>console.log( doc.out() );
+// -&gt; #Celebration Nov. 20, 2018 marks the @Space_Station's 20th
+//    anniversary🌌! Our orbiting laboratory makes technology and
+//    research breakthroughs beyond    Earth🌎. Unpack its architecture
+//    here: https://go.nasa.gov/2FH23qG #SpaceStation20th🚀</code></pre> <div class="docs-tip docs-tip--green"> winkNLP has a lossless tokenizer — notice how it has preserved and reproduced all the spaces between "beyond" and "Earth" in the following examples. </div> <h3 id=sentenceout>sentence.out()</h3> <p><code class=signature>doc.sentences().itemAt( 0 ).out( its.propertyName) → { string<sub>default</sub> }</code></p> <pre class="prettyprint source lang-javascript"><code>const sentence = doc.sentences().itemAt( 1 )
+console.log( `${ sentence.index() }:`, sentence.out() );
+// -&gt; 1: Our orbiting laboratory makes technology and research breakthroughs
+//       beyond    Earth🌎.</code></pre> <h3 id=entityout>entity.out()</h3> <p><code class=signature>doc.entities().itemAt( 0 ).out(its.propertyName) → {string<sub>default</sub>}</code></p> <pre class="prettyprint source lang-javascript"><code>const entity = doc.entities().itemAt( 3 );
+console.log( entity.out( its.value ) ); // Returns: string
+// -&gt; 20th
+
+console.log( entity.out( its.detail ) ); // Returns: object
+// -&gt; { value: '20th', type: 'ORDINAL' }
+
+console.log( entity.out( its.type ) ); // Returns: string
+// -&gt; ORDINAL</code></pre> <h3 id=customentityout>customEntity.out()</h3> <p><code class=signature>doc.customEntities().itemAt( 0 ).out( its.propertyName ) -&gt; { string<sub>default</sub>}</code></p> <pre class="prettyprint source lang-javascript"><code>// Note that the custom entities were learnt before running readDoc above
+customEntities = doc.customEntities().out( its.detail );
+console.log( customEntities );
+// -&gt; [ { value: 'anniversary🌌', type: 'wordEmoji' },
+//      { value: 'Earth🌎', type: 'wordEmoji' },
+//      { value: '#SpaceStation20th🚀', type: 'hashtagEmoji' } ]
+
+// Custom entity item
+const customEntity = doc.customEntities().itemAt( 1 );
+console.log( customEntity.out( its.value ) ); // Returns: string
+// -&gt; Earth🌎
+
+console.log( customEntity.out( its.detail ) ); // Returns: object
+// -&gt; { value: 'Earth🌎', type: 'wordEmoji' }
+
+console.log( customEntity.out( its.type ) ); // Returns: string
+// -&gt; wordEmoji</code></pre> <h3 id=tokenout>token.out()</h3> <p><code class=signature>doc.tokens().itemAt( 0 ).out( its.propertyName) → {string<sub>default</sub>}</code></p> <pre class="prettyprint source lang-javascript"><code>const token = doc.tokens().itemAt( 31 );
+console.log( `Token: ${ token.out() }, Type: "${ token.out( its.type ) }"` );
+// -&gt; Token: #SpaceStation20th, Type: "hashtag"</code></pre> <h2 id=collectionout>collection.out()</h2> <p><code class=signature>out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code></p> <p>Any winkNLP collection followed by the <code>out()</code> method returns an array of strings by default.</p> <p>The out() API for collection accepts two parameters: <code>its.<strong>propertyName</strong></code> and <code>as.<strong>reducedValue</strong></code>.</p> <p>The first parameter, <code>its.<strong>propertyName</strong></code> behaves similar to the <code>out()</code> method for document and item.</p> <p>The second parameter is a predefined reducer function which is executed on each item of the collection to compute bag of words, frequency table, bigrams, etc. It defaults to <code>as.array</code>.</p> <p>You can find a <a href="/wink-nlp/its-as-helper.html#codeascode-helper">complete list of reducers</a> in the reference section.</p> <p><strong>Examples:</strong> Let’s explore the <code>out()</code> method for collections with the following example text:</p> <pre class="prettyprint source lang-javascript"><code>const text = 'The Godfather premiered on March 15, 1972 and was released on March 24, 1972. It is the first installment in The Godfather trilogy. The story of the movie spans from 1945 to 1955.';
+const patterns = [
+  { name: 'event', patterns: [ '[VERB] [|ADP] [DATE|DURATION]' ] }
+];
+nlp.learnCustomEntities( patterns );
+const doc = nlp.readDoc( text );</code></pre> <h3 id=sentencesout>sentences().out()</h3> <p><code class=signature>doc.sentences().out(its.propertyName, as.reducedValue) → {string[ ]<sub>default</sub>}</code></p> <pre class="prettyprint source lang-javascript"><code>console.log( doc.sentences().out() );
+// -&gt; [ 'The Godfather premiered on March 15, 1972 and was released on
+//       March 24, 1972.',
+//      'It is the first installment in The Godfather trilogy.',
+//      'The story of the movie spans from 1945 to 1955.' ]</code></pre> <h3 id=entitiesout>entities.out()</h3> <p><code class=signature>doc.entities().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code></p> <p>The default, string array returned by <code>its.value</code> contains only the text of the entity. However, the <code>its.detail</code> property returns an object array with the entity text and type together. For example:</p> <pre class="prettyprint source lang-javascript"><code>console.log( doc.entities().out( its.value, as.array ) );
+// -&gt; [ 'March 15, 1972',
+//      'March 24, 1972',
+//      'first',
+//      'from 1945 to 1955' ]
+
+console.log( doc.entities().out( its.detail, as.array ) );
+// -&gt; [ { value: 'March 15, 1972', type: 'DATE' },
+//      { value: 'March 24, 1972', type: 'DATE' },
+//      { value: 'first', type: 'ORDINAL' },
+//      { value: 'from 1945 to 1955', type: 'DURATION' } ]
+
+console.log( doc.entities().out( its.type, as.array ) );
+// -&gt; [ 'DATE', 'DATE', 'ORDINAL', 'DURATION' ]</code></pre> <h3 id=customentitiesout>customEntities().out()</h3> <p><code class=signature>doc.customEntities().out( its.propertyName, as.reducedValue ) -&gt; { string[]<sub>default</sub>}</code></p> <pre class="prettyprint source lang-javascript"><code>console.log( doc.customEntities().out( its.value, as.array ) );
+// -&gt; [ 'premiered on March 15, 1972',
+//      'released on March 24, 1972',
+//      'spans from 1945 to 1955' ]
+
+console.log( doc.customEntities().out( its.detail, as.array ) );
+// -&gt; [ { value: 'premiered on March 15, 1972', type: 'event' },
+//      { value: 'released on March 24, 1972', type: 'event' },
+//      { value: 'spans from 1945 to 1955', type: 'event' } ]
+
+console.log( doc.customEntities().out( its.type, as.array ) );
+// -&gt; [ 'event', 'event', 'event' ]</code></pre> <h3 id=tokensout>tokens().out()</h3> <p><code class=signature>doc.tokens().out( its.propertyName, as.reducedValue ) → {string[ ]<sub>default</sub>}</code></p> <pre class="prettyprint source lang-javascript"><code>console.log( doc.tokens().out() ); // default
+// -&gt; [ 'The', 'Godfather', 'premiered',...'1945', 'to', '1955', '.' ]
+
+console.log( doc.tokens().out( its.type ) ); // get the token types
+// -&gt; [ 'word', 'word', 'word',...'number', 'word', 'number', 'punctuation' ]</code></pre> </article> </section> </div> </div> <div class=side-nav-container> <nav id=side-nav class=side-nav> <h2><a href="/wink-nlp/">Overview</a></h2> <h2><a href="https://github.com/winkjs/wink-nlp">Github</a></h2> <h2><a target=_blank href="https://observablehq.com/@winkjs/">How to's</a></h2> <h3>Concepts</h3> <ul> <li><a href="getting-started.html">Getting started</a></li> <li><a href="processing-pipeline.html">Processing pipeline</a></li> <li><a href="document.html">Document</a></li> <li><a href="collection.html">Collection</a></li> <li><a href="item.html">Item & its properties</a></li> <li><a href="leveraging-out.html">Leveraging .out()</a></li> <li><a href="visualizing-markup.html">Visualizing using markup</a></li> <li><a href="custom-entities.html">Custom Entities</a></li> <li><a href="wink-nlp-in-browsers.html">WinkNLP in browsers</a></li> </ul> <h3>Utilities</h3> <ul> <li><a href="its-as-helper.html">its & as helper</a></li> <li><a href="similarity.html">Similarity</a></li> <li><a href="bm25-vectorizer.html">BM25 Vectorizer</a></li> <li><a href="language-models.html">Language models</a></li> <li><a href="part-of-speech.html">Part-of-Speech tags</a></li> </ul> <h3>API</h3> <ul> <li><a href="read-doc.html">readDoc</a></li> <li><a href="learn-custom-entities.html">learnCustomEntities</a></li> <li><a href="sentences.html">sentences</a></li> <li><a href="entities.html">entities</a></li> <li><a href="custom-entities-method.html">customEntities</a></li> <li><a href="tokens.html">tokens</a></li> <li><a href="out.html">out</a></li> <li><a href="each.html">each</a></li> <li><a href="length.html">length</a></li> <li><a href="item-at.html">itemAt</a></li> <li><a href="filter.html">filter</a></li> <li><a href="markup.html">markup</a></li> <li><a href="index-method.html">index</a></li> <li><a href="parent-document.html">parentDocument</a></li> <li><a href="parent-sentence.html">parentSentence</a></li> <li><a href="parent-entity.html">parentEntity</a></li> <li><a href="parent-custom-entity.html">parentCustomEntity</a></li> </ul> </nav> </div> </div> <br class=clear> <footer> <p> &copy; <a href="http://graype.in">graype systems</a> pvt. ltd. </p> </footer> <script>prettyPrint();</script> <script src="scripts/linenumber.js"></script> <script src="https://embed.runkit.com"></script> <script>
+    var els = document.getElementsByClassName("runkit");
+
+    Array.prototype.forEach.call(els, function(el) {
+      // Do stuff here
+      var source = el.innerHTML;
+      el.innerHTML = '';
+      var n = RunKit.createNotebook( {
+        element: el,
+        source: source
+      } );
+    });
+  </script> <a href="https://docs.google.com/forms/d/e/1FAIpQLScormuaSPmnZ_jD2hqNXlfoj_vKDw-LKZ1rE69MCi9kaBGvGw/viewform?entry.754933393=/wink-nlp/out.html" target=_blank class=leave-feedback-button style="display: block;">Leave feedback</a> </body> </html>
