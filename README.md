@@ -10,7 +10,7 @@ gems and manage the environment.
 ## Development
 
 After cloning, you'll need to install dependencies using `bundle install`.
-Then run `bundle exec middleman server` to start a preview web server. You can
+Then run `bundle exec middleman serve` to start a preview web server. You can
 then navigate to
 [http://localhost:4567/](http://localhost:4567/) too see the local website.
 
