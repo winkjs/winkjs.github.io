@@ -7,7 +7,7 @@ title: WinkNLP in browsers?
 WinkNLP is designed to work on Node.js and web browsers both. Apart from building a server side solution using Node.js, you can build a pure browser side NLP app with equal ease. To do this, we need to use the web version of the English lite model — [wink-eng-lite-web-model](https://www.npmjs.com/package/wink-eng-lite-web-model). We'll also need a tool that can bundle all the required modules, something like [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). For the purpose of this tutorial we'll use Browserify. First, lets install the required packages:
 
 <div class="docs-tip docs-tip--yellow">
-  We'll be installing Broswerify globally, refer to its <a href="https://github.com/browserify/browserify#getting-started">documentation</a> for more details.
+  We'll be installing Browserify globally, refer to its <a href="https://github.com/browserify/browserify#getting-started">documentation</a> for more details.
 </div>
 
 <pre class="prettyprint source"><code>npm install wink-nlp --save
@@ -29,7 +29,7 @@ const doc = nlp.readDoc( text );
 doc.entities().each((e) => e.markup());
 document.getElementById("result").innerHTML = doc.out(its.markedUpText);</code></pre>
 
-Now, we'll use Broswerify to bundle all the required modules into a single file:
+Now, we'll use Browserify to bundle all the required modules into a single file:
 
 <pre class="prettyprint source"><code>browserify token-counter.js -o bundle.js</code></pre>
 
