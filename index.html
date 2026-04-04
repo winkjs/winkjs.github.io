@@ -1,54 +1,399 @@
-<!doctype html> <html lang=en> <head> <meta charset=utf-8> <meta name=description content="Developer friendly Natural Language Processing. Open Source packages for NLP, ML and Statistics in Node JS to build production grade solutions."> <meta http-equiv=content-language content=en> <meta name=viewport content="width=device-width, initial-scale=1"> <meta name=theme-color content="#6C307D"> <meta content="IE=edge,chrome=1" http-equiv=X-UA-Compatible> <title>winkJS — NLP, Machine Learning & Stats in Node.js</title> <link href="/stylesheets/bootstrap.min.css" rel=stylesheet /><link href="/stylesheets/master.css" rel=stylesheet /><link href="/stylesheets/atom-one-dark.css" rel=stylesheet /> <script src="/javascripts/all.js"></script> <link rel=icon type="image/png" href="favicon.png"> <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47082559-2"></script> <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>winkJS — Open-source NLP & Streaming Intelligence for Node.js</title>
+<meta name="description" content="winkJS is the open-source home of winkNLP and winkComposer — rigorous, high-performance tools for natural language processing and streaming intelligence in Node.js. 10M+ downloads. MIT licensed.">
+<link rel="canonical" href="https://winkjs.org">
+<link rel="icon" href="https://winkjs.org/images/favicon.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://winkjs.org">
+<meta property="og:title" content="winkJS — Open-source NLP & Streaming Intelligence">
+<meta property="og:description" content="winkNLP and winkComposer — rigorous open-source tools for Node.js. 10M+ downloads worldwide.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="winkJS — Open-source NLP & Streaming Intelligence">
+<meta name="twitter:description" content="winkNLP and winkComposer — rigorous open-source tools for Node.js. 10M+ downloads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --grape:       #703C89;
+  --grape-light: #9B6BB3;
+  --grape-pale:  #f3eef7;
+  --grape-mid:   #e8dff0;
+  --ink:         #1a1528;
+  --muted:       #6b6484;
+  --faint:       #9d98b0;
+  --rule:        #e8e5f0;
+  --bg:          #faf9f7;
+  --bg2:         #f3f1f7;
+  --white:       #ffffff;
+  --green:       #1a7a4a;
+  --green-pale:  #edf7f2;
+  --green-bdr:   #b8dfc9;
+  --serif:       'Cormorant Garamond', Georgia, serif;
+  --sans:        'DM Sans', system-ui, sans-serif;
+  --mono:        'DM Mono', 'Fira Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
 
-      gtag('config', 'UA-47082559-2');
-    </script> <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel=stylesheet> <script src="https://use.typekit.net/cwc1qce.js"></script> <script>try{Typekit.load({ async: true });}catch(e){}</script> </head> <body class=index> <header> <nav class="navbar navbar-inverse navbar-fixed-top"> <div class=container> <div class=navbar-header> <button type=button class="navbar-toggle collapsed" data-toggle=collapse data-target="#main-nav" aria-expanded=false> <span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span> </button> <a href="/" title=wink class=navbar-brand> 32 </a> <h1 class=screen-reader-text>Wink JS - NLP, Machine Learning & Stats</h1> </div> <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id=main-nav> <li><a href="/wink-composer" class="">Wink Composer</a></li> <li><a href="/wink-nlp/getting-started.html" class="">Wink NLP</a></li> <li><a href="/examples.html" class="">Examples</a></li> <li><a href="/blog.html" class="">Blog</a></li> <li><a href="http://github.com/winkjs">Github</a></li> <li><a href="/about.html" class="">About</a></li> </ul> </div> </nav> </header> <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel=stylesheet> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script>
-  AOS.init();
-</script> <header> <div class="container masthead" id=masthead> <div class=row> <p class=hero> Developer friendly<br> Natural Language Processing </p> <p>The right balance of performance and accuracy in Node.js</p> <br><br> <a href="https://www.npmjs.com/package/wink-nlp" class=cta>Download</a> <a href="/wink-nlp/getting-started.html" class=cta>Get started</a> </div> </div> <div id=particles-js></div> </header> <main class=container> <div class=row> <div class=col-md-12> <p class=subhero> Build amazing applications quickly </p><br><br><br> </div> <div class=col-md-4> <div class=showcase-block> <h2><a href="https://observablehq.com/@winkjs/how-to-visualize-timeline-of-a-wiki-article">Wikipedia Timeline</a></h2> <a href="https://observablehq.com/@winkjs/how-to-visualize-timeline-of-a-wiki-article" target=_blank> <img src="/images/showcase-timeline.jpg" alt="Wikipedia Timeline"> </a> <p>Named entity extraction and timeline generation from a Wikipedia article using <a href='/wink-nlp/'>winkNLP</a>. Read our <a href='https://observablehq.com/@winkjs/how-to-find-date-and-time-in-text?collection=@winkjs/winknlp-recipes'>how to find date and time in text</a> guide.</p> </div> </div> <div class=col-md-4> <div class=showcase-block> <h2><a href="https://observablehq.com/@winkjs/how-to-create-a-context-aware-word-cloud">Context aware word cloud</a></h2> <a href="https://observablehq.com/@winkjs/how-to-create-a-context-aware-word-cloud" target=_blank> <img src="/images/showcase-cloud.png" alt="Context aware word cloud"> </a> <p></p> </div> </div> <div class=col-md-4> <div class=showcase-block> <h2><a href="https://observablehq.com/@winkjs/how-to-visualize-key-sentences-in-a-document">Visualize key sentences in a document</a></h2> <a href="https://observablehq.com/@winkjs/how-to-visualize-key-sentences-in-a-document" target=_blank> <img src="/images/showcase-key-sentences.png" alt="Visualize key sentences in a document"> </a> <p></p> </div> </div> <div class=col-md-12> <br><br><br> </div> </div> <div class=col-md-12> <br><br> <h2 class=emphasis>Get started in a <em>wink</em>!</h2> <p>Here is how you extract a timeline from any text in just a few lines of code.</p><br> </div> <div class=clearfix></div> <div class=highlight-section> <div class="col-md-6 highlight"> <h2>Multiple Models</h2> <p> We have a <a href="https://github.com/winkjs/wink-eng-lite-model">light model for English</a> with many more on the way! Looking for something domain specific, or for a particular language? Feel free to <a href="mailto:contactus@graype.in">get in touch</a>! </p> <br><br><br><br><br><br> <h2>All the NLP you’ll need</h2> <p> Powerful NLP functions and helpers to get you directly what you need. Whether its <a href="https://winkjs.org/wink-nlp/part-of-speech.html">POS tags</a> , sentiment analysis, <a href="http://winkjs.org/wink-nlp/custom-entities.html">custom entities</a>, or getting a list of frequent words, it’s <a href="https://winkjs.org/wink-nlp/its-as-helper.html">all right here</a>! </p> <br><br><br><br><br><br> <h2>Easy to use API</h2> <p> An intuitive API lets you get started quick and get the results you’re looking for. <ul> <li>Quickly access the document's <code><a href="/wink-nlp/entities.html">entities</a></code>, <code><a href="/wink-nlp/sentences.html">sentences</a></code> and <code><a href="/wink-nlp/tokens.html">tokens</a></code>.</li> <li>Use familiar functions like <a href="https://winkjs.org/wink-nlp/each.html"><code>each</code></a> and <a href="https://winkjs.org/wink-nlp/filter.html"><code>filter</code></a>, or <a href="https://winkjs.org/wink-nlp/out.html"><code>output</code></a> to native JavaScript data types.</li> <li>Built-in visualization support with <a href="http://winkjs.org/wink-nlp/visualizing-markup.html"><code>markup</code></a>.</li> </ul> </p> </div> <div class="col-md-6 flip-order"> <pre><code class="javascript">const winkNLP = require('wink-nlp');
-const its = require('wink-nlp/src/its.js');
-const as = require('wink-nlp/src/as.js');
-const model = require('wink-eng-lite-model');
-const nlp = winkNLP(model);
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--ink); border-top: 3px solid var(--grape); }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 58px; }
+.nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.nav-logo img { height: 22px; width: auto; }
+.nav-logo-text { font-size: 1rem; font-weight: 500; color: #fff; letter-spacing: 0.02em; }
+.nav-links { display: flex; align-items: center; list-style: none; }
+.nav-links a { display: block; padding: 0 1rem; height: 58px; line-height: 58px; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.65); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s, background 0.2s; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
 
+/* LAYOUT */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+section { padding: 5rem 0; }
 
+/* HERO */
+#hero { padding: 7rem 0 4rem; background: var(--white); border-bottom: 1px solid var(--rule); }
+.hero-kicker { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--grape); text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+.hero-kicker::before { content: ''; display: block; width: 20px; height: 1.5px; background: var(--grape); }
+h1 { font-family: var(--serif); font-size: clamp(2.6rem, 5vw, 4.2rem); font-weight: 500; line-height: 1.1; letter-spacing: -0.01em; color: var(--ink); max-width: 760px; margin-bottom: 1.5rem; }
+h1 em { font-style: italic; color: var(--grape); }
+.hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 540px; line-height: 1.8; font-weight: 300; margin-bottom: 3.5rem; }
+.hero-stats { display: flex; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 2rem; }
+.hero-stat { flex: 1; min-width: 140px; padding-right: 2rem; border-right: 1px solid var(--rule); margin-right: 2rem; margin-bottom: 1rem; }
+.hero-stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+.hero-stat-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 500; color: var(--ink); line-height: 1; display: block; margin-bottom: 0.3rem; }
+.hero-stat-l { font-size: 0.75rem; color: var(--faint); letter-spacing: 0.04em; }
 
+/* PRODUCTS */
+#products { background: var(--bg); border-bottom: 1px solid var(--rule); }
+.section-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--grape); text-transform: uppercase; margin-bottom: 0.75rem; }
+h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); letter-spacing: -0.005em; }
+h2 em { font-style: italic; }
+.products-intro { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.product-card { background: var(--white); border: 1px solid var(--rule); border-radius: 6px; padding: 2.5rem; display: flex; flex-direction: column; transition: border-color 0.25s, box-shadow 0.25s; }
+.product-card:hover { border-color: var(--grape-light); box-shadow: 0 4px 24px rgba(112,60,137,0.08); }
+.product-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.28rem 0.65rem; border-radius: 2px; margin-bottom: 1.5rem; align-self: flex-start; }
+.product-badge.live { color: var(--green); background: var(--green-pale); border: 1px solid var(--green-bdr); }
+.product-badge.dev { color: var(--grape); background: var(--grape-pale); border: 1px solid var(--grape-mid); }
+.product-badge .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.product-badge.live .dot { background: var(--green); }
+.product-badge.dev .dot { background: var(--grape); }
+.product-name { font-family: var(--serif); font-size: 2rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; letter-spacing: -0.01em; }
+.product-tagline { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--grape); margin-bottom: 1.25rem; line-height: 1.4; }
+.product-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.8; flex-grow: 1; margin-bottom: 1.75rem; }
+.product-perf { display: flex; align-items: baseline; gap: 0.75rem; padding: 1.25rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-bottom: 1.75rem; }
+.product-perf-n { font-family: var(--serif); font-size: 2.4rem; font-weight: 500; color: var(--ink); line-height: 1; flex-shrink: 0; }
+.product-perf-l { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.product-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; font-weight: 500; color: var(--grape); text-decoration: none; letter-spacing: 0.02em; transition: gap 0.2s; }
+.product-link:hover { gap: 0.65rem; }
 
+/* PERFORMANCE */
+#performance { background: var(--white); border-bottom: 1px solid var(--rule); }
+.perf-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-radius: 6px; overflow: hidden; margin-top: 3rem; }
+.perf-cell { background: var(--bg); padding: 2rem 1.75rem; }
+.perf-product { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grape); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+.perf-product::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.perf-n { font-family: var(--serif); font-size: 2.6rem; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 0.35rem; }
+.perf-label { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.perf-tag { display: inline-block; margin-top: 0.75rem; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--faint); background: var(--bg2); padding: 0.2rem 0.5rem; border-radius: 2px; border: 1px solid var(--rule); }
 
-const doc = nlp.readDoc(text);
-// This runs all core NLP tasks like
-// tokenization, sentence boundary
-// detection, negation handling, sentiment
-// analysis, part-of-speech tagging, and
-// named and custom entity extraction.
+/* COMMUNITY */
+#community { background: var(--white); border-bottom: 1px solid var(--rule); }
+.community-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
+.community-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 6px; padding: 1.75rem 1.5rem; text-decoration: none; color: var(--ink); display: flex; flex-direction: column; align-items: flex-start; transition: border-color 0.2s, box-shadow 0.2s, background 0.2s; }
+.community-card:hover { border-color: var(--grape-light); background: var(--white); box-shadow: 0 4px 20px rgba(112,60,137,0.08); }
+.community-card-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--grape-pale); border: 1px solid var(--grape-mid); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; flex-shrink: 0; }
+.community-card-icon svg { width: 20px; height: 20px; stroke: var(--grape); fill: none; }
+.community-card-title { font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+.community-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; flex-grow: 1; }
+.community-card-action { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.78rem; font-weight: 500; color: var(--grape); margin-top: 1.25rem; letter-spacing: 0.02em; }
 
+/* CONTACT */
+#contact { background: var(--bg); border-bottom: 1px solid var(--rule); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-text h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; }
+.contact-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.contact-text a { color: var(--grape); text-decoration: none; font-weight: 500; }
+.contact-text a:hover { text-decoration: underline; }
+.contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.contact-link { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; background: var(--white); border: 1px solid var(--rule); border-radius: 4px; text-decoration: none; color: var(--ink); transition: border-color 0.2s, box-shadow 0.2s; }
+.contact-link:hover { border-color: var(--grape-light); box-shadow: 0 2px 12px rgba(112,60,137,0.08); }
+.contact-link-icon { width: 36px; height: 36px; border-radius: 4px; background: var(--grape-pale); border: 1px solid var(--grape-mid); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.contact-link-icon svg { width: 16px; height: 16px; stroke: var(--grape); fill: none; }
+.contact-link-label { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+.contact-link-sub { font-size: 0.75rem; color: var(--faint); margin-top: 1px; }
 
+/* FOOTER */
+footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 2rem 0; border-top: 3px solid var(--grape); }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-left { font-size: 0.78rem; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+.footer-left a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-left a:hover { color: rgba(255,255,255,0.75); }
+.footer-sep { color: rgba(255,255,255,0.2); }
+.footer-right { display: flex; }
+.footer-right a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-right a:hover { color: rgba(255,255,255,0.85); }
+.footer-right svg { width: 18px; height: 18px; fill: currentColor; }
 
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s, transform 0.55s; }
+.reveal.visible { opacity: 1; transform: none; }
 
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .product-grid, .contact-layout { grid-template-columns: 1fr; }
+  .perf-trio { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links li { display: none; }
+  .nav-links li:last-child { display: block; }
+  section { padding: 3.5rem 0; }
+  #hero { padding: 5.5rem 0 3rem; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .hero-stat { border-right: none; padding-right: 0; margin-right: 0; }
+  .hero-stat:nth-child(odd) { border-right: 1px solid var(--rule); padding-right: 1rem; }
+  footer .footer-inner { flex-direction: column; }
+}
+</style>
+</head>
+<body>
 
-var timeline = [];
-doc
-  .entities()
-  .filter( e => e.out( its.type ) === 'DATE')
-  .each( e => {
-    timeline.push({
-      sentence: e
-        .parentSentence()
-        .out( its.markedUpText ),
-      date: e.out(),
-      unixTime: new Date(e.out()).getTime()
-    })
-  });
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://winkjs.org">
+      <img src="https://winkjs.org/images/logo.svg" alt="wink">
+      <span class="nav-logo-text">winkJS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://composer.winkjs.org">Wink Composer</a></li>
+      <li><a href="https://winkjs.org/wink-nlp.html">Wink NLP</a></li>
+      <li><a href="https://winkjs.org/examples.html">Examples</a></li>
+      <li><a href="https://winkjs.org/blog.html">Blog</a></li>
+      <li><a href="https://github.com/winkjs" target="_blank">GitHub</a></li>
+      <li><a href="https://graype.in" target="_blank">Graype Systems</a></li>
+    </ul>
+  </div>
+</nav>
 
-timeline.sort( (a, b) => {
-  return a.unixTime - b.unixTime
-});
-</code></pre> </div> </div> </main> <main class=container> <div class="row about-stats"> <div class=col-md-4> <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#speed--accuracy"> <img src="/images/speed.svg" alt=""> </a> <h3>+500,000 tokens/second</h3> Full NLP pipeline - tokenization, SBD, sentiment analysis, POS and <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#speed--accuracy">more</a> </div> <div class=col-md-4> <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#speed--accuracy"> <img src="/images/visibility.svg" alt=""> </a> <h3>94.7% accuracy</h3> PoS tagging on a subset of the WSJ corpus, <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#speed--accuracy">including tokenization</a> of raw text </div> <div class=col-md-4> <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#memory-requirement"> <img src="/images/memory.svg" alt=""> </a> <h3>80MB peak memory</h3> When <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#memory-requirement">processing a 350 page book</a> with over 125,000 tokens </div> <div class=col-md-12> <br><br><br><br>&nbsp; </div> <div class=col-md-4> <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#memory-requirement"> <img src="/images/dependency.svg" alt=""> </a> <h3>Zero dependency</h3> Built ground up with a lean code base that has <a href="https://snyk.io/test/github/winkjs/wink-nlp?tab=dependencies" target=_blank>no external dependency</a> </div> <div class=col-md-4> <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#memory-requirement"> <img src="/images/shield.svg" alt=""> </a> <h3>Battle hardened</h3> Achieved an <a href="https://bestpractices.coreinfrastructure.org/en/projects/6035" target=_blank>Open Source Security Foundation</a> best practices badge </div> <div class=col-md-4> <a href="https://github.com/winkjs/wink-nlp/blob/master/README.md#memory-requirement"> <img src="/images/testcoverage.svg" alt=""> </a> <h3>100 % test coverage</h3> Automated build that includes a comprehensive regression test suite that requires >99.5% <a href="https://coveralls.io/github/winkjs/wink-nlp?branch=master" target=_blank>test coverage</a> </div> </div> </main> <div class=feat> <div class=container> <div class=col-md-12> <p class="subhero smallhero"> Open Source <a href="https://github.com/winkjs/?q=&type=all&language=&sort=stargazers" target=_blank>packages</a> for NLP,ML and Statistics in Node JS to build production grade solutions </p> </div> </div> </div> <div class=signup id=signup> <div class=container> <div class="col-md-8 msg"> <h2>Sign up for updates</h2> <p>Get occasional updates from our team about new releases, guides and showcases.</p> <div id=mc_embed_signup> <form action="https://winkjs.us12.list-manage.com/subscribe/post?u=d3c950efd6a89418263b00990&amp;id=8fa8c3e2a7" method=post id=mc-embedded-subscribe-form name=mc-embedded-subscribe-form class=validate target=_blank novalidate> <div id=mc_embed_signup_scroll> <div class=mc-field-group> <input type=email value="" name=EMAIL class="required email" id=mce-EMAIL placeholder="your@email.com"> </div> <div id=mce-responses class=clear> <div class=response id=mce-error-response style="display:none"></div> <div class=response id=mce-success-response style="display:none"></div> </div> <div style="position: absolute; left: -5000px;" aria-hidden=true><input name=b_d3c950efd6a89418263b00990_8fa8c3e2a7 tabindex=-1 value=""></div> <div class=clear><input type=submit value=Subscribe name=subscribe id=mc-embedded-subscribe class=button></div> </div> </form> </div> </div> <div class=col-md-4> <h2>Get in touch</h2> <p>We provide consulting, education, and mentoring services. Get in touch at <a href="mailto:contactus@graype.in">contactus@graype.in</a>.</p> <br><br> <a class=github-button href="https://github.com/winkjs" data-size=large aria-label="Follow @winkjs on GitHub">Visit @winkjs</a> &nbsp;&nbsp; <a href="https://twitter.com/winkjs_org?ref_src=twsrc%5Etfw" class=twitter-follow-button data-size=large data-dnt=true data-show-count=false>Follow @winkjs_org</a><script async src="https://platform.twitter.com/widgets.js" charset=utf-8></script> <script async defer src="https://buttons.github.io/buttons.js"></script> </div> </div> </div> <meta name="twitter:card" content=summary_large_image /> <meta name="twitter:site" content="@winkjs_org"/> <meta name="twitter:creator" content="@winkjs_org"/> <meta property="og:url" content="https://winkjs.org/"/> <meta property="og:title" content="Wink JS - Stats, NLP & Machine Learning"/> <meta property="og:description" content="Developer friendly Natural Language Processing. Open Source packages for NLP, ML and Statistics in Node JS to build production grade solutions."/> <meta property="og:image" content="https://winkjs.org/images/opengraph.png"/> <meta property="og:type" content=website /> <footer> <div class=container> <div class=row> <div class=col-md-6> <p> &copy; <a href="http://graype.in">graype systems</a> pvt. ltd. </p> </div> <div class="col-md-6 social-icons"> <ul> <li> <a href="https://twitter.com/winkjs_org/"> <img src="/images/twitter.svg" alt=twitter class=twitter> </a> </li> <li> <a href="https://github.com/winkjs"> <img src="/images/github.svg" alt=github class=github> </a> </li> <li> <a href="/packages.html"> <img src="/images/package.svg" alt=package class=package> </a> </li> </ul> </div> </div> </div> </footer> <script src="/javascripts/highlight.pack.js"></script> <script src="/javascripts/jquery.min.js"></script> <script src="/javascripts/bootstrap.min.js"></script> <script>hljs.initHighlightingOnLoad();</script> <script src="/javascripts/viz.js"></script> <script src="/javascripts/particles.min.js"></script> <script src="/javascripts/headroom.js"></script> <script>
-  var myElement = document.querySelector(".navbar");
-  var headroom  = new Headroom(myElement, {
-    "offset": 205,
-    "tolerance": 5,
+<section id="hero">
+  <div class="container">
+    <p class="hero-kicker">Open-source · Node.js · MIT Licensed</p>
+    <h1>Rigorous tools for<br><em>NLP</em> and <em>streaming intelligence.</em></h1>
+    <p class="hero-sub">
+      winkJS is the open-source home of two high-performance, production-grade
+      tools — built from first principles, tested to near-perfection,
+      and trusted by thousands of projects worldwide.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-n">10M+</span>
+        <span class="hero-stat-l">ecosystem downloads / year</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">20+</span>
+        <span class="hero-stat-l">open-source packages</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">~100%</span>
+        <span class="hero-stat-l">test coverage, both products</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">MIT</span>
+        <span class="hero-stat-l">licensed · forever free</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="container">
+    <div class="products-intro">
+      <div>
+        <p class="section-label">Our products</p>
+        <h2>Two tools. One <em>discipline.</em></h2>
+      </div>
+      <p style="font-size:0.9rem;color:var(--muted);max-width:340px;line-height:1.8;">
+        Different problems, same uncompromising standard — rigorous engineering,
+        exhaustive testing, minimal dependencies.
+      </p>
+    </div>
+    <div class="product-grid reveal">
+      <div class="product-card">
+        <span class="product-badge live"><span class="dot"></span>Live · Open Source</span>
+        <div class="product-name">winkNLP</div>
+        <div class="product-tagline">Developer-friendly Natural Language Processing.</div>
+        <p class="product-desc">
+          A high-performance NLP pipeline — tokenization, sentence boundary detection,
+          negation handling, sentiment analysis, POS tagging, NER, and custom entities —
+          in a single zero-dependency package with full TypeScript support.
+          Runs identically in Node.js and browsers. Ranks #3 globally among
+          JavaScript packages for OpenSSF security adherence.
+        </p>
+        <div class="product-perf">
+          <span class="product-perf-n">2M+</span>
+          <span class="product-perf-l">tokens / second<br>MacBook Pro M4 · Chrome</span>
+        </div>
+        <a href="https://winkjs.org/wink-nlp.html" class="product-link">Learn more →</a>
+      </div>
+      <div class="product-card">
+        <span class="product-badge dev"><span class="dot"></span>Active Development</span>
+        <div class="product-name">winkComposer</div>
+        <div class="product-tagline">Composable Streaming Intelligence.</div>
+        <p class="product-desc">
+          From IIoT streams to actionable insight — in real time. Composable
+          blocks for signal conditioning, statistics, anomaly detection, and
+          flow control — from Kalman filters to spiking neural networks.
+          Express what you want, not how to build it. AI-native via MCP Server.
+          Purpose-built for SMBs and MSMEs. Same code from edge to cloud.
+        </p>
+        <div class="product-perf">
+          <span class="product-perf-n">1M+</span>
+          <span class="product-perf-l">messages / second<br>Modern server · Node.js</span>
+        </div>
+        <a href="https://composer.winkjs.org" class="product-link">Explore winkComposer →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="performance">
+  <div class="container">
+    <p class="section-label reveal">Shared standards</p>
+    <h2 class="reveal">Built the same way.<br><em>Both</em> of them.</h2>
+    <p class="reveal" style="font-size:0.9rem;color:var(--muted);margin-top:1rem;max-width:520px;line-height:1.8;">
+      Different domains, identical discipline. Every line researched, every edge case
+      tested, every dependency questioned.
+    </p>
+    <div class="perf-trio reveal">
+      <div class="perf-cell">
+        <div class="perf-product">Both products</div>
+        <div class="perf-n">~100%</div>
+        <div class="perf-label">test coverage</div>
+        <div class="perf-tag">Automated regression suite</div>
+      </div>
+      <div class="perf-cell">
+        <div class="perf-product">winkNLP</div>
+        <div class="perf-n">2M+</div>
+        <div class="perf-label">tokens / second</div>
+        <div class="perf-tag">MacBook Pro M4 · Chrome</div>
+      </div>
+      <div class="perf-cell">
+        <div class="perf-product">winkComposer</div>
+        <div class="perf-n">1M+</div>
+        <div class="perf-label">messages / second</div>
+        <div class="perf-tag">Modern server · Node.js</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="community">
+  <div class="container">
+    <p class="section-label reveal">Get involved</p>
+    <h2 class="reveal">Star us. Follow us.<br><em>Build with us.</em></h2>
+    <div class="community-grid reveal">
+      <a class="community-card" href="https://github.com/winkjs/wink-nlp" target="_blank">
+        <div class="community-card-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="community-card-title">Star winkNLP</div>
+        <p class="community-card-desc">Stars help others discover the project. It means a lot to a small team.</p>
+        <span class="community-card-action">Star on GitHub →</span>
+      </a>
+      <a class="community-card" href="https://github.com/winkjs/composer" target="_blank">
+        <div class="community-card-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <div class="community-card-title">Star winkComposer</div>
+        <p class="community-card-desc">Show your support for streaming intelligence done right.</p>
+        <span class="community-card-action">Star on GitHub →</span>
+      </a>
+      <a class="community-card" href="https://github.com/winkjs" target="_blank">
+        <div class="community-card-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="community-card-title">Follow @winkjs</div>
+        <p class="community-card-desc">Stay updated on new releases, packages, and ecosystem developments.</p>
+        <span class="community-card-action">Follow on GitHub →</span>
+      </a>
+      <a class="community-card" href="https://github.com/winkjs/wink-nlp/blob/master/CONTRIBUTING.md" target="_blank">
+        <div class="community-card-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+        <div class="community-card-title">Contribute</div>
+        <p class="community-card-desc">Open issues, submit PRs, or write examples. High standards, warm welcome.</p>
+        <span class="community-card-action">Read the guide →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div class="contact-text reveal">
+        <p class="section-label">Get in touch</p>
+        <h3>We provide consulting, education, and mentoring.</h3>
+        <p>
+          Need expert guidance on NLP, streaming analytics, IoT, or edge computing?
+          We work with a small number of clients at any time and stay long enough
+          to do the work properly.
+        </p>
+        <p>Reach out at <a id="contact-email" href="#">contactus&#64;graype.in</a></p>
+        <p style="margin-top:1.5rem;font-size:0.82rem;color:var(--faint);">
+          A product of <a href="https://graype.in" style="color:var(--faint);">Graype Systems Private Limited</a> · Noida, India
+        </p>
+      </div>
+      <div class="contact-links reveal">
+        <a class="contact-link" href="https://github.com/winkjs" target="_blank">
+          <div class="contact-link-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div>
+          <div><div class="contact-link-label">GitHub · winkjs</div><div class="contact-link-sub">Star us, open issues, contribute</div></div>
+        </a>
+        <a class="contact-link" href="https://winkjs.org/wink-nlp.html">
+          <div class="contact-link-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <div><div class="contact-link-label">winkNLP</div><div class="contact-link-sub">Natural language processing for Node.js</div></div>
+        </a>
+        <a class="contact-link" href="https://composer.winkjs.org" target="_blank">
+          <div class="contact-link-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="contact-link-label">winkComposer</div><div class="contact-link-sub">Composable streaming intelligence</div></div>
+        </a>
+        <a class="contact-link" href="https://winkjs.org/packages.html">
+          <div class="contact-link-icon"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+          <div><div class="contact-link-label">All packages</div><div class="contact-link-sub">NLP, ML &amp; statistics utilities</div></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>&copy; <a href="https://graype.in">Graype Systems Private Limited</a></span>
+      <span class="footer-sep">·</span>
+      <a href="https://winkjs.org/packages.html">Packages</a>
+      <span class="footer-sep">·</span>
+      <a href="https://winkjs.org/blog.html">Blog</a>
+      <span class="footer-sep">·</span>
+      <span>MIT Licensed</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://twitter.com/winkjs_org/" title="Twitter" target="_blank"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      <a href="https://github.com/winkjs" title="GitHub" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://winkjs.org/packages.html" title="Packages"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var e = atob('Y29udGFjdHVzQGdyYXlwZS5pbg==');
+  var m = ['mai','lto:',e].join('');
+  var c = document.getElementById('contact-email');
+  if (c) c.href = m;
+})();
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
   });
-  headroom.init();
-</script> </body> </html>
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+</script>
+</body>
+</html>
