@@ -7,13 +7,45 @@
 <meta name="description" content="winkNLP is a high-performance, zero-dependency NLP library for Node.js and browsers. Tokenization, POS tagging, NER, sentiment analysis and more. ~3M downloads/year. 100% test coverage.">
 <link rel="canonical" href="https://winkjs.org/wink-nlp.html">
 <link rel="icon" href="https://winkjs.org/images/favicon.png" type="image/png">
+
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://winkjs.org/wink-nlp.html">
 <meta property="og:title" content="winkNLP — Developer-friendly NLP for Node.js">
-<meta property="og:description" content="Zero-dependency NLP pipeline for Node.js. ~3M downloads/year. 2,750+ dependents. OpenSSF #3 globally.">
+<meta property="og:description" content="Zero-dependency NLP pipeline for Node.js and browsers. ~3M downloads/year. 2,750+ dependents. OpenSSF #3 globally. 100% test coverage.">
+<meta property="og:image" content="https://winkjs.org/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="winkNLP — Developer-friendly Natural Language Processing for Node.js">
+
+<!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="winkNLP — Developer-friendly NLP for Node.js">
 <meta name="twitter:description" content="High-performance NLP for Node.js and browsers. Zero dependency. ~3M downloads/year.">
+<meta name="twitter:image" content="https://winkjs.org/images/og.png">
+<meta name="twitter:image:alt" content="winkNLP — Developer-friendly Natural Language Processing for Node.js">
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "winkNLP",
+  "url": "https://winkjs.org/wink-nlp.html",
+  "description": "Developer-friendly Natural Language Processing library for Node.js. Zero dependency, high performance, 100% test coverage.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Node.js, Browser",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": {
+    "@type": "Organization",
+    "name": "Graype Systems Private Limited",
+    "url": "https://graype.in"
+  },
+  "sameAs": ["https://github.com/winkjs/wink-nlp", "https://www.npmjs.com/package/wink-nlp"]
+}
+</script>
+
+<meta name="keywords" content="winkNLP, NLP Node.js, natural language processing JavaScript, POS tagging, named entity recognition, sentiment analysis, zero dependency NLP, tokenizer Node.js">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -155,8 +187,8 @@ h2 em { font-style: italic; }
 .quickstart-text a { color: var(--grape); text-decoration: none; font-weight: 500; }
 .quickstart-text a:hover { text-decoration: underline; }
 .quickstart-text code { font-family: var(--mono); font-size: 0.85em; color: var(--grape); background: var(--grape-pale); padding: 0.1em 0.35em; border-radius: 2px; }
-.code-block { background: var(--ink); border-radius: 6px; padding: 1.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.06); }
-.code-block pre { font-family: var(--mono); font-size: 0.78rem; line-height: 1.7; color: rgba(255,255,255,0.85); white-space: pre; }
+.code-block { background: var(--ink); border-radius: 6px; padding: 1.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.06); max-width: 100%; }
+.code-block pre { font-family: var(--mono); font-size: 0.78rem; line-height: 1.7; color: rgba(255,255,255,0.85); white-space: pre-wrap; word-break: break-word; }
 .cc { color: rgba(255,255,255,0.35); }
 .ck { color: #c792ea; }
 .cs { color: #c3e88d; }
@@ -171,6 +203,15 @@ h2 em { font-style: italic; }
 .perf-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
 .perf-label { font-size: 0.85rem; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
 .perf-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* ECOSYSTEM / PACKAGES */
+#packages { background: var(--bg); border-bottom: 1px solid var(--rule); }
+.packages-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.packages-text h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; }
+.packages-text h3 em { font-style: italic; }
+.packages-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.packages-text a { color: var(--grape); text-decoration: none; font-weight: 500; }
+.packages-text a:hover { text-decoration: underline; }
 
 /* COMMUNITY */
 #community { background: var(--white); border-bottom: 1px solid var(--rule); }
@@ -241,6 +282,7 @@ footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 2rem 0;
   .showcase-grid { grid-template-columns: 1fr 1fr; }
   .quickstart-layout, .packages-layout { grid-template-columns: 1fr; }
   .perf-grid { grid-template-columns: 1fr 1fr; }
+  .community-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
   .nav-links li { display: none; }
@@ -249,11 +291,14 @@ footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 2rem 0;
   #hero { padding: 5.5rem 0 4rem; }
   .showcase-grid { grid-template-columns: 1fr; }
   .perf-grid { grid-template-columns: 1fr; }
+  .community-grid { grid-template-columns: 1fr; }
   .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .hero-stat { border-right: none; padding-right: 0; margin-right: 0; }
   .hero-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); padding-right: 1rem; }
   footer .footer-inner { flex-direction: column; }
 }
+/* Global overflow guard */
+html, body { overflow-x: hidden; max-width: 100%; }
 </style>
 </head>
 <body>
@@ -455,52 +500,30 @@ doc.<span class="cm">tokens</span>().<span class="cm">out</span>( its.type, as.f
   </div>
 </section>
 
-<!-- PACKAGES -->
+<!-- ECOSYSTEM -->
 <section id="packages">
   <div class="container">
-    <div class="packages-layout">
-      <div class="packages-text reveal">
+    <div class="packages-layout reveal">
+      <div class="packages-text">
         <p class="section-label">The ecosystem</p>
-        <h3>More than winkNLP.</h3>
+        <h3>Part of a larger <em>family.</em></h3>
         <p>
-          winkJS is a family of focused utility packages for NLP, machine learning,
-          and statistical analysis in Node.js — each rigorously tested, zero or
-          minimal dependencies, MIT licensed.
+          winkNLP sits alongside a set of utility packages for NLP,
+          machine learning, and statistical analysis — all MIT licensed,
+          all on npm, all built to the same standard.
         </p>
         <p>
           <a href="https://winkjs.org/packages.html">View all 20+ packages →</a>
         </p>
-        <p style="margin-top:1rem;font-size:0.82rem;color:var(--faint);">
-          Also check out
-          <a href="https://composer.winkjs.org" style="color:var(--faint);">winkComposer →</a>
-          for streaming intelligence.
-        </p>
       </div>
-      <div class="pkg-list reveal">
-        <a class="pkg-item" href="https://winkjs.org/wink-nlp/" target="_blank">
-          <span class="pkg-name">wink-nlp</span>
-          <span class="pkg-desc">Full NLP pipeline</span>
-        </a>
-        <a class="pkg-item" href="https://github.com/winkjs/wink-bm25-text-search" target="_blank">
-          <span class="pkg-name">wink-bm25-text-search</span>
-          <span class="pkg-desc">Fast full-text search</span>
-        </a>
-        <a class="pkg-item" href="https://winkjs.org/wink-statistics/" target="_blank">
-          <span class="pkg-name">wink-statistics</span>
-          <span class="pkg-desc">Numerically stable stats</span>
-        </a>
-        <a class="pkg-item" href="https://winkjs.org/wink-distance/" target="_blank">
-          <span class="pkg-name">wink-distance</span>
-          <span class="pkg-desc">Similarity &amp; distance functions</span>
-        </a>
-        <a class="pkg-item" href="https://winkjs.org/wink-sentiment/" target="_blank">
-          <span class="pkg-name">wink-sentiment</span>
-          <span class="pkg-desc">Phrase sentiment scoring</span>
-        </a>
-        <a class="pkg-item" href="https://winkjs.org/packages.html" style="border-style:dashed;">
-          <span class="pkg-name" style="color:var(--faint);">20+ packages total</span>
-          <span class="pkg-desc" style="color:var(--grape);font-weight:500;">View all →</span>
-        </a>
+      <div style="background:var(--bg2);border:1px solid var(--rule);border-radius:6px;padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;">
+        <div>
+          <div style="font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--grape);margin-bottom:1rem;">Also from winkJS</div>
+          <div style="font-family:var(--serif);font-size:1.9rem;font-weight:500;color:var(--ink);line-height:1.1;margin-bottom:0.5rem;">winkComposer</div>
+          <div style="font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--grape);margin-bottom:1rem;">Composable Streaming Intelligence.</div>
+          <div style="font-size:0.82rem;color:var(--muted);line-height:1.6;">From IIoT streams to actionable insight — in real time. Same engineering discipline, different domain.</div>
+        </div>
+        <a href="https://composer.winkjs.org" style="display:inline-flex;align-items:center;gap:0.35rem;margin-top:1.5rem;font-size:0.85rem;font-weight:500;color:var(--grape);text-decoration:none;letter-spacing:0.02em;">Explore winkComposer →</a>
       </div>
     </div>
   </div>
@@ -511,7 +534,7 @@ doc.<span class="cm">tokens</span>().<span class="cm">out</span>( its.type, as.f
   <div class="container">
     <div class="community-intro reveal">
       <p class="section-label">Get involved</p>
-      <h2>Star us. Follow us.<br><em>Build with us.</em></h2>
+      <h2>Build with us.<br><em>Star us. Follow us.</em></h2>
       <p>
         winkNLP is built by a small team and made better by the community.
         Every star, every issue, and every contribution matters — genuinely.
