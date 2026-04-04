@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>winkNLP — Developer-friendly Natural Language Processing for Node.js</title>
+<meta name="description" content="winkNLP is a high-performance, zero-dependency NLP library for Node.js and browsers. Tokenization, POS tagging, NER, sentiment analysis and more. ~3M downloads/year. 100% test coverage.">
+<link rel="canonical" href="https://winkjs.org/wink-nlp.html">
+<link rel="icon" href="https://winkjs.org/images/favicon.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://winkjs.org/wink-nlp.html">
+<meta property="og:title" content="winkNLP — Developer-friendly NLP for Node.js">
+<meta property="og:description" content="Zero-dependency NLP pipeline for Node.js. ~3M downloads/year. 2,750+ dependents. OpenSSF #3 globally.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="winkNLP — Developer-friendly NLP for Node.js">
+<meta name="twitter:description" content="High-performance NLP for Node.js and browsers. Zero dependency. ~3M downloads/year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --grape:       #703C89;
+  --grape-light: #9B6BB3;
+  --grape-pale:  #f3eef7;
+  --grape-mid:   #e8dff0;
+  --ink:         #1a1528;
+  --muted:       #6b6484;
+  --faint:       #9d98b0;
+  --rule:        #e8e5f0;
+  --bg:          #faf9f7;
+  --bg2:         #f3f1f7;
+  --white:       #ffffff;
+  --hero-bg:     #13101f;
+  --hero-bg2:    #1c1730;
+  --serif:       'Cormorant Garamond', Georgia, serif;
+  --sans:        'DM Sans', system-ui, sans-serif;
+  --mono:        'DM Mono', 'Fira Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); font-size: 16px; line-height: 1.7; font-weight: 300; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--ink); border-top: 3px solid var(--grape); }
+.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 58px; }
+.nav-logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.nav-logo img { height: 22px; width: auto; }
+.nav-logo-text { font-size: 1rem; font-weight: 500; color: #fff; letter-spacing: 0.02em; }
+.nav-links { display: flex; align-items: center; list-style: none; }
+.nav-links a { display: block; padding: 0 1rem; height: 58px; line-height: 58px; font-size: 0.82rem; font-weight: 400; color: rgba(255,255,255,0.65); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s, background 0.2s; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.05); }
+.nav-links a.active { color: #fff; border-bottom-color: var(--grape-light); }
+
+/* LAYOUT */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+section { padding: 5rem 0; }
+
+/* HERO — dark, like current winkjs.org */
+#hero {
+  padding: 7rem 0 5rem;
+  background: var(--hero-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative; overflow: hidden;
+}
+/* Constellation dot pattern — CSS only */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(155,107,179,0.35) 1px, transparent 1px),
+    radial-gradient(circle, rgba(155,107,179,0.2) 1px, transparent 1px);
+  background-size: 80px 80px, 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+#hero::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--hero-bg));
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-breadcrumb {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em;
+  color: rgba(155,107,179,0.8); text-transform: uppercase;
+  margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;
+}
+.hero-breadcrumb a { color: rgba(155,107,179,0.6); text-decoration: none; }
+.hero-breadcrumb a:hover { color: rgba(155,107,179,0.9); }
+.hero-breadcrumb-sep { opacity: 0.4; }
+.hero-h1 {
+  font-family: var(--sans); font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 500; line-height: 1.08; letter-spacing: -0.02em;
+  color: #fff; max-width: 780px; margin-bottom: 1.25rem;
+}
+.hero-h1 span { color: var(--grape-light); }
+.hero-tagline {
+  font-size: 1.1rem; color: rgba(255,255,255,0.6);
+  max-width: 520px; line-height: 1.75; font-weight: 300; margin-bottom: 2.5rem;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; padding: 0.75rem 1.75rem;
+  background: var(--grape); color: #fff; text-decoration: none;
+  border-radius: 3px; border: 2px solid var(--grape);
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-primary:hover { background: var(--grape-light); border-color: var(--grape-light); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+  text-transform: uppercase; padding: 0.75rem 1.75rem;
+  background: transparent; color: rgba(255,255,255,0.8);
+  text-decoration: none; border-radius: 3px;
+  border: 2px solid rgba(255,255,255,0.2);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+.hero-stats {
+  display: flex; flex-wrap: wrap;
+  border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+}
+.hero-stat {
+  flex: 1; min-width: 140px; padding-right: 2rem;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  margin-right: 2rem; margin-bottom: 1rem;
+}
+.hero-stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+.hero-stat-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 500; color: #fff; line-height: 1; display: block; margin-bottom: 0.3rem; }
+.hero-stat-l { font-size: 0.75rem; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+
+/* SECTION LABELS */
+.section-label { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em; color: var(--grape); text-transform: uppercase; margin-bottom: 0.75rem; }
+h2 { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 500; line-height: 1.15; color: var(--ink); letter-spacing: -0.005em; }
+h2 em { font-style: italic; }
+
+/* SHOWCASE */
+#showcase { background: var(--white); border-bottom: 1px solid var(--rule); }
+.showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.showcase-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: border-color 0.2s, box-shadow 0.2s; }
+.showcase-card:hover { border-color: var(--grape-light); box-shadow: 0 4px 20px rgba(112,60,137,0.08); }
+.showcase-card img { width: 100%; height: 180px; object-fit: cover; display: block; border-bottom: 1px solid var(--rule); background: var(--bg2); }
+.showcase-card-body { padding: 1.25rem 1.5rem 1.5rem; flex-grow: 1; }
+.showcase-card-title { font-size: 0.9rem; font-weight: 500; color: var(--ink); margin-bottom: 0.5rem; }
+.showcase-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.65; }
+.showcase-card-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.8rem; font-weight: 500; color: var(--grape); margin-top: 1rem; letter-spacing: 0.02em; }
+
+/* QUICKSTART */
+#quickstart { background: var(--bg); border-bottom: 1px solid var(--rule); }
+.quickstart-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: start; }
+.quickstart-text h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; }
+.quickstart-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.quickstart-text a { color: var(--grape); text-decoration: none; font-weight: 500; }
+.quickstart-text a:hover { text-decoration: underline; }
+.quickstart-text code { font-family: var(--mono); font-size: 0.85em; color: var(--grape); background: var(--grape-pale); padding: 0.1em 0.35em; border-radius: 2px; }
+.code-block { background: var(--ink); border-radius: 6px; padding: 1.5rem; overflow-x: auto; border: 1px solid rgba(255,255,255,0.06); }
+.code-block pre { font-family: var(--mono); font-size: 0.78rem; line-height: 1.7; color: rgba(255,255,255,0.85); white-space: pre; }
+.cc { color: rgba(255,255,255,0.35); }
+.ck { color: #c792ea; }
+.cs { color: #c3e88d; }
+.cf { color: #82aaff; }
+.cm { color: #89ddff; }
+
+/* PERFORMANCE */
+#performance { background: var(--white); border-bottom: 1px solid var(--rule); }
+.perf-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border-radius: 6px; overflow: hidden; margin-top: 3rem; }
+.perf-cell { background: var(--bg); padding: 1.75rem; }
+.perf-icon { width: 40px; height: 40px; margin-bottom: 1rem; opacity: 0.7; }
+.perf-n { font-family: var(--serif); font-size: 2.2rem; font-weight: 500; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
+.perf-label { font-size: 0.85rem; font-weight: 500; color: var(--ink); margin-bottom: 0.25rem; }
+.perf-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* COMMUNITY */
+#community { background: var(--white); border-bottom: 1px solid var(--rule); }
+.community-intro { text-align: center; max-width: 560px; margin: 0 auto 3rem; }
+.community-intro h2 { margin-bottom: 1rem; }
+.community-intro p { font-size: 0.95rem; color: var(--muted); line-height: 1.8; }
+.community-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.community-card {
+  background: var(--bg); border: 1px solid var(--rule);
+  border-radius: 6px; padding: 1.75rem 1.5rem;
+  text-decoration: none; color: var(--ink);
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.community-card:hover {
+  border-color: var(--grape-light); background: var(--white);
+  box-shadow: 0 4px 20px rgba(112,60,137,0.08);
+}
+.community-card-icon {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: var(--grape-pale); border: 1px solid var(--grape-mid);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.25rem; flex-shrink: 0;
+}
+.community-card-icon svg { width: 20px; height: 20px; stroke: var(--grape); fill: none; }
+.community-card-title {
+  font-size: 0.95rem; font-weight: 500; color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+.community-card-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; flex-grow: 1; }
+.community-card-action {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.78rem; font-weight: 500; color: var(--grape);
+  margin-top: 1.25rem; letter-spacing: 0.02em;
+}
+
+/* ALL PACKAGES */
+#packages { background: var(--bg); border-bottom: 1px solid var(--rule); }
+.packages-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.packages-text h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; color: var(--ink); margin-bottom: 1rem; }
+.packages-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.packages-text a { color: var(--grape); text-decoration: none; font-weight: 500; }
+.packages-text a:hover { text-decoration: underline; }
+.pkg-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.pkg-item { display: flex; align-items: center; gap: 1rem; padding: 0.85rem 1.25rem; background: var(--white); border: 1px solid var(--rule); border-radius: 4px; text-decoration: none; transition: border-color 0.2s; }
+.pkg-item:hover { border-color: var(--grape-light); }
+.pkg-name { font-family: var(--mono); font-size: 0.82rem; font-weight: 500; color: var(--ink); flex: 1; }
+.pkg-desc { font-size: 0.78rem; color: var(--muted); }
+
+/* FOOTER */
+footer { background: var(--ink); color: rgba(255,255,255,0.45); padding: 2rem 0; border-top: 3px solid var(--grape); }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-left { font-size: 0.78rem; display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+.footer-left a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-left a:hover { color: rgba(255,255,255,0.75); }
+.footer-sep { color: rgba(255,255,255,0.2); }
+.footer-right { display: flex; }
+.footer-right a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+.footer-right a:hover { color: rgba(255,255,255,0.85); }
+.footer-right svg { width: 18px; height: 18px; fill: currentColor; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s, transform 0.55s; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .showcase-grid { grid-template-columns: 1fr 1fr; }
+  .quickstart-layout, .packages-layout { grid-template-columns: 1fr; }
+  .perf-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links li { display: none; }
+  .nav-links li:last-child { display: block; }
+  section { padding: 3.5rem 0; }
+  #hero { padding: 5.5rem 0 4rem; }
+  .showcase-grid { grid-template-columns: 1fr; }
+  .perf-grid { grid-template-columns: 1fr; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .hero-stat { border-right: none; padding-right: 0; margin-right: 0; }
+  .hero-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.08); padding-right: 1rem; }
+  footer .footer-inner { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://winkjs.org">
+      <img src="https://winkjs.org/images/logo.svg" alt="wink">
+      <span class="nav-logo-text">winkJS</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="https://composer.winkjs.org">Wink Composer</a></li>
+      <li><a href="https://winkjs.org/wink-nlp.html" class="active">Wink NLP</a></li>
+      <li><a href="https://winkjs.org/examples.html">Examples</a></li>
+      <li><a href="https://winkjs.org/blog.html">Blog</a></li>
+      <li><a href="https://github.com/winkjs" target="_blank">GitHub</a></li>
+      <li><a href="https://graype.in" target="_blank">Graype Systems</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container hero-inner">
+    <div class="hero-breadcrumb">
+      <a href="https://winkjs.org">winkJS</a>
+      <span class="hero-breadcrumb-sep">›</span>
+      <span>winkNLP</span>
+    </div>
+    <h1 class="hero-h1">Developer friendly<br><span>Natural Language Processing</span></h1>
+    <p class="hero-tagline">
+      The right balance of performance and accuracy in Node.js —
+      zero dependencies, full TypeScript support, runs in browsers too.
+    </p>
+    <div class="hero-ctas">
+      <a href="https://www.npmjs.com/package/wink-nlp" class="btn-primary" target="_blank">Download</a>
+      <a href="https://winkjs.org/wink-nlp/getting-started.html" class="btn-secondary">Get started →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-n">~3M</span>
+        <span class="hero-stat-l">downloads / year</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">2,750+</span>
+        <span class="hero-stat-l">dependent projects</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">#3</span>
+        <span class="hero-stat-l">OpenSSF globally · JS ecosystem</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n">~100%</span>
+        <span class="hero-stat-l">test coverage</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="container">
+    <p class="section-label reveal">Build amazing applications</p>
+    <h2 class="reveal">See what's possible<br>with <em>winkNLP</em></h2>
+    <div class="showcase-grid reveal">
+      <a class="showcase-card" href="https://observablehq.com/@winkjs/how-to-visualize-timeline-of-a-wiki-article" target="_blank">
+        <img src="https://winkjs.org/images/showcase-timeline.jpg" alt="Wikipedia Timeline">
+        <div class="showcase-card-body">
+          <div class="showcase-card-title">Wikipedia Timeline</div>
+          <p class="showcase-card-desc">Extract named entities and build a visual timeline from any Wikipedia article using winkNLP's date and entity recognition.</p>
+          <span class="showcase-card-link">View example →</span>
+        </div>
+      </a>
+      <a class="showcase-card" href="https://observablehq.com/@winkjs/how-to-create-a-context-aware-word-cloud" target="_blank">
+        <img src="https://winkjs.org/images/showcase-cloud.png" alt="Context-aware word cloud">
+        <div class="showcase-card-body">
+          <div class="showcase-card-title">Context-aware Word Cloud</div>
+          <p class="showcase-card-desc">Build a word cloud that understands context — not just raw frequency — using winkNLP's POS tagging and lemmatization.</p>
+          <span class="showcase-card-link">View example →</span>
+        </div>
+      </a>
+      <a class="showcase-card" href="https://observablehq.com/@winkjs/how-to-visualize-key-sentences-in-a-document" target="_blank">
+        <img src="https://winkjs.org/images/showcase-key-sentences.png" alt="Key sentences">
+        <div class="showcase-card-body">
+          <div class="showcase-card-title">Visualize Key Sentences</div>
+          <p class="showcase-card-desc">Automatically identify and highlight the most important sentences in any document using winkNLP's sentence boundary detection.</p>
+          <span class="showcase-card-link">View example →</span>
+        </div>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:2.5rem;">
+      <a href="https://winkjs.org/examples.html" style="font-size:0.88rem;color:var(--grape);font-weight:500;text-decoration:none;letter-spacing:0.02em;">View all examples →</a>
+    </p>
+  </div>
+</section>
+
+<!-- QUICKSTART -->
+<section id="quickstart">
+  <div class="container">
+    <div class="quickstart-layout">
+      <div class="quickstart-text reveal">
+        <p class="section-label">Get started in a wink!</p>
+        <h3>From install to insight<br>in minutes.</h3>
+        <p>
+          Install <code>wink-nlp</code> and a language model. The API is intuitive —
+          familiar functions like <code>each</code> and <code>filter</code>,
+          and a chainable document structure that gets you directly what you need.
+        </p>
+        <p>
+          All NLP tasks run in a single <code>readDoc()</code> call —
+          tokenization, sentence boundary detection, negation handling,
+          sentiment analysis, POS tagging, and named entity recognition.
+        </p>
+        <p style="margin-top:1.5rem;">
+          <a href="https://winkjs.org/wink-nlp/getting-started.html">Read the getting started guide →</a>
+        </p>
+        <p style="margin-top:0.75rem;">
+          <a href="https://observablehq.com/collection/@winkjs/winknlp-recipes">Explore live recipes on Observable →</a>
+        </p>
+      </div>
+      <div class="reveal">
+        <div class="code-block">
+<pre><span class="cc">// Install</span>
+npm install wink-nlp
+npm install wink-eng-lite-web-model
+
+<span class="cc">// Load and instantiate</span>
+<span class="ck">const</span> winkNLP = <span class="cf">require</span>(<span class="cs">'wink-nlp'</span>);
+<span class="ck">const</span> model   = <span class="cf">require</span>(<span class="cs">'wink-eng-lite-web-model'</span>);
+<span class="ck">const</span> nlp     = <span class="cf">winkNLP</span>( model );
+<span class="ck">const</span> its     = nlp.its;
+<span class="ck">const</span> as      = nlp.as;
+
+<span class="cc">// Process text — all NLP tasks in one call</span>
+<span class="ck">const</span> text = <span class="cs">'Hello World🌎! How are you?'</span>;
+<span class="ck">const</span> doc  = nlp.<span class="cm">readDoc</span>( text );
+
+<span class="cc">// Extract sentences</span>
+doc.<span class="cm">sentences</span>().<span class="cm">out</span>();
+<span class="cc">// → [ 'Hello World🌎!', 'How are you?' ]</span>
+
+<span class="cc">// Named entities with types</span>
+doc.<span class="cm">entities</span>().<span class="cm">out</span>( its.detail );
+<span class="cc">// → [ { value: '🌎', type: 'EMOJI' } ]</span>
+
+<span class="cc">// Token frequency table</span>
+doc.<span class="cm">tokens</span>().<span class="cm">out</span>( its.type, as.freqTable );
+<span class="cc">// → [ ['word',5], ['punctuation',2], ['emoji',1] ]</span></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE -->
+<section id="performance">
+  <div class="container">
+    <p class="section-label reveal">Performance</p>
+    <h2 class="reveal">All the NLP you need.<br><em>Nothing you don't.</em></h2>
+    <div class="perf-grid reveal">
+      <div class="perf-cell">
+        <img class="perf-icon" src="https://winkjs.org/images/speed.svg" alt="">
+        <div class="perf-n">2M+</div>
+        <div class="perf-label">tokens / second</div>
+        <p class="perf-desc">Full NLP pipeline — tokenization, SBD, sentiment, POS tagging and more. MacBook Pro M4 · Chrome.</p>
+      </div>
+      <div class="perf-cell">
+        <img class="perf-icon" src="https://winkjs.org/images/visibility.svg" alt="">
+        <div class="perf-n">94.7%</div>
+        <div class="perf-label">POS tagging accuracy</div>
+        <p class="perf-desc">On a subset of the WSJ corpus, including tokenization of raw text.</p>
+      </div>
+      <div class="perf-cell">
+        <img class="perf-icon" src="https://winkjs.org/images/memory.svg" alt="">
+        <div class="perf-n">80MB</div>
+        <div class="perf-label">peak memory</div>
+        <p class="perf-desc">When processing a 350-page book with over 125,000 tokens.</p>
+      </div>
+      <div class="perf-cell">
+        <img class="perf-icon" src="https://winkjs.org/images/dependency.svg" alt="">
+        <div class="perf-n">Zero</div>
+        <div class="perf-label">dependencies</div>
+        <p class="perf-desc">Built ground up with a lean code base that has no external dependencies.</p>
+      </div>
+      <div class="perf-cell">
+        <img class="perf-icon" src="https://winkjs.org/images/shield.svg" alt="">
+        <div class="perf-n">#3</div>
+        <div class="perf-label">OpenSSF adherence</div>
+        <p class="perf-desc">Ranked #3 globally among JavaScript packages for Open Source Security Foundation best practices.</p>
+      </div>
+      <div class="perf-cell">
+        <img class="perf-icon" src="https://winkjs.org/images/testcoverage.svg" alt="">
+        <div class="perf-n">~100%</div>
+        <div class="perf-label">test coverage</div>
+        <p class="perf-desc">Automated build with comprehensive regression tests requiring >99.5% coverage.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="container">
+    <div class="packages-layout">
+      <div class="packages-text reveal">
+        <p class="section-label">The ecosystem</p>
+        <h3>More than winkNLP.</h3>
+        <p>
+          winkJS is a family of focused utility packages for NLP, machine learning,
+          and statistical analysis in Node.js — each rigorously tested, zero or
+          minimal dependencies, MIT licensed.
+        </p>
+        <p>
+          <a href="https://winkjs.org/packages.html">View all 20+ packages →</a>
+        </p>
+        <p style="margin-top:1rem;font-size:0.82rem;color:var(--faint);">
+          Also check out
+          <a href="https://composer.winkjs.org" style="color:var(--faint);">winkComposer →</a>
+          for streaming intelligence.
+        </p>
+      </div>
+      <div class="pkg-list reveal">
+        <a class="pkg-item" href="https://winkjs.org/wink-nlp/" target="_blank">
+          <span class="pkg-name">wink-nlp</span>
+          <span class="pkg-desc">Full NLP pipeline</span>
+        </a>
+        <a class="pkg-item" href="https://github.com/winkjs/wink-bm25-text-search" target="_blank">
+          <span class="pkg-name">wink-bm25-text-search</span>
+          <span class="pkg-desc">Fast full-text search</span>
+        </a>
+        <a class="pkg-item" href="https://winkjs.org/wink-statistics/" target="_blank">
+          <span class="pkg-name">wink-statistics</span>
+          <span class="pkg-desc">Numerically stable stats</span>
+        </a>
+        <a class="pkg-item" href="https://winkjs.org/wink-distance/" target="_blank">
+          <span class="pkg-name">wink-distance</span>
+          <span class="pkg-desc">Similarity &amp; distance functions</span>
+        </a>
+        <a class="pkg-item" href="https://winkjs.org/wink-sentiment/" target="_blank">
+          <span class="pkg-name">wink-sentiment</span>
+          <span class="pkg-desc">Phrase sentiment scoring</span>
+        </a>
+        <a class="pkg-item" href="https://winkjs.org/packages.html" style="border-style:dashed;">
+          <span class="pkg-name" style="color:var(--faint);">20+ packages total</span>
+          <span class="pkg-desc" style="color:var(--grape);font-weight:500;">View all →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="container">
+    <div class="community-intro reveal">
+      <p class="section-label">Get involved</p>
+      <h2>Star us. Follow us.<br><em>Build with us.</em></h2>
+      <p>
+        winkNLP is built by a small team and made better by the community.
+        Every star, every issue, and every contribution matters — genuinely.
+      </p>
+    </div>
+    <div class="community-grid reveal">
+
+      <a class="community-card" href="https://github.com/winkjs/wink-nlp" target="_blank">
+        <div class="community-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="community-card-title">Star winkNLP</div>
+        <p class="community-card-desc">Stars help others discover the project and signal that winkNLP is worth trusting. It means a lot to a small team.</p>
+        <span class="community-card-action">Star on GitHub →</span>
+      </a>
+
+      <a class="community-card" href="https://github.com/winkjs" target="_blank">
+        <div class="community-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="community-card-title">Follow @winkjs</div>
+        <p class="community-card-desc">Follow the winkJS organisation on GitHub to stay updated on new releases, packages, and ecosystem developments.</p>
+        <span class="community-card-action">Follow on GitHub →</span>
+      </a>
+
+      <a class="community-card" href="https://github.com/winkjs/wink-nlp/issues" target="_blank">
+        <div class="community-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="community-card-title">Open an issue</div>
+        <p class="community-card-desc">Found a bug? Have a feature request? Open an issue on GitHub — we read every one and respond thoughtfully.</p>
+        <span class="community-card-action">Open an issue →</span>
+      </a>
+
+      <a class="community-card" href="https://github.com/winkjs/wink-nlp/blob/master/CONTRIBUTING.md" target="_blank">
+        <div class="community-card-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div class="community-card-title">Contribute</div>
+        <p class="community-card-desc">Read our contributing guide. We hold high standards — 100% test coverage, clean code — and value contributors who share that care.</p>
+        <span class="community-card-action">Read the guide →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span>&copy; <a href="https://graype.in">Graype Systems Private Limited</a></span>
+      <span class="footer-sep">·</span>
+      <a href="https://winkjs.org/packages.html">Packages</a>
+      <span class="footer-sep">·</span>
+      <a href="https://winkjs.org/blog.html">Blog</a>
+      <span class="footer-sep">·</span>
+      <span>MIT Licensed</span>
+    </div>
+    <div class="footer-right">
+      <a href="https://twitter.com/winkjs_org/" title="Twitter" target="_blank"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+      <a href="https://github.com/winkjs" title="GitHub" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
+      <a href="https://winkjs.org/packages.html" title="Packages"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+})();
+</script>
+</body>
+</html>
